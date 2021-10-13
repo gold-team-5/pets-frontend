@@ -1,0 +1,22 @@
+.MyList{
+    width: 65%;
+    float: right;
+}
+
+.Previous{
+    float: left;
+    margin-right: 25%;
+}
+
+.Next{
+    float: right;
+}
+
+.closeButton{
+    float: right;
+}
+
+.phonesCard{
+    /* width: 40%;
+    display: inline-block; */
+}
