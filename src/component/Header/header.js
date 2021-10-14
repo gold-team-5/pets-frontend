@@ -18,6 +18,8 @@ import logo from "../../img/Screenshot__137_-removebg-preview.png";
 export default function Headers(props) {
   const [showSearch, setshowSearch] = useState(false);
 
+  const handelCart = () => {};
+
   return (
     <div id="header">
       <div id="up" style={{ height: "70px" }}>
@@ -44,14 +46,18 @@ export default function Headers(props) {
               >
                 log-In{" "}
               </Button>
+
               <span class="">&nbsp; </span>
 
-              <Button
-                icon="shopping-cart"
-                class="bp3-button bp3-minimal bp3-icon-notifications"
-              >
-                (0)
-              </Button>
+              <a href="Cart">
+                <Button
+                  onClick={handelCart}
+                  icon="shopping-cart"
+                  class="bp3-button bp3-minimal bp3-icon-notifications"
+                >
+                  (0)
+                </Button>
+              </a>
             </div>
           </div>
         </nav>
@@ -117,6 +123,7 @@ export default function Headers(props) {
             />
           </Navbar.Group>
         </Navbar>
+        {/* <Login /> */}
       </div>
       {/* <p>fdasdf</p> */}
     </div>
