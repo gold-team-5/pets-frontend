@@ -1,5 +1,7 @@
+
 // import React from 'react'
 import React, { useEffect, useState, useContext } from 'react';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { v4 as uuid } from 'uuid';
 import List from '../list/list';
 import Form from '../forms/forms';
@@ -10,6 +12,14 @@ import Auth from '../context/auth';
 import SignUp from '../context/signUp';
 import Appointment from '../Appointment/Appointment';
 import superagent from "superagent"
+import Header from "../Header/header";
+import Home from "../home/home";
+import AboutUS from "../aboutUS/aboutUS";
+import Pets from "../pets/pets";
+import Products from "../products/products";
+import Services from "../services/services";
+import LoginProvider from "../context/context";
+
 
 
 
@@ -139,21 +149,44 @@ const ToDo = (props) => {
 
   }, [count]);
 
+  
+  
+  
   return (
-    <>
-      <Headers />
-
-      
-
-        <Auth capability="show">
-          <Appointment list={list}/>
-          <Form addAppointment={addAppointment} />
+    <Router>
+      <Header />
+       {/* <SignUp />
+    
+       <Auth capability="show">
+         <Appointment list={list}/>
+           <Form addAppointment={addAppointment} />
          
         
-        </Auth>
-        <SignUp />
-    </>
+         </Auth> */}
+     
+      <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route exact path="/Pets">
+          <Pets />
+        </Route>
+        <Route exact path="/Products">
+          <Products />
+        </Route>
+        <Route exact path="/Services">
+          <Services />
+        </Route>
+        <Route exact path="/AboutUS">
+          <AboutUS />
+        </Route>
+      </Switch>
+      {/* <When condition={!this.context.loggedIn}>
+        <Login />
+      </When> */}
+    </Router>
   );
-};
+
+    }
 
 export default ToDo;
