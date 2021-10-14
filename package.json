@@ -1,7 +1,6 @@
 {
   "name": "pets-frontend",
   "version": "1.0.0",
-
   "dependencies": {
     "@blueprintjs/core": "^3.50.1",
     "@testing-library/jest-dom": "^5.14.1",

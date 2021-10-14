@@ -6,7 +6,7 @@ import cookie from 'react-cookies';
 import Swal from "sweetalert2";
 
 export const LoginContext = React.createContext();
-const API = 'https://auth-server-401.herokuapp.com';// .env
+const API = 'https://gold-team-mid-project.herokuapp.com';// .env
 
 export default function LoginProvider(props) {
     const [loggedIn, setLoggedIn] = useState(false);
@@ -17,16 +17,20 @@ export default function LoginProvider(props) {
         validateJwToken(tokenFromCookie);
     }, []);
 
-    const signUp = async (username, password, role) => {
+    const signUp = async (username, password, role,phone,address,gender) => {
         // {username: password} encoded
         //Basic base64(username:password)
         try{
            
 
             let user = {
-                username: username,
-                password: password,
-                role: role
+                user_name: username,
+                user_password: password,
+                user_role: role,
+                user_phone:phone,
+                user_address:address,
+                user_gender: gender
+
             }
     
             const response = await superagent.post(`${API}/signup`, user);
@@ -60,7 +64,7 @@ export default function LoginProvider(props) {
             console.log(response);
     
     
-    
+    //check
             validateJwToken(response.body.token);
         }catch{
             Swal.fire({

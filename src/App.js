@@ -7,7 +7,7 @@ import LoginProvider from "./component/context/context";
 import Login from "./component/context/login";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import Appointment from './component/Appointment/Appointment'
 export default class App extends React.Component {
   render() {
     return (
@@ -20,6 +20,7 @@ export default class App extends React.Component {
             {/* user - editor - admin */}
             
               <ToDo />
+             
            
           </SettingProvider>
         </LoginProvider>

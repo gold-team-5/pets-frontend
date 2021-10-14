@@ -6,33 +6,43 @@ import "./form.css"
 import Auth from "../context/auth";
 
 export default function Form(props) {
-  const { handleChange, handleSubmit } = useForm(props.addItem);
+  const { handleChange, handleSubmit } = useForm(props.addAppointment);
 
   return (
-    <Auth capability="create">
+    <Auth capability="add">
       <form className="myForm" onSubmit={handleSubmit}>
-        <h2>Add New Phone</h2>
+        <h2>Add New Appointment</h2>
         <FormGroup
-          label="Phones"
           labelFor="text-input">
-          <InputGroup required onChange={handleChange} name="text" type="text" placeholder="Phone Type" />
+          <InputGroup required onChange={handleChange} name="book_doctor" type="text" placeholder="book_doctor" />
         </FormGroup>
 
         <FormGroup
-          label="Phone Descreption"
+        //  must check about boolean type input becuase in DB book_test Boolean type
           labelFor="text-input">
-          <input required onChange={handleChange} name="assignee" type="text" placeholder="Phone Descreption" />
+          <input required onChange={handleChange} name="book_states" type="text" placeholder="book_states" />
         </FormGroup>
 
         <FormGroup
-        label="Phone Image"
         labelFor="text-input">
-        <input required onChange={handleChange} name="difficulty" type="text" placeholder="Phone Image" />
-          
-          
-          
+        <input required onChange={handleChange} name="user_id" type="number" placeholder="user_id" />
         </FormGroup>
-        <Button type="submit">Add Phone</Button>
+
+        <FormGroup
+      
+      labelFor="text-input">
+      <input required onChange={handleChange} name=" book_date" type="date" placeholder=" book_date" />
+  
+      </FormGroup>
+      <FormGroup
+      
+      labelFor="text-input">
+      <input required onChange={handleChange} name="book_time" type="time" placeholder=" book_time" />
+  
+      </FormGroup>
+
+
+        <Button type="submit">Add Appointment </Button>
       </form>
     </Auth>
   )
