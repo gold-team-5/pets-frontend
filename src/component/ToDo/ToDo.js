@@ -84,7 +84,7 @@ const ToDo = (props) => {
 
       let obj = {
         book_doctor: item.book_doctor,
-        // book_states:item.book_states,
+        book_states:item.book_states,
         user_id:item. user_id,
         book_date:item.book_date,
         book_time:item.book_time,
@@ -92,7 +92,7 @@ const ToDo = (props) => {
     try {
       const res = await superagent.post(`${API}/newAppointment`)
       .send(obj)
-      .set('Authorization', 'Bearer ' + Context.token)
+      .set('Authorization', 'Bearer' + Context.token)
       setcount(count + 1)
   } catch (error) {
       alert('Invalid data');
@@ -127,7 +127,7 @@ const ToDo = (props) => {
   useEffect( async () => {
     try {
       const res = await superagent.get(`${API}/appointment`)
-      .set('Authorization', 'Bearer ' + Context.token)
+      .set('Authorization', 'Bearer' + Context.token)
       
         setList(res.body)
        
