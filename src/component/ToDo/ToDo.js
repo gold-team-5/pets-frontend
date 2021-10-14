@@ -155,14 +155,14 @@ const ToDo = (props) => {
   return (
     <Router>
       <Header />
-//       <SignUp />
+       {/* <SignUp />
     
-//       <Auth capability="show">
-//           <Appointment list={list}/>
-//           <Form addAppointment={addAppointment} />
+       <Auth capability="show">
+         <Appointment list={list}/>
+           <Form addAppointment={addAppointment} />
          
         
-//         </Auth>
+         </Auth> */}
      
       <Switch>
         <Route exact path="/">
@@ -187,6 +187,6 @@ const ToDo = (props) => {
     </Router>
   );
 
-  
+    }
 
 export default ToDo;
