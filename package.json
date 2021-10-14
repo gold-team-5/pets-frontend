@@ -2,7 +2,7 @@
   "name": "pets-frontend",
   "version": "1.0.0",
   "dependencies": {
-    "@blueprintjs/core": "^3.50.1",
+    "@blueprintjs/core": "^3.51.0",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
@@ -14,7 +14,9 @@
     "react-bootstrap": "^2.0.0-rc.0",
     "react-cookies": "^0.1.1",
     "react-dom": "^17.0.2",
+    "react-icons": "^4.3.1",
     "react-if": "^4.1.1",
+    "react-router-dom": "^5.3.0",
     "react-scripts": "4.0.3",
     "superagent": "^6.1.0",
     "swal": "^0.1.0",
