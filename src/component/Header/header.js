@@ -122,7 +122,15 @@ export default function Headers(props) {
                   <MdFavorite size="1.5em" color="var(--Lgray)" /> Services
                 </Button>
               </a>
-
+              <a href="Profile">
+                <Button
+                  className="bp3-minimal"
+                  style={{ color: "var(--Lgray)" }}
+                >
+                  <MdSupervisorAccount size="1.5em" color="var(--Lgray)" />{" "}
+                  Profile
+                </Button>
+              </a>
               <a href="AboutUS">
                 <Button
                   className="bp3-minimal"

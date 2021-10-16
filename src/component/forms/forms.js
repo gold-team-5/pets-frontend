@@ -14,35 +14,35 @@ export default function Form(props) {
         <h2>Add New Appointment</h2>
         <FormGroup
           labelFor="text-input">
-          <InputGroup required onChange={handleChange} name="book_doctor" type="text" placeholder="book_doctor" />
+          <InputGroup  onChange={handleChange} name="book_doctor" type="text" placeholder="book_doctor" />
         </FormGroup>
 
         <FormGroup
         //  must check about boolean type input becuase in DB book_test Boolean type
           labelFor="text-input">
-          <input required onChange={handleChange} name="book_states" type="text" placeholder="book_states" />
+          <input  onChange={handleChange} name="book_states" type="text" placeholder="book_states" />
         </FormGroup>
 
         <FormGroup
         labelFor="text-input">
-        <input required onChange={handleChange} name="user_id" type="number" placeholder="user_id" />
+        <input  onChange={handleChange} name="user_id" type="number" placeholder="user_id" />
         </FormGroup>
 
-        <FormGroup
+        {/* <FormGroup
       
       labelFor="text-input">
-      <input required onChange={handleChange} name=" book_date" type="date" placeholder=" book_date" />
+      <input  onChange={handleChange} name=" book_date" type="datetime-local" placeholder=" book_date" />
   
-      </FormGroup>
+      </FormGroup> */}
       <FormGroup
       
       labelFor="text-input">
-      <input required onChange={handleChange} name="book_time" type="time" placeholder=" book_time" />
+      <input  onChange={handleChange} name="book_time" type="datetime-local" placeholder=" book_time" />
   
       </FormGroup>
 
 
-        <Button type="submit">Add Appointment </Button>
+        <Button type="submit">Add </Button>
       </form>
     </Auth>
   )
