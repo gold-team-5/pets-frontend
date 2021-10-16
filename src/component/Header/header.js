@@ -1,8 +1,11 @@
 import React from "react";
 import { useState } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 // import { Navbar, Nav, Container } from "react-bootstrap";
 import Login from "../context/login";
+import { When } from 'react-if';
+import  { useContext } from 'react';
 
 import "@blueprintjs/core/lib/css/blueprint.css";
 import "./header.css";
@@ -15,8 +18,14 @@ import { AiFillHome } from "react-icons/ai";
 
 import logo from "../../img/Screenshot__137_-removebg-preview.png";
 
+import { LoginContext } from "../context/context";
+import LoginButton from "../loginButton";
+import LogoutButton from "../logoutButton";
+
 export default function Headers(props) {
   const [showSearch, setshowSearch] = useState(false);
+  const context = useContext(LoginContext);
+
 
   const handelCart = () => {};
 
@@ -40,12 +49,21 @@ export default function Headers(props) {
             )}
 
             <div>
-              <Button
+             
+               <a href="/login">
+                 {(!context.loggedIn) ? <LoginButton /> : <LogoutButton />}
+               {/* <Button
                 icon="log-in"
                 class="bp3-button bp3-minimal bp3-icon-user"
+               
               >
-                log-In{" "}
-              </Button>
+                   log-In{" "}
+              </Button> */}
+              </a>
+
+
+              
+
 
               <span class="">&nbsp; </span>
 

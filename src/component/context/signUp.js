@@ -54,7 +54,7 @@ export default function SignUp(props) {
                         <Form.Control required name="gender" type="text" placeholder="Male ,Female" />
                     </Form.Group>
                           
-                    <Button variant="primary" type="submit">
+                    <Button variant="primary" type="submit" >
                         Sign Up
                     </Button>
                 </Form>
