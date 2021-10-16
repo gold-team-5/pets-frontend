@@ -1,8 +1,39 @@
+:root {
+    --green: #6bb937;
+    --Lgray: #f0efef;
+    --Dbrown: #4c3433;
+    --Lbrown: #936142;
+  
+    --white: #ffffff;
+  }
 .SignUpForm{
+   
     margin-left: 20%;
     margin-right: 20%;
     margin-top: 4%;
-    border: 0.5px solid rgb(43, 189, 226);
+    border: 5px solid var( --Dbrown);
     padding: 35px;
     opacity: .85;
+    border-radius: 2%
+}
+.signupform{
+    margin: 4% 0 2% 0;
+    display: flex;
+    flex-direction:column;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.signupInput{
+    color:var(--Dbrown);
+    font-weight: bold;
+}
+.signupButton{
+    margin: 0 auto;
+    width: 22%;
+}
+.signupButton Button{
+    background-color: var(--Lbrown);
+    margin: 1%;
+    border-color: var(--Dbrown);
 }
