@@ -1,9 +1,8 @@
-
 // import React from 'react'
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState, useContext } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Redirect } from 'react-router';
-import { v4 as uuid } from 'uuid';
+
 import List from '../list/list';
 import Form from '../forms/forms';
 import Headers from '../Header/header';
@@ -13,6 +12,9 @@ import Auth from '../context/auth';
 import SignUp from '../context/signUp';
 import Appointment from '../Appointment/Appointment';
 import superagent from "superagent"
+import { When } from "react-if";
+import { v4 as uuid } from "uuid";
+
 import Header from "../Header/header";
 import Home from "../home/home";
 import AboutUS from "../aboutUS/aboutUS";
@@ -21,7 +23,7 @@ import Products from "../products/products";
 import Services from "../services/services";
 import LoginProvider from "../context/context";
 import Login from '../context/login';
-
+import Cart from "../cart/cart";
 
 
 
@@ -75,9 +77,6 @@ import Login from '../context/login';
 //   }
 // }
 
-
-
-
 const ToDo = (props) => {
 
   const API = 'https://gold-team-mid-project.herokuapp.com';
@@ -110,9 +109,6 @@ const ToDo = (props) => {
       alert('Invalid data');
     }
   }
-
-
-
 
   // function addItem(item) {
   //   let data = { id: uuid(), text: item.text, assignee: item.assignee, complete: false, difficulty: item.difficulty }
@@ -149,7 +145,7 @@ const ToDo = (props) => {
       alert('Invalid Render');
     }
 
-  }, [count]);
+     }, [count]);
 
 
 
@@ -192,15 +188,16 @@ const ToDo = (props) => {
         </Route>
         <Route exact path="/signup">
         {Context.loggedIn ?  <Redirect to="/" />:<SignUp /> }
-         
+         </Route>
+        <Route exact path="/Cart">
+          <Cart />
         </Route>
       </Switch>
-      {/* <When condition={!this.context.loggedIn}>
+      {/* <When condition={!Context.loggedIn}>
         <Login />
       </When> */}
     </Router>
   );
-
-}
+};
 
 export default ToDo;
