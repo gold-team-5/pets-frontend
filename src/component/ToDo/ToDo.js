@@ -191,7 +191,8 @@ const ToDo = (props) => {
           {Context.loggedIn ? <Redirect to="/" /> : <Login />}
         </Route>
         <Route exact path="/signup">
-          <SignUp />
+        {Context.loggedIn ?  <Redirect to="/" />:<SignUp /> }
+         
         </Route>
       </Switch>
       {/* <When condition={!this.context.loggedIn}>
