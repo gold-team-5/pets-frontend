@@ -23,6 +23,7 @@ import LoginProvider from "../context/context";
 import Login from '../context/login'
 import Cart from "../cart/cart";
 import Profile from "../Profile/profile";
+import UpdatePetForm from '../forms/updatePet'
 
 const ToDo = (props) => {
 
@@ -30,8 +31,13 @@ const ToDo = (props) => {
   const Context = useContext(LoginContext)
   const [list, setList] = useState([]);
   const [count, setcount] = useState(0);
-  const [incomplete, setIncomplete] = useState([]);
+  const [count2, setcount2] = useState(0);
 
+  const [incomplete, setIncomplete] = useState([]);
+  const [petData, setPetData] = useState([]);
+  const [showUpdateForm, setShowUpdateForm] = useState(false)
+  const [index, setIndex] = useState();
+  const [updatePetData, setUpdatePetData] = useState();
 
 
   //add Appointment function
@@ -60,124 +66,294 @@ const ToDo = (props) => {
   }
 
 
-//delete function
-async function delAppointment(id) {
-  console.log(id);
-  try {
-    const res = await superagent.delete(`${API}/appointment/${id}`)
-      .set('Authorization', 'Bearer ' + Context.token)
-    const items = list.filter(item => item.id !== id);
-    setList(items);
-    console.log("items>>>>", items);
-    console.log("delete", res);
-    setcount(count + 1)
-  } catch (error) {
-    alert('Invalid delete');
+  //delete function
+  async function delAppointment(id) {
+    console.log(id);
+    try {
+      const res = await superagent.delete(`${API}/appointment/${id}`)
+        .set('Authorization', 'Bearer ' + Context.token)
+      const items = list.filter(item => item.id !== id);
+      setList(items);
+      console.log("items>>>>", items);
+      console.log("delete", res);
+      setcount(count + 1)
+    } catch (error) {
+      alert('Invalid delete');
+    }
+
+  }
+  //update state function 
+
+  async function updateAppointment(item) {
+
+    let obj = {
+      book_doctor: item.book_doctor,
+      book_states: !item.book_states,
+      user_id: item.user_id,
+      book_time: item.book_time,
+    }
+
+    try {
+
+      const res = await superagent.put(`${API}/book/${item.id}`)
+        .send(obj)
+        .set('Authorization', 'Bearer ' + Context.token)
+
+
+
+      setcount(count + 1)
+    } catch (error) {
+      alert('Invalid update');
+    }
+
   }
 
-}
-//update state function 
-
-async function updateAppointment(item) {
-
-  let obj = {
-    book_doctor: item.book_doctor,
-    book_states: !item.book_states,
-    user_id: item.user_id,
-    book_time: item.book_time,
-  }
-
-  try {
-
-    const res = await superagent.put(`${API}/book/${item.id}`)
-      .send(obj)
-      .set('Authorization', 'Bearer ' + Context.token)
-
-
-
-    setcount(count + 1)
-  } catch (error) {
-    alert('Invalid update');
-  }
-
-}
 
 
 
 
 
 
+  useEffect(async () => {
+    try {
 
-useEffect(async () => {
-  try {
-    console.log(Context.token, '>>>>>>>>>>>>>>>>>>..')
-    const res = await superagent.get(`${API}/appointment`)
-      .set('Authorization', 'Bearer ' + Context.token)
-    console.log(res, 'xxxxxxxxxxxxxxxxxxxxxxxx..')
+      const res = await superagent.get(`${API}/appointment`)
+        .set('Authorization', 'Bearer ' + Context.token)
 
-    setList(res.body)
+      setList(res.body)
 
-    console.log(res.body);
-    console.log('..............', list)
-  } catch (error) {
-    alert('Invalid Render');
-  }
+    } catch (error) {
+      alert('Invalid Render');
+    }
 
-}, [count]);
-
+  }, [count]);
+  ////get pets data /////////////////////
+  useEffect(async () => {
+    try {
+      console.log(Context.token, '>>>>>>>>>>>>>>>>>>..')
+      const res = await superagent.get(`${API}/pet`)
 
 
+      setPetData(res.body)
 
-return (
-  <Router>
-    <Header />
-    
-    <Switch>
+      console.log(res.body);
+      console.log('..............', petData)
+    } catch (error) {
+      alert('Invalid Render');
+    }
 
-      <Route exact path="/">
+  }, []);
 
-        <Home />
-      </Route>
-      <Route exact path="/Pets">
-        <Pets />
-      </Route>
-      <Route exact path="/Products">
-        <Products />
-      </Route>
-      <Route exact path="/Services">
-        <Services list={list}
-          addAppointment={addAppointment}
-          delAppointment={delAppointment}
-          updateAppointment={updateAppointment} />
+  //////////////////////////////////////////////////////////
+  // const [showSearchResult, setshowSearchResult] = useState();
+  // function updateShowSearch(e){
 
-      </Route>
-      <Route exact path="/AboutUS">
-        <AboutUS />
-      </Route>
-      <Route exact path="/Profile">
-        <Profile />
-      </Route>
+  //   setshowSearchResult(e.target.value);
+  //  console.log(showSearchResult);
+
+  // }
+  // useEffect(async () => {
+  //   try {
+  //     console.log(Context.token, '>>>>>>>>>>>>>>>>>>..')
+  //     const res = await superagent.get(`${API}/pet/${showSearchResult}`)
+
+
+  //     setPetData(res.body)
+
+  //     console.log(res.body);
+  //     console.log('..............', petData)
+  //   } catch (error) {
+  //     alert('Invalid Render');
+  //   }
+
+  // }, [showSearchResult]);
+  
+  function search(e) {
+    e.preventDefault();
+    let selectedType = e.target.value;
+    let filteredData
+    let data=petData
+
+    if (selectedType){
       
-      {/* <Route exact path="/login">
+    
+   filteredData = data.filter(item => {
+        if (selectedType == item.pet_type)
+          return item;
+        
+        setPetData(filteredData);
+        console.log(filteredData);
+        // return item ;
+
+       console.log(filteredData, '...................');
+      })}
+  }
+
+  /////////////delete pet//////////////
+  async function deletPet(id) {
+    console.log(id);
+    try {
+      const res = await superagent.delete(`${API}/pet/${id}`)
+        .set('Authorization', 'Bearer ' + Context.token)
+      const items = list.filter(item => item.id !== id);
+      setPetData(items);
+      console.log("items>>>>", items);
+      console.log("delete", res);
+    } catch (error) {
+      alert('Invalid delete');
+    }
+
+  }
+  ///////////////update pet /////////////////////
+
+  const showupdatePetForm = async (index, item) => {
+
+    setShowUpdateForm(true);
+
+    setIndex(item.id);
+    console.log(showUpdateForm, index);
+    let obj = {
+      pet_name: item.pet_name,
+      pet_age: item.pet_age,
+      pet_img: item.pet_img,
+      pet_type: item.pet_type,
+      pet_desc: item.pet_desc,
+      pet_states: item.pet_states,
+    }
+    setUpdatePetData(obj)
+  }
+
+  const updatePet = async (e) => {
+    e.preventDefault();
+    let petFormData = {
+      pet_name: e.target.pet_name.value,
+      pet_age: e.target.pet_age.value,
+      pet_img: e.target.pet_img.value,
+      pet_type: e.target.pet_type.value,
+      pet_desc: e.target.pet_desc.value,
+      pet_states: e.target.pet_states.value,
+    }
+
+    let updateUrl = `${API}/pet/${index}`;
+    let petDataRes = await superagent.put(updateUrl)
+      .send(petFormData)
+      .set('Authorization', 'Bearer ' + Context.token)
+    setcount2(count2 + 1)
+
+    console.log(petDataRes.text)
+    setShowUpdateForm(false)
+  }
+
+
+  useEffect(async () => {
+    try {
+      console.log(Context.token, '>>>>>>>>>>>>>>>>>>..')
+      const res = await superagent.get(`${API}/pet`)
+
+
+      setPetData(res.body)
+
+      console.log(res.body);
+      console.log(',,,,,,,,,,,,,,,,,,,,,,', petData)
+    } catch (error) {
+      alert('Invalid Render');
+    }
+
+  }, [count2]);
+  ////////////////////add pet//////////////////////
+
+  async function addPet(item) {
+    // console.log(item, ',,,,,,,,,,,,,,,,,,,,,,,,')
+
+
+    let obj = {
+      pet_name: item.pet_name,
+      pet_age: item.pet_age,
+      pet_img: item.pet_img,
+      pet_type: item.pet_type,
+      pet_desc: item.pet_desc,
+      pet_states: item.pet_states,
+    }
+    try {
+      console.log(Context.token)
+      const res = await superagent.post(`${API}/adapt`)
+
+        .send(obj)
+        .set('Authorization', 'Bearer ' + Context.token)
+      setcount(count2 + 1)
+
+    } catch (error) {
+      alert('Invalid data');
+    }
+  }
+
+
+
+
+
+  return (
+    <Router>
+      <Header />
+
+      <Switch>
+
+        <Route exact path="/">
+
+          <Home />
+        </Route>
+        <Route exact path="/Pets">
+          <Pets petData={petData}
+            deletPet={deletPet}
+            showupdatePetForm={showupdatePetForm}
+            addPet={addPet}
+            search={search} />
+          {showUpdateForm &&
+            <UpdatePetForm updatePet={updatePet}
+              updatePetData={updatePetData}
+            />
+          }
+
+        </Route>
+        <Route exact path="/Products">
+          <Products />
+        </Route>
+        <Route exact path="/Services">
+          <Services list={list}
+            addAppointment={addAppointment}
+            delAppointment={delAppointment}
+            updateAppointment={updateAppointment} />
+
+        </Route>
+        <Route exact path="/AboutUS">
+          <AboutUS />
+        </Route>
+        <Route exact path="/Profile">
+          <Profile />
+        </Route>
+
+        {/* <Route exact path="/login">
           <Login />
         </Route> */}
-      <Route exact path="/login">
-        {Context.loggedIn ? <Redirect to="/" /> : <Login />}
-      </Route>
-      <Route exact path="/signup">
-        {Context.loggedIn ? <Redirect to="/" /> : <SignUp />}
-      </Route>
-      <Route exact path="/Cart">
-        <Cart />
-      </Route>
-    </Switch>
-    {/* <When condition={!Context.loggedIn}>
+        <Route exact path="/login">
+          {Context.loggedIn ? <Redirect to="/" /> : <Login />}
+        </Route>
+        <Route exact path="/signup">
+          {Context.loggedIn ? <Redirect to="/" /> : <SignUp />}
+        </Route>
+        <Route exact path="/Cart">
+          <Cart />
+        </Route>
+
+
+
+      </Switch>
+      {/* <When condition={!Context.loggedIn}>
         <Login />
       </When> */}
-  </Router>
+    </Router>
 
 
-);
+  );
 };
 
 export default ToDo;
