@@ -26,7 +26,7 @@ import Profile from "../Profile/profile";
 
 const ToDo = (props) => {
 
-  const API = 'https://gold-team-mid-project.herokuapp.com';
+  const API = 'http://localhost:3001';
   const Context = useContext(LoginContext)
   const [list, setList] = useState([]);
   const [count, setcount] = useState(0);
