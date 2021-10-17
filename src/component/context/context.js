@@ -11,10 +11,13 @@ const API = 'https://gold-team-mid-project.herokuapp.com';// .env
 export default function LoginProvider(props) {
     const [loggedIn, setLoggedIn] = useState(false);
     const [user, setUser] = useState({});
+    const [token, setToken] = useState(null);
     // initial render
     useEffect(() => {
         const tokenFromCookie = cookie.load('token');
+        console.log("aaaaaaaaaaaaaaaaaaaaaaa",tokenFromCookie)
         validateJwToken(tokenFromCookie);
+        setToken(tokenFromCookie)
     }, []);
 
     const signUp = async (username, password, role,phone,address,gender) => {
@@ -66,6 +69,8 @@ export default function LoginProvider(props) {
     
     //check
             validateJwToken(response.body.token);
+            console.log('sssssssssssssssssssssssss🎁',response.body.token)
+            
         }catch{
             Swal.fire({
                 icon: 'error',
@@ -109,7 +114,8 @@ export default function LoginProvider(props) {
         logout,
         user,
         can,
-        signUp
+        signUp,
+        token
     }
 
     return (
