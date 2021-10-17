@@ -1,8 +1,11 @@
 import React from "react";
 import { useState } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 // import { Navbar, Nav, Container } from "react-bootstrap";
 import Login from "../context/login";
+import { When } from 'react-if';
+import  { useContext } from 'react';
 
 import "@blueprintjs/core/lib/css/blueprint.css";
 import "./header.css";
@@ -15,8 +18,16 @@ import { AiFillHome } from "react-icons/ai";
 
 import logo from "../../img/Screenshot__137_-removebg-preview.png";
 
+import { LoginContext } from "../context/context";
+import LoginButton from "../loginButton";
+import LogoutButton from "../logoutButton";
+
 export default function Headers(props) {
   const [showSearch, setshowSearch] = useState(false);
+  const context = useContext(LoginContext);
+
+
+  const handelCart = () => {};
 
   return (
     <div id="header">
@@ -38,23 +49,33 @@ export default function Headers(props) {
             )}
 
             <div>
-              <a href='/Login'>
-              <Button
+             
+               <a href="/login">
+                 {(!context.loggedIn) ? <LoginButton /> : <LogoutButton />}
+               {/* <Button
                 icon="log-in"
                 class="bp3-button bp3-minimal bp3-icon-user"
-              >
                
-                log-In{" "}
-              </Button>
+              >
+                   log-In{" "}
+              </Button> */}
               </a>
+
+
+              
+
+
               <span class="">&nbsp; </span>
 
-              <Button
-                icon="shopping-cart"
-                class="bp3-button bp3-minimal bp3-icon-notifications"
-              >
-                (0)
-              </Button>
+              <a href="Cart">
+                <Button
+                  onClick={handelCart}
+                  icon="shopping-cart"
+                  class="bp3-button bp3-minimal bp3-icon-notifications"
+                >
+                  (0)
+                </Button>
+              </a>
             </div>
           </div>
         </nav>
@@ -101,7 +122,15 @@ export default function Headers(props) {
                   <MdFavorite size="1.5em" color="var(--Lgray)" /> Services
                 </Button>
               </a>
-
+              <a href="Profile">
+                <Button
+                  className="bp3-minimal"
+                  style={{ color: "var(--Lgray)" }}
+                >
+                  <MdSupervisorAccount size="1.5em" color="var(--Lgray)" />{" "}
+                  Profile
+                </Button>
+              </a>
               <a href="AboutUS">
                 <Button
                   className="bp3-minimal"
@@ -120,6 +149,7 @@ export default function Headers(props) {
             />
           </Navbar.Group>
         </Navbar>
+        {/* <Login /> */}
       </div>
       {/* <p>fdasdf</p> */}
     </div>

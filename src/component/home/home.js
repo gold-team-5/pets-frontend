@@ -7,9 +7,9 @@ export default function Home(props) {
 
   return (
     <>
-      {/* <img id="img1" src={img1} alt="img1" /> */}
+      <img id="img1" src={img1} alt="img1" />
       {/*  */}
-      {/* <p id="homeP">a house is not home without a pet</p> */}
+      <p id="homeP">a house is not home without a pet</p>
       {/*  */}
 
       <div class="stage" onClick={handelAdoption}>
@@ -22,7 +22,7 @@ export default function Home(props) {
             <div class="side"></div>
           </div>
           <div class="text">
-            {/* <div class="text--backing">adoption</div> */}
+            <div class="text--backing">adoption</div>
             <div class="text--left">
               <div class="inner">adoption</div>
             </div>
