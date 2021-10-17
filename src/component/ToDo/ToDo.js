@@ -109,11 +109,6 @@ const ToDo = (props) => {
   }
 
 
-
-
-
-
-
   useEffect(async () => {
     try {
 
@@ -132,10 +127,7 @@ const ToDo = (props) => {
     try {
       console.log(Context.token, '>>>>>>>>>>>>>>>>>>..')
       const res = await superagent.get(`${API}/pet`)
-
-
       setPetData(res.body)
-
       console.log(res.body);
       console.log('..............', petData)
     } catch (error) {
@@ -144,50 +136,7 @@ const ToDo = (props) => {
 
   }, []);
 
-  //////////////////////////////////////////////////////////
-  // const [showSearchResult, setshowSearchResult] = useState();
-  // function updateShowSearch(e){
-
-  //   setshowSearchResult(e.target.value);
-  //  console.log(showSearchResult);
-
-  // }
-  // useEffect(async () => {
-  //   try {
-  //     console.log(Context.token, '>>>>>>>>>>>>>>>>>>..')
-  //     const res = await superagent.get(`${API}/pet/${showSearchResult}`)
-
-
-  //     setPetData(res.body)
-
-  //     console.log(res.body);
-  //     console.log('..............', petData)
-  //   } catch (error) {
-  //     alert('Invalid Render');
-  //   }
-
-  // }, [showSearchResult]);
   
-  function search(e) {
-    e.preventDefault();
-    let selectedType = e.target.value;
-    let filteredData
-    let data=petData
-
-    if (selectedType){
-      
-    
-   filteredData = data.filter(item => {
-        if (selectedType == item.pet_type)
-          return item;
-        
-        setPetData(filteredData);
-        console.log(filteredData);
-        // return item ;
-
-       console.log(filteredData, '...................');
-      })}
-  }
 
   /////////////delete pet//////////////
   async function deletPet(id) {
@@ -197,6 +146,7 @@ const ToDo = (props) => {
         .set('Authorization', 'Bearer ' + Context.token)
       const items = list.filter(item => item.id !== id);
       setPetData(items);
+      setcount(count2 + 1)
       console.log("items>>>>", items);
       console.log("delete", res);
     } catch (error) {
@@ -249,10 +199,7 @@ const ToDo = (props) => {
     try {
       console.log(Context.token, '>>>>>>>>>>>>>>>>>>..')
       const res = await superagent.get(`${API}/pet`)
-
-
       setPetData(res.body)
-
       console.log(res.body);
       console.log(',,,,,,,,,,,,,,,,,,,,,,', petData)
     } catch (error) {
@@ -277,7 +224,6 @@ const ToDo = (props) => {
     try {
       console.log(Context.token)
       const res = await superagent.post(`${API}/adapt`)
-
         .send(obj)
         .set('Authorization', 'Bearer ' + Context.token)
       setcount(count2 + 1)
@@ -286,8 +232,24 @@ const ToDo = (props) => {
       alert('Invalid data');
     }
   }
-
-
+////////////////search///////////////////
+const search = (event) =>{
+  let selectedtype = event.target.value;
+  let Data = petData;
+  console.log(Data,'dddddddd')
+  let result;
+  if(selectedtype){
+    result = Data.filter(item=>{
+      if (item.pet_type == selectedtype){
+          return item;
+      };
+  })
+}else{
+result= Data;
+}
+setPetData(result)
+setcount(count2 + 1)
+}
 
 
 

@@ -1,14 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Card, Button } from "react-bootstrap";
 import AddPetForm from "../forms/addPetForm";
 export default function Pets(props) {
-  //  const [showSearchResult, setshowSearchResult] = useState();
-  //   function updateShowSearch(e){
-
-  //     setshowSearchResult(e.target.value);
-  //    console.log(showSearchResult);
-
-  //   }
 
   return <>
 
@@ -25,22 +18,11 @@ export default function Pets(props) {
           <option value="rabbit">rabbit</option>
         </select>
       </form>
-      {/* <input
-                  class="bp3-input"
-                  placeholder="Search by type..."
-                  type="text"
-                  name='serchByType'
-                  onChange={props.updateShowSearch}
-                /> */}
+      
 
     </div>
 
-    {/* {console.log(props.petData, '>>>>>>>>>>>>>>>>>>>>')}
-
-    {(props.showSearchResult == null) ? */}
-
-
-      {props?.petData?.map((item, index) => {
+         {props?.petData?.map((item, index) => {
 
         return (
           <div className="petCard">
