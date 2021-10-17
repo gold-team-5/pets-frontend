@@ -41,30 +41,37 @@ export default function Login(props) {
     return (
         <div className="logInForm">
 
-<When condition={!context.loggedIn}>
-<h2>LogIn Form</h2>
-<br/>
-<form onSubmit={handleSubmit}>
-    <input
-        type="text"
-        name="username"
-        placeholder="User Name"
-        onChange={(e) => setUsername(e.target.value)}
-    />
-    <br/>  <br/>
-    <input
-        type="password"
-        name="password"
-        placeholder="Password"
-        onChange={(e) => setPassword(e.target.value)}
-    />
-    <br />  <br/>
-    <Button color="#936142" type="submit" >Login</Button>
-    <span>  </span>
-    <Button color="#936142" type="submit" href='/signup'>Sign up</Button>
-    {/* <Link to="/signup" className="btn btn-primary" style={{textDecoration:'none'}}>Sign up</Link> */}
-</form>
-</When>
+            <When condition={!context.loggedIn}>
+                <h2>SignIn</h2>
+                <br />
+                <form className='loginform' onSubmit={handleSubmit}>
+                    <div className='loginInput'>
+                    <label for="username">username:</label>&nbsp;&nbsp;
+                        <input
+                        
+                            type="text"
+                            name="username"
+                            placeholder="User Name"
+                            onChange={(e) => setUsername(e.target.value)}
+                        />
+                        <br /><br/>
+                        <label for="password">password:</label>&nbsp;&nbsp;
+                        <input
+                            type="password"
+                            name="password"
+                            placeholder="Password"
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                    </div>
+
+                    <div className='loginButton'>
+                        <Button id="firstButton"  type="submit" >Login</Button>
+                      
+                        <Button id='secondButton' type="submit" href='/signup'>Sign up</Button>
+                    </div>
+                    {/* <Link to="/signup" className="btn btn-primary" style={{textDecoration:'none'}}>Sign up</Link> */}
+                </form>
+            </When>
             {/* <When condition={context.loggedIn}> */}
             {/* <Button variant="danger" type="button" onClick={context.logout}>
                             {console.log(context.user)}

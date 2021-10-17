@@ -27,8 +27,10 @@ export default function SignUp(props) {
         <When condition={!context.loggedIn}>
         <div className="SignUpForm">
             
-                <Form onSubmit={handleSubmit}>
-                    <h3> Sign Up </h3>
+                <Form className='signupform' onSubmit={handleSubmit}>
+                    <h2> Sign Up </h2>
+                    <br/>
+                    <div className='signupInput'>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label> Your Name </Form.Label>
                         <Form.Control required name="userName" type="text" placeholder="Name" />
@@ -53,10 +55,12 @@ export default function SignUp(props) {
                         <Form.Label>gender</Form.Label>
                         <Form.Control required name="gender" type="text" placeholder="Male ,Female" />
                     </Form.Group>
-                          
+                    </div>  
+                    <div className='signupButton'>   
                     <Button variant="primary" type="submit" >
                         Sign Up
                     </Button>
+                    </div>
                 </Form>
             
         </div>
