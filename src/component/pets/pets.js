@@ -1,15 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { Card, Button } from "react-bootstrap";
 import AddPetForm from "../forms/addPetForm";
+
 export default function Pets(props) {
-  //  const [showSearchResult, setshowSearchResult] = useState();
-  //   function updateShowSearch(e){
 
-  //     setshowSearchResult(e.target.value);
-  //    console.log(showSearchResult);
+  // const [searchTerm, setSearchTerm] = useState("");
+  // const [searchResults, setSearchResults] = useState([]);
+  // const handleChange = event => {
+  //   setSearchTerm(event.target.value);
+  // };
 
-  //   }
+  // useEffect(() => {
+  //   const results = props.petData.filter(pet =>
+  //     pet.pet_type.includes(searchTerm)
+  //   );
+  //   setSearchResults(results);
+  // }, [searchTerm]);
 
+  
   return <>
 
 
@@ -24,20 +32,26 @@ export default function Pets(props) {
           <option value="hamester">hamster</option>
           <option value="rabbit">rabbit</option>
         </select>
-      </form>
+        {/* <div className="App"> */}
       {/* <input
-                  class="bp3-input"
-                  placeholder="Search by type..."
-                  type="text"
-                  name='serchByType'
-                  onChange={props.updateShowSearch}
-                /> */}
+        type="text"
+        placeholder="Search"
+        value={searchTerm}
+        onChange={props.handleChange}
+      />
+      </div> */}
+       <input
+          type="text"
+          placeholder="Search"
+          value={props.earchTerm}
+          onChange={props.handleChange}
+        />
+      </form>
+    
 
     </div>
 
-    {/* {console.log(props.petData, '>>>>>>>>>>>>>>>>>>>>')}
-
-    {(props.showSearchResult == null) ? */}
+    
 
 
       {props?.petData?.map((item, index) => {
@@ -53,6 +67,10 @@ export default function Pets(props) {
                 <Card.Text>
                   {item.pet_age}
                 </Card.Text>
+                <Card.Text>
+                  {item.pet_desc}
+                </Card.Text>
+                
                 <Button variant="primary">Adoption</Button>
                 <Button variant="primary" onClick={() => props.deletPet(item.id)} >delete</Button>
                 <Button variant="primary" onClick={() => props.showupdatePetForm(index, item)}>update</Button>

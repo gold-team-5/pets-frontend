@@ -1,5 +1,5 @@
 // import React from 'react'
-import React, { useEffect, useState, useContext, useReducer  } from "react";
+import React, { useEffect, useState, useContext, useReducer } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Redirect } from 'react-router';
 import List from '../list/list';
@@ -40,7 +40,19 @@ const ToDo = (props) => {
   const [showUpdateForm, setShowUpdateForm] = useState(false)
   const [index, setIndex] = useState();
   const [updatePetData, setUpdatePetData] = useState();
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
 
+  const handleChange = event => {
+    setSearchTerm(event.target.value);
+  };
+
+  useEffect(() => {
+    const results = props.petData.filter(pet =>
+      pet.pet_type.includes(searchTerm)
+    );
+    setSearchResults(results);
+  }, [searchTerm]);
 
   //add Appointment function
   async function addAppointment(item) {
@@ -169,27 +181,51 @@ const ToDo = (props) => {
   //   }
 
   // }, [showSearchResult]);
-  
-  function search(e) {
-    e.preventDefault();
-    let selectedType = e.target.value;
-    let filteredData
-    let data=petData
 
-    if (selectedType){
-      
+  let data2=petData
+  //search function 
+  const search = (event) => {
+    // c = a ;Data=petData
+    // a = b ;petData=result
+
+    // b = c result=Data
+    event.preventDefault()
+    let selectedtype = event.target.value;
+ 
+    let Data = petData;
+   
+    console.log('vvvvvvvvvvvvvvv',data2)
     
-   filteredData = data.filter(item => {
-        if (selectedType == item.pet_type)
+    console.log(Data, 'dddddddd')
+    let result;
+    if (selectedtype) {
+      result = Data.filter(item => {
+        if (item.pet_type == selectedtype) {
+          
           return item;
-        
-        setPetData(filteredData);
-        console.log(filteredData);
-        // return item ;
+         
+        }
+       
 
-       console.log(filteredData, '...................');
-      })}
-  }
+      })
+      
+
+    
+    }
+    else {
+      result = Data;
+     
+    }
+    setPetData(result)
+   
+
+
+  
+  };
+
+
+
+
 
   /////////////delete pet//////////////
   async function deletPet(id) {
@@ -199,6 +235,7 @@ const ToDo = (props) => {
         .set('Authorization', 'Bearer ' + Context.token)
       const items = list.filter(item => item.id !== id);
       setPetData(items);
+      setcount2(count2 + 1)
       console.log("items>>>>", items);
       console.log("delete", res);
     } catch (error) {
@@ -304,7 +341,10 @@ const ToDo = (props) => {
           <Home />
         </Route>
         <Route exact path="/Pets">
-          <Pets petData={petData}
+          <Pets
+          searchTerm={searchTerm}
+          handleChange={handleChange}
+          petData={petData}
             deletPet={deletPet}
             showupdatePetForm={showupdatePetForm}
             addPet={addPet}
