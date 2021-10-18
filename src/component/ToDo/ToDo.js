@@ -1,16 +1,16 @@
 // import React from 'react'
 import React, { useEffect, useState, useContext, Profiler } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { Redirect } from 'react-router';
-import List from '../list/list';
-import Headers from '../Header/header';
-import "./ToDo.css"
-import { LoginContext } from '../context/context'
-import Auth from '../context/auth';
-import Appointment from '../Appointment/Appointment';
-import SignUp from '../context/signUp';
-import Form from '../forms/forms';
-import superagent from "superagent"
+import { Redirect } from "react-router";
+import List from "../list/list";
+import Headers from "../Header/header";
+import "./ToDo.css";
+import { LoginContext } from "../context/context";
+import Auth from "../context/auth";
+import Appointment from "../Appointment/Appointment";
+import SignUp from "../context/signUp";
+import Form from "../forms/forms";
+import superagent from "superagent";
 import { When } from "react-if";
 import { v4 as uuid } from "uuid";
 import Header from "../Header/header";
@@ -20,14 +20,16 @@ import Pets from "../pets/pets";
 import Products from "../products/products";
 import Services from "../services/services";
 import LoginProvider from "../context/context";
-import Login from '../context/login'
+import Login from "../context/login";
 import Cart from "../cart/cart";
 import Profile from "../Profile/profile";
 import UpdatePetForm from '../forms/updatePet'
+import Footer from "../footer/footer";
 const ToDo = (props) => {
 
   const API = 'http://localhost:3001';
   const Context = useContext(LoginContext)
+
   const [list, setList] = useState([]);
   const [count, setcount] = useState(0);
   const [incomplete, setIncomplete] = useState([]);
@@ -46,8 +48,7 @@ const ToDo = (props) => {
 
   //add Appointment function
   async function addAppointment(item) {
-    console.log(item, ',,,,,,,,,,,,,,,,,,,,,,,,')
-
+    console.log(item, ",,,,,,,,,,,,,,,,,,,,,,,,");
 
     let obj = {
       book_doctor: item.book_doctor,
@@ -55,17 +56,17 @@ const ToDo = (props) => {
       user_id: item.user_id,
       // book_date:item.book_date,
       book_time: item.book_time,
-    }
+    };
     try {
-      console.log(Context.token)
-      const res = await superagent.post(`${API}/newAppointment`)
+      console.log(Context.token);
+      const res = await superagent
+        .post(`${API}/newAppointment`)
 
         .send(obj)
-        .set('Authorization', 'Bearer ' + Context.token)
-      setcount(count + 1)
-
+        .set("Authorization", "Bearer " + Context.token);
+      setcount(count + 1);
     } catch (error) {
-      alert('Invalid data');
+      alert("Invalid data");
     }
   }
 
@@ -108,7 +109,9 @@ async function updateAppointment(item) {
     setcount(count + 1)
   } catch (error) {
     alert('Invalid update');
+
   }
+  //update state function
 
 }
 //function to cancel  booking 
@@ -138,25 +141,22 @@ async function delAppointmentfromuser(item){
 }
 
 
-
-
-
 useEffect(async () => {
   try {
     console.log(Context.token, '>>>>>>>>>>>>>>>>>>..')
     const res = await superagent.get(`${API}/appointment`)
       .set('Authorization', 'Bearer ' + Context.token)
     console.log(res, 'xxxxxxxxxxxxxxxxxxxxxxxx..')
-
     setList(res.body)
-
     console.log(res.body);
     console.log('..............', list)
   } catch (error) {
     alert('Invalid Render');
   }
-
 }, [count]);
+
+
+
 
 //..........................pet functionality.............................................
 ////get pets data /////////////////////
@@ -352,25 +352,71 @@ searchItems={searchItems}
       </Route>
       
       {/* <Route exact path="/login">
+  useEffect(async () => {
+    try {
+      console.log(Context.token, ">>>>>>>>>>>>>>>>>>..");
+      const res = await superagent
+        .get(`${API}/appointment`)
+        .set("Authorization", "Bearer " + Context.token);
+      console.log(res, "xxxxxxxxxxxxxxxxxxxxxxxx..");
+
+      setList(res.body);
+
+      console.log(res.body);
+      console.log("..............", list);
+    } catch (error) {
+      alert("Invalid Render");
+    }
+  }, [count]);
+
+  return (
+    <Router>
+      <Header />
+
+      <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route exact path="/Pets">
+          <Pets />
+        </Route>
+        <Route exact path="/Products">
+          <Products />
+        </Route>
+        <Route exact path="/Services">
+          <Services
+            list={list}
+            addAppointment={addAppointment}
+            delAppointment={delAppointment}
+            updateAppointment={updateAppointment}
+          />
+        </Route>
+        <Route exact path="/AboutUS">
+          <AboutUS />
+        </Route>
+        <Route exact path="/Profile">
+          <Profile />
+        </Route>
+
+        {/* <Route exact path="/login">
           <Login />
         </Route> */}
-      <Route exact path="/login">
-        {Context.loggedIn ? <Redirect to="/" /> : <Login />}
-      </Route>
-      <Route exact path="/signup">
-        {Context.loggedIn ? <Redirect to="/" /> : <SignUp />}
-      </Route>
-      <Route exact path="/Cart">
-        <Cart />
-      </Route>
-    </Switch>
-    {/* <When condition={!Context.loggedIn}>
+        <Route exact path="/login">
+          {Context.loggedIn ? <Redirect to="/" /> : <Login />}
+        </Route>
+        <Route exact path="/signup">
+          {Context.loggedIn ? <Redirect to="/" /> : <SignUp />}
+        </Route>
+        <Route exact path="/Cart">
+          <Cart />
+        </Route>
+      </Switch>
+      {/* <When condition={!Context.loggedIn}>
         <Login />
       </When> */}
-  </Router>
-
-
-);
+      <Footer />
+    </Router>
+  );
 };
 
 export default ToDo;
