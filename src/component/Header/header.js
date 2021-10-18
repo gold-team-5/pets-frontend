@@ -23,7 +23,7 @@ import LoginButton from "../loginButton";
 import LogoutButton from "../logoutButton";
 
 export default function Headers(props) {
-  const [showSearch, setshowSearch] = useState(false);
+ 
   const context = useContext(LoginContext);
 
 
@@ -37,17 +37,7 @@ export default function Headers(props) {
             <img class="logo" src={logo} alt="logo" />
           </div>
           <div class="up-right">
-            {showSearch && (
-              <>
-                <input
-                  class="bp3-input"
-                  placeholder="Search files..."
-                  type="text"
-                />
-                <span class="">&nbsp; &nbsp; &nbsp; </span>
-              </>
-            )}
-
+           
             <div>
              
                <a href="/login">
@@ -96,10 +86,10 @@ export default function Headers(props) {
                 </Button>
               </a>
 
-              <a href="Pets">
+              <a href="Pets" >
                 <Button
                   className="bp3-minimal"
-                  style={{ color: "var(--Lgray)" }}
+                  style={{ color: "var(--Lgray)" }}  
                 >
                   <FaDog size="1.5em" color="var(--Lgray)" /> Pets
                 </Button>
