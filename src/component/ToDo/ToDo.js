@@ -76,7 +76,7 @@ async function delAppointment(id) {
   }
 
 }
-//update state function 
+//update state function to book Appointment📑
 
 async function updateAppointment(item) {
 
@@ -101,8 +101,31 @@ async function updateAppointment(item) {
   }
 
 }
+//function to cancel  booking 
+
+async function delAppointmentfromuser(item){
+
+  let obj = {
+    book_doctor: item.book_doctor,
+    book_states: !item.book_states,
+    user_id: item.user_id,
+    book_time: item.book_time,
+  }
+
+  try {
+
+    const res = await superagent.put(`${API}/bookfromuser/${item.id}`)
+      .send(obj)
+      .set('Authorization', 'Bearer ' + Context.token)
 
 
+
+    setcount(count + 1)
+  } catch (error) {
+    alert('Invalid update');
+  }
+
+}
 
 
 
@@ -155,7 +178,9 @@ return (
         <AboutUS />
       </Route>
       <Route exact path="/Profile">
-        <Profile list={list} />
+        <Profile
+        delAppointmentfromuser={delAppointmentfromuser}
+         list={list} />
       </Route>
       
       {/* <Route exact path="/login">

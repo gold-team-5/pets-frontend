@@ -1,5 +1,5 @@
 import React,{useContext} from 'react'
-import {Card,ListGroup,ListGroupItem} from 'react-bootstrap/'
+import {Card,ListGroup,ListGroupItem,Button} from 'react-bootstrap/'
 import   './profile.css'
 import { LoginContext } from "../context/context";
 
@@ -26,11 +26,39 @@ export default function Profile(props) {
     <ListGroupItem>Dapibus ac facilisis in</ListGroupItem>
     <ListGroupItem>Vestibulum at eros</ListGroupItem>
   </ListGroup>
-  <Card.Body>
-    <Card.Link href="#">Card Link</Card.Link>
-    <Card.Link href="#">Another Link</Card.Link>
-  </Card.Body>
+
+  {props?.list?.map(item => {
+          if (item.id == context.user.id && item.book_states == false  ) {
+            return (
+              < Card.Body key={item.id} >
+               
+                  <ListGroupItem>{item.id}</ListGroupItem>
+                  <ListGroupItem>{item.book_doctor}</ListGroupItem>
+                  <ListGroupItem>{item.user_id}</ListGroupItem>
+                  <ListGroupItem>{item.book_time}</ListGroupItem>
+                  <ListGroupItem>  {item.book_states.toString()}</ListGroupItem>
+                  {/* this button to admin */}
+
+               
+                  {/* <Auth capability="show"> */}
+                  <td> <Button onClick={() => props.delAppointmentfromuser(item)} type="button" variant="danger" >Delete</Button></td>
+                  {/* </Auth> */}
+
+
+               
+                </Card.Body>
+
+              
+
+            )
+          }
+        })}
+  
 </Card>
+
+
+
+
           
            </> 
         
