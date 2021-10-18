@@ -5,7 +5,6 @@
 // //create context
 // export const ProfileContext = React.createContext();
 
-
 // //set state
 
 // //initialState to reducer
@@ -13,8 +12,7 @@
 // //     bookdata: []
 // // }
 
-
-// //function reducer 
+// //function reducer
 // // function reducer(state, action) {
 // //     switch (action.type) {
 // //         case 'update':
@@ -23,16 +21,14 @@
 // //                 ...state,
 // //                 bookdata: [...state.bookdata, action.payload]
 
-
 // //             };
 // //         default:
 // //             return state;
 // //     }
 
 // // }
-// // function to send 
+// // function to send
 // // function bookfunction(info) {
-
 
 // //     return {
 // //         type: 'update',
@@ -50,7 +46,6 @@
 //     // /add Appointment function
 //     async function addAppointment(item) {
 //         console.log(item, ',,,,,,,,,,,,,,,,,,,,,,,,')
-
 
 //         let obj = {
 //             book_doctor: item.book_doctor,
@@ -72,7 +67,6 @@
 //         }
 //     }
 
-
 //     //delete function
 //     async function delAppointment(id) {
 //         console.log(id);
@@ -89,7 +83,7 @@
 //         }
 
 //     }
-//     //update state function 
+//     //update state function
 
 //     async function updateAppointment(item) {
 //         console.log(Context.user.id,">>>>>>>>>")
@@ -97,39 +91,31 @@
 //             //user id to book Appointment
 //              book_userid:Context.user.id,
 //             book_doctor: item.book_doctor,
-          
+
 //             book_states: !item.book_states,
 //               //admin id
 //             user_id: item.user_id,
 //             book_time: item.book_time,
 //           }
-          
-          
-          
-          
-        
+
 //           try {
-        
+
 //             const res = await superagent.put(`${API}/book/${item.id}`)
 //               .send(obj)
 //               .set('Authorization', 'Bearer ' + Context.token)
 //               //dispatch to store bookdata
 //             // dispatch(bookfunction(res.body));
 //           console.log(state.bookdata,'ggggggggggggggggggg')
-        
+
 //           console.log(state.bookdata.info.id,'jjjjjjjjjjjjjjjjjjjjjjjjj')
-        
-        
-        
+
 //             setcount(count + 1)
 //           } catch (error) {
 //             alert('Invalid update');
 //           }
-        
+
 //         }
-        
-        
-        
+
 //         useEffect(async () => {
 
 //             try {
@@ -148,21 +134,14 @@
 
 //         }, [count]);
 
-
-
-
-
 //     const state = {
 //         list,
 //         updateAppointment,
 //         addAppointment,
 //         delAppointment,
 //     //    { state.bookdata}
-        
 
 //     }
-
-
 
 //     return (
 //         <ProfileContext.Provider value={state}>
