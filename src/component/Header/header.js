@@ -37,7 +37,11 @@ export default function Headers(props) {
             <img class="logo" src={logo} alt="logo" />
           </div>
           <div class="up-right">
-           
+          <input  icon='search'
+                placeholder='Search...'
+                onChange={(e) => props.searchItems(e.target.value)}
+            />
+
             <div>
              
                <a href="/login">
