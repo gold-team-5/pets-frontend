@@ -180,7 +180,7 @@ useEffect(async () => {
 ///////////////////////////////////////search21..................................
 const searchItems = (searchValue) => {
 setSearchInput(searchValue)
-if (searchInput !== '') {
+if (searchInput !== '' ) {
     const filteredData = petData.filter((item) => {
         return item.pet_type.includes(searchInput)
     })

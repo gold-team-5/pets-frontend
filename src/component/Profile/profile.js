@@ -4,12 +4,12 @@ import   './profile.css'
 import { LoginContext } from "../context/context";
 
 export default function Profile(props) {
-  console.log(props.list)
+  console.log('mmmmmmm',props.list)
   const context = useContext(LoginContext);
     return (
         // {context.userinfo}
            <>
-          <Card className="card" >
+          {/* <Card className="card" >
   <Card.Img  className="cardName"variant="top" src="https://i.pinimg.com/564x/60/60/5e/60605e55a8b6ba8987aea2e9e046d13f.jpg" />
   <Card.Title className="title">{context.user.user_name}</Card.Title>
   <Card.Body>
@@ -27,11 +27,17 @@ export default function Profile(props) {
     <ListGroupItem>Vestibulum at eros</ListGroupItem>
   </ListGroup>
 
-  {props?.list?.map(item => {
-          if (item.id == context.user.id && item.book_states == false  ) {
+  
+</Card> */}
+
+
+{props?.list?.map(item => {
+          if ( item.book_states == false &&  item.book_userid == context.user.id  ) {
             return (
-              < Card.Body key={item.id} >
-               
+             <>
+             <p>{item.id}</p>
+             {console.log(item.id,"hhhhhhhhhhhhhhhhhhhhhhhhh")}
+{/*                
                   <ListGroupItem>{item.id}</ListGroupItem>
                   <ListGroupItem>{item.book_doctor}</ListGroupItem>
                   <ListGroupItem>{item.user_id}</ListGroupItem>
@@ -41,23 +47,18 @@ export default function Profile(props) {
 
                
                   {/* <Auth capability="show"> */}
-                  <td> <Button onClick={() => props.delAppointmentfromuser(item)} type="button" variant="danger" >Delete</Button></td>
-                  {/* </Auth> */}
+                  {/* <td> <Button onClick={() => props.delAppointmentfromuser(item)} type="button" variant="danger" >Delete</Button></td>
+                  </Auth> */} 
 
 
-               
-                </Card.Body>
-
+              
+</>
               
 
             )
           }
         })}
   
-</Card>
-
-
-
 
           
            </> 
