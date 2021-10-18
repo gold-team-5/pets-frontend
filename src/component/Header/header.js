@@ -37,9 +37,12 @@ export default function Headers(props) {
             <img class="logo" src={logo} alt="logo" />
           </div>
           <div class="up-right">
-           
+            
             <div>
-             
+            <input  icon='search'
+                placeholder='Search...'
+                onChange={(e) => props.searchItems(e.target.value)}
+            />
                <a href="/login">
                  {(!context.loggedIn) ? <LoginButton /> : <LogoutButton />}
                {/* <Button
@@ -50,6 +53,7 @@ export default function Headers(props) {
                    log-In{" "}
               </Button> */}
               </a>
+             
 
 
               

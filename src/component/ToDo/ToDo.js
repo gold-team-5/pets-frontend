@@ -40,19 +40,10 @@ const ToDo = (props) => {
   const [showUpdateForm, setShowUpdateForm] = useState(false)
   const [index, setIndex] = useState();
   const [updatePetData, setUpdatePetData] = useState();
-  const [searchTerm, setSearchTerm] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
 
-  const handleChange = event => {
-    setSearchTerm(event.target.value);
-  };
+  const [searchInput, setSearchInput] = useState('');
+  const [filteredResults, setFilteredResults] = useState([]);
 
-  useEffect(() => {
-    const results = props.petData.filter(pet =>
-      pet.pet_type.includes(searchTerm)
-    );
-    setSearchResults(results);
-  }, [searchTerm]);
 
   //add Appointment function
   async function addAppointment(item) {
@@ -156,72 +147,24 @@ const ToDo = (props) => {
       alert('Invalid Render');
     }
 
-  }, []);
-
-  //////////////////////////////////////////////////////////
-  // const [showSearchResult, setshowSearchResult] = useState();
-  // function updateShowSearch(e){
-
-  //   setshowSearchResult(e.target.value);
-  //  console.log(showSearchResult);
-
-  // }
-  // useEffect(async () => {
-  //   try {
-  //     console.log(Context.token, '>>>>>>>>>>>>>>>>>>..')
-  //     const res = await superagent.get(`${API}/pet/${showSearchResult}`)
+  }, [count2]);
 
 
-  //     setPetData(res.body)
-
-  //     console.log(res.body);
-  //     console.log('..............', petData)
-  //   } catch (error) {
-  //     alert('Invalid Render');
-  //   }
-
-  // }, [showSearchResult]);
-
-  let data2=petData
-  //search function 
-  const search = (event) => {
-    // c = a ;Data=petData
-    // a = b ;petData=result
-
-    // b = c result=Data
-    event.preventDefault()
-    let selectedtype = event.target.value;
- 
-    let Data = petData;
-   
-    console.log('vvvvvvvvvvvvvvv',data2)
-    
-    console.log(Data, 'dddddddd')
-    let result;
-    if (selectedtype) {
-      result = Data.filter(item => {
-        if (item.pet_type == selectedtype) {
-          
-          return item;
-         
-        }
-       
-
+///////////////////////////////////////search21..................................
+const searchItems = (searchValue) => {
+  setSearchInput(searchValue)
+  if (searchInput !== '') {
+      const filteredData = petData.filter((item) => {
+          return item.pet_type.includes(searchInput)
       })
-      
-
-    
-    }
-    else {
-      result = Data;
-     
-    }
-    setPetData(result)
-   
-
-
-  
-  };
+      setFilteredResults(filteredData)
+      setcount(count + 1)
+  }
+  else{
+      setFilteredResults(petData)
+      setcount(count + 1)
+  }
+}
 
 
 
@@ -331,9 +274,13 @@ const ToDo = (props) => {
 
 
   return (
+    <>
+  
     <Router>
-      <Header />
-
+      <Header
+      searchItems={searchItems}
+      />
+     
       <Switch>
 
         <Route exact path="/">
@@ -342,13 +289,14 @@ const ToDo = (props) => {
         </Route>
         <Route exact path="/Pets">
           <Pets
-          searchTerm={searchTerm}
-          handleChange={handleChange}
+        searchItems={searchItems}
+          filteredResults={filteredResults}
+          searchInput={searchInput}
           petData={petData}
             deletPet={deletPet}
             showupdatePetForm={showupdatePetForm}
             addPet={addPet}
-            search={search} />
+            search={searchItems} />
           {showUpdateForm &&
             <UpdatePetForm updatePet={updatePet}
               updatePetData={updatePetData}
@@ -393,6 +341,7 @@ const ToDo = (props) => {
         <Login />
       </When> */}
     </Router>
+    </>
 
 
   );
