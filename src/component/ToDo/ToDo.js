@@ -1,4 +1,3 @@
-// import React from 'react'
 import React, { useEffect, useState, useContext, Profiler } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Redirect } from "react-router";
@@ -331,6 +330,36 @@ const [filterprouduct, setfilterprouduct] = useState([]);
       alert("Invalid data");
     }
   }
+  /////////////////////////////adoption////////////////////////
+
+  async function updatePetState(index, item) {
+    // by admin
+    let obj = {
+      pet_q: Context.user.id, // user id who pick pet
+      pet_name: item.pet_name,
+      pet_states: !item.pet_states, // false
+      pet_age: item.pet_age,
+      pet_img: item.pet_img,
+      pet_type: item.pet_type,
+      pet_desc: item.pet_desc,
+      user_id: item.user_id, // admin id who add pet
+    };
+    console.log(obj);
+
+    try {
+      const res = await superagent
+        .put(`${API}/adoptionpet/${item.id}`)
+        .send(obj)
+        .set("Authorization", "Bearer " + Context.token);
+
+      setcount(count2 + 1);
+    } catch (error) {
+      alert("Invalid update");
+    }
+    //update state function
+  }
+
+  //..........................pet functionality.............................................
 
 
 //..........................pet functionality.............................................
@@ -450,6 +479,7 @@ async function deletProduct(id) {
             showupdatePetForm={showupdatePetForm}
             addPet={addPet}
             search={searchItems}
+            updatePetState={updatePetState}
           />
           {showUpdateForm && (
             <UpdatePetForm
@@ -496,8 +526,6 @@ async function deletProduct(id) {
         </Route>
 
 
-
-   
         <Route exact path="/login">
           {Context.loggedIn ? <Redirect to="/" /> : <Login />}
         </Route>

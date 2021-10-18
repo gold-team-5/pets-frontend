@@ -1,41 +1,90 @@
-.card{
-    
-   
-    border-style: solid;
-    border-width: 3px;
-    border-color: var(--green);
-    width: 56rem;
-    height: 54rem;
-    background-color:#351f1e;
-   color: #f0efef;
-    margin-top: 5%;
-    margin-left: 20%;
-}
-.cardName{
-    width: 21%;
-    height: 21%;
-    border-style: solid;
-    border-width: 3px;
-    border-color: var(--green) var(--green) var(--green) #4c3433;
-    border-radius: 120px;
-    position: relative;
-    top: 4%;
-    left: 39%;;
-}
-.title{
-    position: relative;
-    bottom: -6%;
-    left: 37%;
-    font-size: 24px;
- 
+.card {
+  /* border-style: solid;
+  border-width: 3px;
+  border-color: var(--green);
+  width: 56rem;
+  height: 54rem;
+  background-color: #351f1e;
+  color: #f0efef;
+  margin-top: 5%;
+  margin-left: 20%; */
 }
 
-    .info {
-        position: relative;
-        top: 16%;
-        left: 36%;
-        bottom: 4%;
-        font-size: 24px;
-    }
+.cardProfile {
+  border-style: solid;
+  border-width: 3px;
+  border-color: var(--green);
+  width: 56rem;
+  height: 54rem;
+  background-color: #351f1e;
+  color: #f0efef;
+  margin-top: 5%;
+  margin-left: 20%;
+}
 
-   
+.cardName {
+  width: 21%;
+  height: 21%;
+  border-style: solid;
+  border-width: 3px;
+  border-color: var(--green) var(--green) var(--green) #4c3433;
+  border-radius: 120px;
+  position: relative;
+  top: 4%;
+  left: 39%;
+}
+.title {
+  position: relative;
+  bottom: -6%;
+  left: 37%;
+  font-size: 25px;
+  /* width: 100%; */
+  margin: 0px 0px 2.5% 5%;
+  /* text-align: center; */
+}
+
+.infoContener {
+  margin: 0 0 0 0;
+}
+.info {
+  position: relative;
+  top: 16%;
+  left: 36%;
+  bottom: 4%;
+  font-size: 18px;
+}
+.card-body {
+  flex: 1 1 auto;
+  /* padding: 0.5rem 0.5rem; */
+  margin: 2% 50% 1% 0%;
+}
+
+.list-group-item {
+  width: 50%;
+  position: relative;
+  display: block;
+  padding: 0.5rem 1rem;
+  color: var(--Dbrown);
+  text-decoration: none;
+  background-color: #f0efeffc;
+  border: 0.5px solid rgba(0, 0, 0, 0.125);
+  text-align: center;
+}
+#bookingTitle {
+  width: 50%;
+  text-align: center;
+  margin: 0 0 1.5% 2%;
+  font-size: 18px;
+  font-weight: bolder;
+  color: var(--Lbrown);
+  border: 0.5px solid var(--Lbrown);
+  border-radius: 5px;
+  /* position: inherit; */
+}
+
+#booking {
+  margin-left: 2%;
+}
+#bookingListTilt {
+  margin: 0 0 5% 0;
+}

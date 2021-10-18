@@ -23,7 +23,7 @@ import LoginButton from "../loginButton";
 import LogoutButton from "../logoutButton";
 
 export default function Headers(props) {
-  const [showSearch, setshowSearch] = useState(false);
+ 
   const context = useContext(LoginContext);
 
 
@@ -87,10 +87,10 @@ export default function Headers(props) {
                 </Button>
               </a>
 
-              <a href="Pets">
+              <a href="Pets" >
                 <Button
                   className="bp3-minimal"
-                  style={{ color: "var(--Lgray)" }}
+                  style={{ color: "var(--Lgray)" }}  
                 >
                   <FaDog size="1.5em" color="var(--Lgray)" /> Pets
                 </Button>
