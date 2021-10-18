@@ -23,6 +23,8 @@ import LoginProvider from "../context/context";
 import Login from '../context/login'
 import Cart from "../cart/cart";
 import Profile from "../Profile/profile";
+import Message from "../socket/message";
+import MyMessageArea from "../socket/MyMessageArea";
 
 const ToDo = (props) => {
 
@@ -31,6 +33,8 @@ const ToDo = (props) => {
   const [list, setList] = useState([]);
   const [count, setcount] = useState(0);
   const [incomplete, setIncomplete] = useState([]);
+  const [messageArea, setmessageArea] = useState(false);
+
 
 
 
@@ -60,124 +64,142 @@ const ToDo = (props) => {
   }
 
 
-//delete function
-async function delAppointment(id) {
-  console.log(id);
-  try {
-    const res = await superagent.delete(`${API}/appointment/${id}`)
-      .set('Authorization', 'Bearer ' + Context.token)
-    const items = list.filter(item => item.id !== id);
-    setList(items);
-    console.log("items>>>>", items);
-    console.log("delete", res);
-    setcount(count + 1)
-  } catch (error) {
-    alert('Invalid delete');
+  //delete function
+  async function delAppointment(id) {
+    console.log(id);
+    try {
+      const res = await superagent.delete(`${API}/appointment/${id}`)
+        .set('Authorization', 'Bearer ' + Context.token)
+      const items = list.filter(item => item.id !== id);
+      setList(items);
+      console.log("items>>>>", items);
+      console.log("delete", res);
+      setcount(count + 1)
+    } catch (error) {
+      alert('Invalid delete');
+    }
+
+  }
+  //update state function 
+
+  async function updateAppointment(item) {
+
+    let obj = {
+      book_doctor: item.book_doctor,
+      book_states: !item.book_states,
+      user_id: item.user_id,
+      book_time: item.book_time,
+    }
+
+    try {
+
+      const res = await superagent.put(`${API}/book/${item.id}`)
+        .send(obj)
+        .set('Authorization', 'Bearer ' + Context.token)
+
+
+
+      setcount(count + 1)
+    } catch (error) {
+      alert('Invalid update');
+    }
+
   }
 
-}
-//update state function 
 
-async function updateAppointment(item) {
 
-  let obj = {
-    book_doctor: item.book_doctor,
-    book_states: !item.book_states,
-    user_id: item.user_id,
-    book_time: item.book_time,
+  function myMessageFunc(){
+    setmessageArea(true)
+    console.log('set It');
   }
 
-  try {
-
-    const res = await superagent.put(`${API}/book/${item.id}`)
-      .send(obj)
-      .set('Authorization', 'Bearer ' + Context.token)
-
-
-
-    setcount(count + 1)
-  } catch (error) {
-    alert('Invalid update');
+  function removeMessageFunc(){
+    setmessageArea(false)
   }
 
-}
+
+  useEffect(async () => {
+    try {
+      console.log(Context.token, '>>>>>>>>>>>>>>>>>>..')
+      const res = await superagent.get(`${API}/appointment`)
+        .set('Authorization', 'Bearer ' + Context.token)
+      console.log(res, 'xxxxxxxxxxxxxxxxxxxxxxxx..')
+
+      setList(res.body)
+
+      console.log(res.body);
+      console.log('..............', list)
+    } catch (error) {
+      alert('Invalid Render');
+    }
+
+  }, [count]);
 
 
 
 
+  return (
+    <>
+      <Router>
+        <Header />
 
+        <Switch>
 
+          <Route exact path="/">
 
-useEffect(async () => {
-  try {
-    console.log(Context.token, '>>>>>>>>>>>>>>>>>>..')
-    const res = await superagent.get(`${API}/appointment`)
-      .set('Authorization', 'Bearer ' + Context.token)
-    console.log(res, 'xxxxxxxxxxxxxxxxxxxxxxxx..')
+            <Home />
+          </Route>
+          <Route exact path="/Pets">
+            <Pets />
+          </Route>
+          <Route exact path="/Products">
+            <Products />
+          </Route>
+          <Route exact path="/Services">
+            <Services list={list}
+              addAppointment={addAppointment}
+              delAppointment={delAppointment}
+              updateAppointment={updateAppointment} />
 
-    setList(res.body)
+          </Route>
+          <Route exact path="/AboutUS">
+            <AboutUS />
+          </Route>
+          <Route exact path="/Profile">
+            <Profile />
+          </Route>
 
-    console.log(res.body);
-    console.log('..............', list)
-  } catch (error) {
-    alert('Invalid Render');
-  }
-
-}, [count]);
-
-
-
-
-return (
-  <Router>
-    <Header />
-    
-    <Switch>
-
-      <Route exact path="/">
-
-        <Home />
-      </Route>
-      <Route exact path="/Pets">
-        <Pets />
-      </Route>
-      <Route exact path="/Products">
-        <Products />
-      </Route>
-      <Route exact path="/Services">
-        <Services list={list}
-          addAppointment={addAppointment}
-          delAppointment={delAppointment}
-          updateAppointment={updateAppointment} />
-
-      </Route>
-      <Route exact path="/AboutUS">
-        <AboutUS />
-      </Route>
-      <Route exact path="/Profile">
-        <Profile />
-      </Route>
-      
-      {/* <Route exact path="/login">
+          {/* <Route exact path="/login">
           <Login />
         </Route> */}
-      <Route exact path="/login">
-        {Context.loggedIn ? <Redirect to="/" /> : <Login />}
-      </Route>
-      <Route exact path="/signup">
-        {Context.loggedIn ? <Redirect to="/" /> : <SignUp />}
-      </Route>
-      <Route exact path="/Cart">
-        <Cart />
-      </Route>
-    </Switch>
-    {/* <When condition={!Context.loggedIn}>
+          <Route exact path="/login">
+            {Context.loggedIn ? <Redirect to="/" /> : <Login />}
+          </Route>
+          <Route exact path="/signup">
+            {Context.loggedIn ? <Redirect to="/" /> : <SignUp />}
+          </Route>
+          <Route exact path="/Cart">
+            <Cart />
+          </Route>
+        </Switch>
+        {/* <When condition={!Context.loggedIn}>
         <Login />
       </When> */}
-  </Router>
+      </Router>
 
+      {
+        !messageArea &&
+        (Context.loggedIn &&
+        <Message myMessageFunc={myMessageFunc} />)
+      }
 
-);
+      {
+        messageArea &&
+        <MyMessageArea removeMessageFunc={removeMessageFunc} />
+      }
+
+    </>
+  );
 };
 
 export default ToDo;
