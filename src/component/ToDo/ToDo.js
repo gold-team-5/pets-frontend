@@ -23,7 +23,7 @@ import LoginProvider from "../context/context";
 import Login from '../context/login'
 import Cart from "../cart/cart";
 import Profile from "../Profile/profile";
-
+import UpdatePetForm from '../forms/updatePet'
 const ToDo = (props) => {
 
   const API = 'http://localhost:3001';
@@ -316,22 +316,21 @@ return (
       </Route>
       <Route exact path="/Pets">
         
-         <Pets
-        
-       searchItems={searchItems}
-         filteredResults={filteredResults}
-         searchInput={searchInput}
-         petData={petData}
-           deletPet={deletPet}
-           showupdatePetForm={showupdatePetForm}
-           addPet={addPet}
-           search={searchItems} />
-         {showUpdateForm &&
-           <UpdatePetForm updatePet={updatePet}
-             updatePetData={updatePetData}
-           />
-        />
-       
+      <Pets
+ searchItems={searchItems}
+searchItems={searchItems}
+ filteredResults={filteredResults}
+ searchInput={searchInput}
+ petData={petData}
+   deletPet={deletPet}
+   showupdatePetForm={showupdatePetForm}
+   addPet={addPet}
+   search={searchItems} />
+ {showUpdateForm &&
+   <UpdatePetForm updatePet={updatePet}
+     updatePetData={updatePetData}
+   />
+ }
       </Route>
       <Route exact path="/Products">
         <Products />
