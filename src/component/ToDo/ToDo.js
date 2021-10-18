@@ -252,11 +252,9 @@ const ToDo = (props) => {
   ////////////////////////////////////
   useEffect(async () => {
     try {
-      console.log(Context.token, ">>>>>>>>>>>>>>>>>>..");
       const res = await superagent.get(`${API}/pet`);
       setPetData(res.body);
-      console.log(res.body);
-      console.log(",,,,,,,,,,,,,,,,,,,,,,", petData);
+
     } catch (error) {
       alert("Invalid Render");
     }
@@ -273,7 +271,6 @@ const ToDo = (props) => {
       pet_states: item.pet_states,
     };
     try {
-      console.log(Context.token);
       const res = await superagent
         .post(`${API}/adapt`)
         .send(obj)
@@ -295,6 +292,7 @@ const ToDo = (props) => {
       product_price: item.product_price,
       user_id: item.user_id, //??????????????????????
     };
+
     try {
       const res = await superagent
         .post(`${API}/product`) ///????????????????????
@@ -304,12 +302,14 @@ const ToDo = (props) => {
     } catch (error) {
       alert("Invalid data");
     }
+
   }
   //.....................................add product.....................
   //............................................updateProduct.............................
   const updateProduct = async (e) => {
     console.log("ggggggggggggggggggggggggggggggggggggg", productData);
     console.log("klllllllllllllllllll", Indexproduct);
+
 
     e.preventDefault();
     let productFormData = {
