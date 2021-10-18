@@ -2,7 +2,9 @@ import React,{useContext} from 'react'
 import {Card,ListGroup,ListGroupItem} from 'react-bootstrap/'
 import   './profile.css'
 import { LoginContext } from "../context/context";
-export default function Profile() {
+
+export default function Profile(props) {
+  console.log(props.list)
   const context = useContext(LoginContext);
     return (
         // {context.userinfo}

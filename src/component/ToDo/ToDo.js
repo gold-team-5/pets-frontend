@@ -155,7 +155,7 @@ return (
         <AboutUS />
       </Route>
       <Route exact path="/Profile">
-        <Profile />
+        <Profile list={list} />
       </Route>
       
       {/* <Route exact path="/login">

@@ -116,6 +116,7 @@ export default function LoginProvider(props) {
      
         
     }
+    
 
     const can = (capability) => {
         return user?.capabilities?.includes(capability);
@@ -132,6 +133,8 @@ export default function LoginProvider(props) {
         token,
         userinfo
     }
+
+    
 
     return (
         <LoginContext.Provider value={state}>
