@@ -47,7 +47,7 @@ export default function AddPetForm(props) {
                 </FormGroup>
 
 
-                <Button type="submit"> Add </Button>
+                <button type="submit" className='btnpets'  > Add </button>
             </form>
         </Auth>
     )

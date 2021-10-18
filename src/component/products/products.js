@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Card, Button } from "react-bootstrap";
 import AddProductForm from "../forms/addProductForm";
 
-export default function Pets(props) {
+export default function Product(props) {
  console.log('productData mmmmmmmmmmmmm'+ props.productData);
 
   return <>

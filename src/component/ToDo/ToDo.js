@@ -1,4 +1,3 @@
-// import React from 'react'
 import React, { useEffect, useState, useContext, Profiler } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Redirect } from "react-router";
@@ -26,7 +25,7 @@ import Profile from "../Profile/profile";
 import UpdatePetForm from "../forms/updatePet";
 import Footer from "../footer/footer";
 const ToDo = (props) => {
-  const API = "http://localhost:3001";
+  const API = "https://gold-team-mid-project.herokuapp.com";
   const Context = useContext(LoginContext);
 
   const [list, setList] = useState([]);
@@ -303,6 +302,7 @@ useEffect(async () => {
   }
 
 
+
 //..........................pet functionality.............................................
 
 
@@ -336,6 +336,38 @@ async function addProduct(item) {
 
 //.....................................add product.....................
 
+  /////////////////////////////adoption////////////////////////
+
+  async function updatePetState(index, item) {
+    // by admin
+    let obj = {
+      pet_q: Context.user.id, // user id who pick pet
+      pet_name: item.pet_name,
+      pet_states: !item.pet_states, // false
+      pet_age: item.pet_age,
+      pet_img: item.pet_img,
+      pet_type: item.pet_type,
+      pet_desc: item.pet_desc,
+      user_id: item.user_id, // admin id who add pet
+    };
+    console.log(obj);
+
+    try {
+      const res = await superagent
+        .put(`${API}/adoptionpet/${item.id}`)
+        .send(obj)
+        .set("Authorization", "Bearer " + Context.token);
+
+      setcount(count2 + 1);
+    } catch (error) {
+      alert("Invalid update");
+    }
+    //update state function
+  }
+
+  //..........................pet functionality.............................................
+
+
   return (
     <Router>
       <Header searchItems={searchItems} />
@@ -355,6 +387,7 @@ async function addProduct(item) {
             showupdatePetForm={showupdatePetForm}
             addPet={addPet}
             search={searchItems}
+            updatePetState={updatePetState}
           />
           {showUpdateForm && (
             <UpdatePetForm
@@ -397,20 +430,16 @@ async function addProduct(item) {
         .get(`${API}/appointment`)
         .set("Authorization", "Bearer " + Context.token);
       console.log(res, "xxxxxxxxxxxxxxxxxxxxxxxx..");
-
       setList(res.body);
-
       console.log(res.body);
       console.log("..............", list);
     } catch (error) {
       alert("Invalid Render");
     }
   }, [count]);
-
   return (
     <Router>
       <Header />
-
       <Switch>
         <Route exact path="/">
           <Home />
@@ -435,7 +464,6 @@ async function addProduct(item) {
         <Route exact path="/Profile">
           <Profile />
         </Route>
-
         {/* <Route exact path="/login">
           <Login />
         </Route> */}

@@ -8,7 +8,7 @@
 } */
 
 
-.card {
+.cardss {
   box-shadow: 0 0 30px #4c3433;
   border-radius: 15px ;
   width: 300px;
@@ -33,28 +33,28 @@
 
 }
 
-.card .img-cont img {
+.cardss .img-cont img {
   z-index: 0;
   width: 100%;
   transform: scale(1.2);
   transition: all 0.3s;
   height: 300px;
 }
-.card:hover .drop-down-window {
+.cardss:hover .drop-down-window {
   transform: translateX(0);
   opacity: 1;
 }
-.card:hover .img {
+.cardss:hover .img {
   filter: blur(1.5px);
   transform: scale(1);
 }
-.card .img-cont {
+.cardss .img-cont {
   overflow: hidden;
   position: relative;
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0 90%);
 }
 
-.card .img-cont span {
+.cardss .img-cont span {
   position: absolute;
   top: 0;
   right: 0;
@@ -75,13 +75,13 @@
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0 90%);
 }
 
-.card .content-cont {
+.cardss .content-cont {
   padding: 20px;
 }
-.card .content-cont span {
+.cardss .content-cont span {
   display: block;
 }
-.card .content-cont .card-header {
+.cardss .content-cont .card-header {
   text-transform: uppercase;
   font-weight: bold;
   padding-bottom: 10px;
@@ -89,7 +89,7 @@
   color: #6bb937;
   font-family: emoji;
 }
-.card .content-cont .card-body {
+.cardss .content-cont .card-body {
   color:#4c3433;
     font-family: emoji;
 }
