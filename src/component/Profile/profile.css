@@ -1,0 +1,41 @@
+.card{
+    
+   
+    border-style: solid;
+    border-width: 3px;
+    border-color: var(--green);
+    width: 56rem;
+    height: 54rem;
+    background-color:#351f1e;
+   color: #f0efef;
+    margin-top: 5%;
+    margin-left: 20%;
+}
+.cardName{
+    width: 21%;
+    height: 21%;
+    border-style: solid;
+    border-width: 3px;
+    border-color: var(--green) var(--green) var(--green) #4c3433;
+    border-radius: 120px;
+    position: relative;
+    top: 4%;
+    left: 39%;;
+}
+.title{
+    position: relative;
+    bottom: -6%;
+    left: 37%;
+    font-size: 24px;
+ 
+}
+
+    .info {
+        position: relative;
+        top: 16%;
+        left: 36%;
+        bottom: 4%;
+        font-size: 24px;
+    }
+
+   
