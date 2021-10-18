@@ -13,6 +13,12 @@ export default function Pets(props) {
   }
   return (
     <>
+    
+    <input  icon='search'
+                placeholder='Search...'
+                onChange={(e) => props.searchItems(e.target.value)}
+            />
+  
       {/* return just search result  */}
       {props.searchInput.length > 1
         ? props?.filteredResults?.map((item, index) => {
@@ -26,6 +32,7 @@ export default function Pets(props) {
                         <Card.Title>{item.pet_name}</Card.Title>
                         <Card.Text>{item.pet_age}</Card.Text>
                         <Card.Text>{item.pet_desc}</Card.Text>
+
 
                         <Button variant="primary" onClick={alertForAdoption}>
                           Ask For Adoption
