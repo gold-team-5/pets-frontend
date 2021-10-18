@@ -1,19 +1,22 @@
-import React from 'react'
+import React,{useContext} from 'react'
 import {Card,ListGroup,ListGroupItem} from 'react-bootstrap/'
 import   './profile.css'
-import { LoginContext } from "./context";
-export default function profile() {
+import { LoginContext } from "../context/context";
+export default function Profile() {
   const context = useContext(LoginContext);
     return (
         // {context.userinfo}
            <>
           <Card className="card" >
   <Card.Img  className="cardName"variant="top" src="https://i.pinimg.com/564x/60/60/5e/60605e55a8b6ba8987aea2e9e046d13f.jpg" />
-  <Card.Title className="title">Eman Al-mkhareez</Card.Title>
+  <Card.Title className="title">{context.user.user_name}</Card.Title>
   <Card.Body>
    
     <Card.Title className="info">
-     Address: Irbid
+     Address: {context.user.user_address}
+    </Card.Title>
+    <Card.Title className="info">
+     phone: {context.user.user_phone}
     </Card.Title>
   </Card.Body>
   <ListGroup className="list-group-flush">
