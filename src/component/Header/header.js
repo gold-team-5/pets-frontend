@@ -37,16 +37,10 @@ export default function Headers(props) {
             <img class="logo" src={logo} alt="logo" />
           </div>
           <div class="up-right">
-            {showSearch && (
-              <>
-                <input
-                  class="bp3-input"
-                  placeholder="Search files..."
-                  type="text"
-                />
-                <span class="">&nbsp; &nbsp; &nbsp; </span>
-              </>
-            )}
+          <input  icon='search'
+                placeholder='Search...'
+                onChange={(e) => props.searchItems(e.target.value)}
+            />
 
             <div>
              
