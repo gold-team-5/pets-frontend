@@ -258,7 +258,7 @@ const ToDo = (props) => {
 
         .send(obj)
         .set("Authorization", "Bearer " + Context.token);
-      setcount(count2 + 1);
+      setcount2(count2 + 1);
     } catch (error) {
       alert("Invalid data");
     }
