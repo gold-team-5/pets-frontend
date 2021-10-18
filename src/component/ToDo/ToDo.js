@@ -49,7 +49,7 @@ const ToDo = (props) => {
   const [productsearch, setproductsearch] = useState("");
   const [filterprouduct, setfilterprouduct] = useState([]);
   //..................product status...........................................
-  //............................productFunctionality........................................
+  
   //............................productFunctionality........................................
   //add Appointment function
   async function addAppointment(item) {
@@ -275,11 +275,38 @@ const ToDo = (props) => {
         .post(`${API}/adapt`)
         .send(obj)
         .set("Authorization", "Bearer " + Context.token);
-      setcount(count2 + 1);
+      setcount2(count2 + 1);
     } catch (error) {
       alert("Invalid data");
     }
   }
+
+
+  async function updatePetState(index, item) {
+    // by admin
+    let obj = {
+      pet_q: Context.user.id, // user id who pick pet
+      pet_name: item.pet_name,
+      pet_states: !item.pet_states, // false
+      pet_age: item.pet_age,
+      pet_img: item.pet_img,
+      pet_type: item.pet_type,
+      pet_desc: item.pet_desc,
+      user_id: item.user_id, // admin id who add pet
+    };
+    console.log(obj,'>>>>>>>>>>>>>>>>>>>>>');
+    try {
+      const res = await superagent
+        .put(`${API}/adoptionpet/${item.id}`)
+        .send(obj)
+        .set("Authorization", "Bearer " + Context.token);
+
+      setcount(count2 + 1);
+    } catch (error) {
+      alert("Invalid update");
+    }
+  }
+
   //..........................pet functionality.............................................
   //.....................................add product.....................
   async function addProduct(item) {
@@ -380,6 +407,7 @@ const ToDo = (props) => {
               showupdatePetForm={showupdatePetForm}
               addPet={addPet}
               search={searchItems}
+              updatePetState={updatePetState}
             />
             {showUpdateForm && (
               <UpdatePetForm
@@ -420,6 +448,7 @@ const ToDo = (props) => {
             <Profile
               delAppointmentfromuser={delAppointmentfromuser}
               list={list}
+              petData={petData}
             />
           </Route>
 
