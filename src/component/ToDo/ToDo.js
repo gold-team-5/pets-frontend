@@ -158,6 +158,147 @@ useEffect(async () => {
 
 }, [count]);
 
+//..........................pet functionality.............................................
+////get pets data /////////////////////
+useEffect(async () => {
+  try {
+    console.log(Context.token, '>>>>>>>>>>>>>>>>>>..')
+    const res = await superagent.get(`${API}/pet`)
+
+
+    setPetData(res.body)
+
+    console.log(res.body);
+    console.log('..............', petData)
+  } catch (error) {
+    alert('Invalid Render');
+  }
+
+}, [count2]);
+
+
+///////////////////////////////////////search21..................................
+const searchItems = (searchValue) => {
+setSearchInput(searchValue)
+if (searchInput !== '') {
+    const filteredData = petData.filter((item) => {
+        return item.pet_type.includes(searchInput)
+    })
+    setFilteredResults(filteredData)
+    setcount(count2 + 1)
+}
+else{
+    setFilteredResults(petData)
+    setcount(count2 + 1)
+}
+}
+
+
+
+
+
+/////////////delete pet//////////////
+async function deletPet(id) {
+  console.log(id);
+  try {
+    const res = await superagent.delete(`${API}/pet/${id}`)
+      .set('Authorization', 'Bearer ' + Context.token)
+    const items = list.filter(item => item.id !== id);
+    setPetData(items);
+    setcount2(count2 + 1)
+    console.log("items>>>>", items);
+    console.log("delete", res);
+  } catch (error) {
+    alert('Invalid delete');
+  }
+
+}
+///////////////update pet /////////////////////
+
+const showupdatePetForm = async (index, item) => {
+
+  setShowUpdateForm(true);
+
+  setIndex(item.id);
+  console.log(showUpdateForm, index);
+  let obj = {
+    pet_name: item.pet_name,
+    pet_age: item.pet_age,
+    pet_img: item.pet_img,
+    pet_type: item.pet_type,
+    pet_desc: item.pet_desc,
+    pet_states: item.pet_states,
+  }
+  setUpdatePetData(obj)
+}
+
+const updatePet = async (e) => {
+  e.preventDefault();
+  let petFormData = {
+    pet_name: e.target.pet_name.value,
+    pet_age: e.target.pet_age.value,
+    pet_img: e.target.pet_img.value,
+    pet_type: e.target.pet_type.value,
+    pet_desc: e.target.pet_desc.value,
+    pet_states: e.target.pet_states.value,
+  }
+
+  let updateUrl = `${API}/pet/${index}`;
+  let petDataRes = await superagent.put(updateUrl)
+    .send(petFormData)
+    .set('Authorization', 'Bearer ' + Context.token)
+  setcount2(count2 + 1)
+
+  console.log(petDataRes.text)
+  setShowUpdateForm(false)
+}
+
+
+useEffect(async () => {
+  try {
+    console.log(Context.token, '>>>>>>>>>>>>>>>>>>..')
+    const res = await superagent.get(`${API}/pet`)
+
+
+    setPetData(res.body)
+
+    console.log(res.body);
+    console.log(',,,,,,,,,,,,,,,,,,,,,,', petData)
+  } catch (error) {
+    alert('Invalid Render');
+  }
+
+}, [count2]);
+////////////////////add pet//////////////////////
+
+async function addPet(item) {
+  // console.log(item, ',,,,,,,,,,,,,,,,,,,,,,,,')
+
+
+  let obj = {
+    pet_name: item.pet_name,
+    pet_age: item.pet_age,
+    pet_img: item.pet_img,
+    pet_type: item.pet_type,
+    pet_desc: item.pet_desc,
+    pet_states: item.pet_states,
+  }
+  try {
+    console.log(Context.token)
+    const res = await superagent.post(`${API}/adapt`)
+
+      .send(obj)
+      .set('Authorization', 'Bearer ' + Context.token)
+    setcount(count2 + 1)
+
+  } catch (error) {
+    alert('Invalid data');
+  }
+}
+//..........................pet functionality.............................................
+
+
+
 
 
 
