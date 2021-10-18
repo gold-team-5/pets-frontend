@@ -270,17 +270,19 @@ const ToDo = (props) => {
   }
   /////////////////////////////adoption////////////////////////
 
-  async function updatePetState(index,item) {// by admin
+  async function updatePetState(index, item) {
+    // by admin
     let obj = {
-      pet_q: Context.user.id,// user id who pick pet
+      pet_q: Context.user.id, // user id who pick pet
       pet_name: item.pet_name,
-      pet_states:!item.pet_states,// false
+      pet_states: !item.pet_states, // false
       pet_age: item.pet_age,
       pet_img: item.pet_img,
       pet_type: item.pet_type,
       pet_desc: item.pet_desc,
-      user_id: item.user_id,// admin id who add pet
+      user_id: item.user_id, // admin id who add pet
     };
+    console.log(obj);
 
     try {
       const res = await superagent
