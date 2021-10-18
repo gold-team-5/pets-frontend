@@ -91,6 +91,7 @@ async function delAppointment(id) {
 async function updateAppointment(item) {
 
   let obj = {
+    book_userid:Context.user.id,
     book_doctor: item.book_doctor,
     book_states: !item.book_states,
     user_id: item.user_id,
@@ -116,6 +117,7 @@ async function updateAppointment(item) {
 async function delAppointmentfromuser(item){
 
   let obj = {
+    book_userid:Context.user.id,
     book_doctor: item.book_doctor,
     book_states: !item.book_states,
     user_id: item.user_id,
