@@ -31,7 +31,17 @@ const ToDo = (props) => {
   const [list, setList] = useState([]);
   const [count, setcount] = useState(0);
   const [incomplete, setIncomplete] = useState([]);
+  //.................pet states...............................................
+  const [petData, setPetData] = useState([]);
+  const [updatePetData, setUpdatePetData] = useState()
+  const [count2, setcount2] = useState(0);
+  const [showUpdateForm, setShowUpdateForm] = useState(false)
+  const [index, setIndex] = useState();
+ ;
 
+  const [searchInput, setSearchInput] = useState('');
+  const [filteredResults, setFilteredResults] = useState([]);
+//.................pet states...............................................
 
 
   //add Appointment function
