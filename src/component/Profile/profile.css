@@ -20,6 +20,7 @@
   color: #f0efef;
   margin-top: 5%;
   margin-left: 20%;
+  
 }
 
 .cardName {
@@ -87,4 +88,18 @@
 }
 #bookingListTilt {
   margin: 0 0 5% 0;
+}
+.petData{
+  margin:2%;
+  
+}
+#petTitle{
+  width: 50%;
+  text-align: center;
+  margin: 0 0 1.5% 0;
+  font-size: 18px;
+  font-weight: bolder;
+  color: var(--Lbrown);
+  border: 0.5px solid var(--Lbrown);
+  border-radius: 5px;
 }

@@ -232,13 +232,9 @@ const ToDo = (props) => {
 
   useEffect(async () => {
     try {
-      console.log(Context.token, ">>>>>>>>>>>>>>>>>>..");
       const res = await superagent.get(`${API}/pet`);
-
       setPetData(res.body);
 
-      console.log(res.body);
-      console.log(",,,,,,,,,,,,,,,,,,,,,,", petData);
     } catch (error) {
       alert("Invalid Render");
     }
@@ -257,7 +253,6 @@ const ToDo = (props) => {
       pet_states: item.pet_states,
     };
     try {
-      console.log(Context.token);
       const res = await superagent
         .post(`${API}/adapt`)
 
@@ -282,8 +277,7 @@ const ToDo = (props) => {
       pet_desc: item.pet_desc,
       user_id: item.user_id, // admin id who add pet
     };
-    console.log(obj);
-
+    
     try {
       const res = await superagent
         .put(`${API}/adoptionpet/${item.id}`)
@@ -294,7 +288,7 @@ const ToDo = (props) => {
     } catch (error) {
       alert("Invalid update");
     }
-    //update state function
+    
   }
 
   //..........................pet functionality.............................................
@@ -345,54 +339,11 @@ const ToDo = (props) => {
           <Profile
             delAppointmentfromuser={delAppointmentfromuser}
             list={list}
+            petData={petData}
           />
         </Route>
 
-        {/* <Route exact path="/login">
-  useEffect(async () => {
-    try {
-      console.log(Context.token, ">>>>>>>>>>>>>>>>>>..");
-      const res = await superagent
-        .get(`${API}/appointment`)
-        .set("Authorization", "Bearer " + Context.token);
-      console.log(res, "xxxxxxxxxxxxxxxxxxxxxxxx..");
-      setList(res.body);
-      console.log(res.body);
-      console.log("..............", list);
-    } catch (error) {
-      alert("Invalid Render");
-    }
-  }, [count]);
-  return (
-    <Router>
-      <Header />
-      <Switch>
-        <Route exact path="/">
-          <Home />
-        </Route>
-        <Route exact path="/Pets">
-          <Pets />
-        </Route>
-        <Route exact path="/Products">
-          <Products />
-        </Route>
-        <Route exact path="/Services">
-          <Services
-            list={list}
-            addAppointment={addAppointment}
-            delAppointment={delAppointment}
-            updateAppointment={updateAppointment}
-          />
-        </Route>
-        <Route exact path="/AboutUS">
-          <AboutUS />
-        </Route>
-        <Route exact path="/Profile">
-          <Profile />
-        </Route>
-        {/* <Route exact path="/login">
-          <Login />
-        </Route> */}
+        
         <Route exact path="/login">
           {Context.loggedIn ? <Redirect to="/" /> : <Login />}
         </Route>
