@@ -1,11 +1,12 @@
 // import React from 'react'
-import React, { useEffect, useState, useContext, Profiler } from "react";
+import React, { useEffect, useState, useContext, useReducer  } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Redirect } from 'react-router';
 import List from '../list/list';
 import Headers from '../Header/header';
 import "./ToDo.css"
 import { LoginContext } from '../context/context'
+import { ProfileContext } from "../context/contextprofile";
 import Auth from '../context/auth';
 import Appointment from '../Appointment/Appointment';
 import SignUp from '../context/signUp';
@@ -23,84 +24,131 @@ import LoginProvider from "../context/context";
 import Login from '../context/login'
 import Cart from "../cart/cart";
 import Profile from "../Profile/profile";
+// const initialState = {
+//   bookdata: []
+// }
+
+
+// //function reducer 
+// function reducer(state, action) {
+//   switch (action.type) {
+//     case 'update':
+//       return {
+        
+//         ...state,
+//         bookdata: [...state.bookdata, action.payload] 
+
+
+//       };
+//     default:
+//       return state;
+//   }
+
+// }
 
 const ToDo = (props) => {
+  // const [state, dispatch] = useReducer(reducer, initialState)
 
   const API = 'http://localhost:3001';
   const Context = useContext(LoginContext)
-  const [list, setList] = useState([]);
-  const [count, setcount] = useState(0);
-  const [incomplete, setIncomplete] = useState([]);
+  const Context2= useContext(ProfileContext)
+
+  // const [list, setList] = useState([]);
+  // const [count, setcount] = useState(0);
+  
+  // const []
+let  obj;
+// function bookfunction(info) {
 
 
+//   return {
+//     type: 'update',
+//     payload: { info }
+//   }
 
-  //add Appointment function
-  async function addAppointment(item) {
-    console.log(item, ',,,,,,,,,,,,,,,,,,,,,,,,')
-
-
-    let obj = {
-      book_doctor: item.book_doctor,
-      book_states: item.book_states,
-      user_id: item.user_id,
-      // book_date:item.book_date,
-      book_time: item.book_time,
-    }
-    try {
-      console.log(Context.token)
-      const res = await superagent.post(`${API}/newAppointment`)
-
-        .send(obj)
-        .set('Authorization', 'Bearer ' + Context.token)
-      setcount(count + 1)
-
-    } catch (error) {
-      alert('Invalid data');
-    }
-  }
+// }
 
 
-//delete function
-async function delAppointment(id) {
-  console.log(id);
-  try {
-    const res = await superagent.delete(`${API}/appointment/${id}`)
-      .set('Authorization', 'Bearer ' + Context.token)
-    const items = list.filter(item => item.id !== id);
-    setList(items);
-    console.log("items>>>>", items);
-    console.log("delete", res);
-    setcount(count + 1)
-  } catch (error) {
-    alert('Invalid delete');
-  }
+  // //add Appointment function
+  // async function addAppointment(item) {
+  //   console.log(item, ',,,,,,,,,,,,,,,,,,,,,,,,')
 
-}
+
+  //   let obj = {
+  //     book_doctor: item.book_doctor,
+  //     book_states: item.book_states,
+  //     user_id: item.user_id,
+  //     // book_date:item.book_date,
+  //     book_time: item.book_time,
+  //   }
+  //   try {
+  //     console.log(Context.token)
+  //     const res = await superagent.post(`${API}/newAppointment`)
+
+  //       .send(obj)
+  //       .set('Authorization', 'Bearer ' + Context.token)
+  //     setcount(count + 1)
+
+  //   } catch (error) {
+  //     alert('Invalid data');
+  //   }
+  // }
+
+
+// //delete function
+// async function delAppointment(id) {
+//   console.log(id);
+//   try {
+//     const res = await superagent.delete(`${API}/appointment/${id}`)
+//       .set('Authorization', 'Bearer ' + Context.token)
+//     const items = list.filter(item => item.id !== id);
+//     setList(items);
+//     console.log("items>>>>", items);
+//     console.log("delete", res);
+//     setcount(count + 1)
+//   } catch (error) {
+//     alert('Invalid delete');
+//   }
+
+// }
 //update state function 
 
-async function updateAppointment(item) {
+// async function updateAppointment(item) {
+// console.log(Context.user.id,">>>>>>>>>")
+//    obj = {
+//     //user id to book Appointment
+//      book_userid:Context.user.id,
+//     book_doctor: item.book_doctor,
+  
+//     book_states: !item.book_states,
+//       //admin id
+//     user_id: item.user_id,
+//     book_time: item.book_time,
+//   }
+  
+  
+  
+  
 
-  let obj = {
-    book_doctor: item.book_doctor,
-    book_states: !item.book_states,
-    user_id: item.user_id,
-    book_time: item.book_time,
-  }
+//   try {
 
-  try {
+//     const res = await superagent.put(`${API}/book/${item.id}`)
+//       .send(obj)
+//       .set('Authorization', 'Bearer ' + Context.token)
+//       //dispatch to store bookdata
+//     dispatch(bookfunction(res.body));
+//   console.log(state.bookdata,'ggggggggggggggggggg')
 
-    const res = await superagent.put(`${API}/book/${item.id}`)
-      .send(obj)
-      .set('Authorization', 'Bearer ' + Context.token)
+//   console.log(state.bookdata.info.id,'jjjjjjjjjjjjjjjjjjjjjjjjj')
 
 
 
-    setcount(count + 1)
-  } catch (error) {
-    alert('Invalid update');
-  }
+//     setcount(count + 1)
+//   } catch (error) {
+//     alert('Invalid update');
+//   }
 
-}
+// }
 
 
 
@@ -108,22 +156,23 @@ async function updateAppointment(item) {
 
 
 
-useEffect(async () => {
-  try {
-    console.log(Context.token, '>>>>>>>>>>>>>>>>>>..')
-    const res = await superagent.get(`${API}/appointment`)
-      .set('Authorization', 'Bearer ' + Context.token)
-    console.log(res, 'xxxxxxxxxxxxxxxxxxxxxxxx..')
+// useEffect(async () => {
+ 
+//   try {
+//     console.log(Context.token, '>>>>>>>>>>>>>>>>>>..')
+//     const res = await superagent.get(`${API}/appointment`)
+//       .set('Authorization', 'Bearer ' + Context.token)
+//     console.log(res, 'xxxxxxxxxxxxxxxxxxxxxxxx..')
 
-    setList(res.body)
+//     setList(res.body)
 
-    console.log(res.body);
-    console.log('..............', list)
-  } catch (error) {
-    alert('Invalid Render');
-  }
+//     console.log(res.body);
+//     console.log('..............', list)
+//   } catch (error) {
+//     alert('Invalid Render');
+//   }
 
-}, [count]);
+// }, [count]);
 
 
 
@@ -145,10 +194,12 @@ return (
         <Products />
       </Route>
       <Route exact path="/Services">
-        <Services list={list}
+{/* 
+      list={Context2.list}
           addAppointment={addAppointment}
-          delAppointment={delAppointment}
-          updateAppointment={updateAppointment} />
+          delAppointment={Context2.delAppointment}
+          updateAppointment={Context2.updateAppointment} */}
+        <Services    />
 
       </Route>
       <Route exact path="/AboutUS">
@@ -175,6 +226,7 @@ return (
         <Login />
       </When> */}
   </Router>
+
 
 
 );

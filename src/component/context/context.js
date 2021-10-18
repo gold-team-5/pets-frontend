@@ -10,15 +10,19 @@ import { useHistory } from "react-router-dom";
 
 
 
+
 export const LoginContext = React.createContext();
 const API = 'http://localhost:3001';// .env
 
 export default function LoginProvider(props) {
+
     const [loggedIn, setLoggedIn] = useState(false);
     const [user, setUser] = useState({});
     const [token, setToken] = useState(null);
     const [loggedOut, setLoggedOut] = useState(false)
-    const [userinfo,setuserinfo]=useState([])
+    
+
+
     // initial render
     useEffect(() => {
         const tokenFromCookie = cookie.load('token');
@@ -26,6 +30,8 @@ export default function LoginProvider(props) {
         validateJwToken(tokenFromCookie);
         setToken(tokenFromCookie)
     }, []);
+
+    
 
     const signUp = async (username, password, role,phone,address,gender) => {
         // {username: password} encoded
@@ -42,8 +48,10 @@ export default function LoginProvider(props) {
                 user_gender: gender
 
             }
+            
     
             const response = await superagent.post(`${API}/signup`, user);
+             
             
             console.log(response);
     
@@ -70,9 +78,11 @@ export default function LoginProvider(props) {
             console.log(password);
     
             const response = await superagent.post(`${API}/signin`).set('Authorization', `Basic ${encodedUsernameAndPassword}`);
-            
-            console.log(response.body.user);
-            setuserinfo(response.body.user)
+          
+            console.log(response.body.user.id);
+           
+          
+           
             
 
     
@@ -91,6 +101,8 @@ export default function LoginProvider(props) {
        
     }
 
+
+
     const validateJwToken = (token) => {
         if (token) {
             // the user is logged in
@@ -107,6 +119,7 @@ export default function LoginProvider(props) {
     const setLoginState = (loggedIn, user) => {
         setLoggedIn(loggedIn);
         setUser(user);
+        console.log('userkkkkkkkkkkkkkk',user)
     }
 
     const logout = () => {
@@ -130,7 +143,8 @@ export default function LoginProvider(props) {
         can,
         signUp,
         token,
-        userinfo
+        
+        
     }
 
     return (

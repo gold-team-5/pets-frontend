@@ -1,8 +1,11 @@
-import react from 'react'
+import React,{ useContext} from 'react'
 import { Table, Button } from 'react-bootstrap/'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Auth from '../context/auth';
+// import { ProfileContext } from "../context/contextprofile";
 const Appointment = (props) => {
+  // const context=useContext(ProfileContext)
+
   return (
 
     <>
