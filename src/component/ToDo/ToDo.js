@@ -26,7 +26,7 @@ import Profile from "../Profile/profile";
 import UpdatePetForm from "../forms/updatePet";
 import Footer from "../footer/footer";
 const ToDo = (props) => {
-  const API = "https://gold-team-mid-project.herokuapp.com";
+  const API = "http://localhost:3001";
   const Context = useContext(LoginContext);
 
   const [list, setList] = useState([]);
@@ -40,7 +40,39 @@ const ToDo = (props) => {
   const [index, setIndex] = useState();
   const [searchInput, setSearchInput] = useState("");
   const [filteredResults, setFilteredResults] = useState([]);
-  //.................pet states...............................................
+
+
+  //.................product states...............................................
+const [productData,setproductD]=useState([]);
+const[updateproductData,setUpdateProductD]=useState();
+const [count3, setcount3] = useState(0);
+  //..................product status...........................................
+
+
+
+
+//............................productFunctionality........................................
+
+useEffect(async () => {
+  console.log(' use effect product ????????????');
+  try {
+    console.log(Context.token, ">>>>>>>>>>>>>>>>>>..");
+    const res = await superagent
+      .get("`${API}/products`")
+      .set("Authorization", "Bearer " + Context.token);
+    console.log(res, "xxxxxxxxxxproduct");
+    setproductD(res.body);
+    console.log(res.body);
+    console.log("..............", list);
+  } catch (error) {
+    alert("Invalid Render");
+  }
+}, [count3]);
+
+//............................productFunctionality........................................
+
+
+
 
   //add Appointment function
   async function addAppointment(item) {
@@ -269,7 +301,40 @@ const ToDo = (props) => {
       alert("Invalid data");
     }
   }
-  //..........................pet functionality.............................................
+
+
+//..........................pet functionality.............................................
+
+
+
+
+//.....................................add product.....................
+async function addProduct(item) {
+  // console.log(item, ',,,,,,,,,,,,,,,,,,,,,,,,')
+
+  let obj = {
+    product_name: item.product_name,
+    product_img: item.product_img,
+    product_desc: item.product_desc,
+    product_type: item.product_type,
+    product_price: item. product_price,
+    user_id: item.user_id,  //??????????????????????
+  };
+  try {
+   
+    const res = await superagent
+      .post(`${API}/products`) ///????????????????????
+
+      .send(obj)
+      .set("Authorization", "Bearer " + Context.token);
+      setcount3(count3 + 1);
+  } catch (error) {
+    alert("Invalid data");
+  }
+}
+
+
+//.....................................add product.....................
 
   return (
     <Router>
@@ -299,7 +364,10 @@ const ToDo = (props) => {
           )}
         </Route>
         <Route exact path="/Products">
-          <Products />
+
+          <Products
+          productData={productData}
+          />
         </Route>
         <Route exact path="/Services">
           <Services
@@ -318,6 +386,8 @@ const ToDo = (props) => {
             list={list}
           />
         </Route>
+
+
 
         {/* <Route exact path="/login">
   useEffect(async () => {
