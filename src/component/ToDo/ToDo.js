@@ -304,7 +304,9 @@ async function addPet(item) {
 
 return (
   <Router>
-    <Header />
+    <Header
+     searchItems={searchItems}
+    />
     
     <Switch>
 
@@ -313,7 +315,23 @@ return (
         <Home />
       </Route>
       <Route exact path="/Pets">
-        <Pets />
+        
+         <Pets
+        
+       searchItems={searchItems}
+         filteredResults={filteredResults}
+         searchInput={searchInput}
+         petData={petData}
+           deletPet={deletPet}
+           showupdatePetForm={showupdatePetForm}
+           addPet={addPet}
+           search={searchItems} />
+         {showUpdateForm &&
+           <UpdatePetForm updatePet={updatePet}
+             updatePetData={updatePetData}
+           />
+        />
+       
       </Route>
       <Route exact path="/Products">
         <Products />
