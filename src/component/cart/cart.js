@@ -3,6 +3,7 @@ import { FormGroup, InputGroup, Icon } from "@blueprintjs/core";
 import "./cart.css";
 import img2 from "../../img/istockphoto-1152482732-612x612-removebg-preview.png";
 
+
 export default function Pets(props) {
   return (
     <div id="contener">

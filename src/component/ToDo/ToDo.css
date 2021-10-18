@@ -1,11 +1,14 @@
-.ToDoList{
-    margin-left: 10%;
-    margin-right: 10%;
+.ToDoList {
+  margin-left: 10%;
+  margin-right: 10%;
 }
 
-
-.Title{
-    background-color: aquamarine;
-    color: black;
-    padding: 2.58%;
+.Title {
+  background-color: aquamarine;
+  color: black;
+  padding: 2.58%;
+}
+body {
+  /* overflow-y: hidden; */
+  min-height: 500px;
 }
