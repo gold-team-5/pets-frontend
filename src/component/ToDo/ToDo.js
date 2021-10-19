@@ -49,7 +49,7 @@ const ToDo = (props) => {
   const [productsearch, setproductsearch] = useState("");
   const [filterprouduct, setfilterprouduct] = useState([]);
   //..................product status...........................................
-  //............................productFunctionality........................................
+
   //............................productFunctionality........................................
   //add Appointment function
   async function addAppointment(item) {
@@ -280,8 +280,6 @@ const ToDo = (props) => {
     }
   }
 
-  //..........................adoubtion.............................................
-
   async function updatePetState(index, item) {
     // by admin
     let obj = {
@@ -294,6 +292,7 @@ const ToDo = (props) => {
       pet_desc: item.pet_desc,
       user_id: item.user_id, // admin id who add pet
     };
+    console.log(obj, ">>>>>>>>>>>>>>>>>>>>>");
     try {
       const res = await superagent
         .put(`${API}/adoptionpet/${item.id}`)
