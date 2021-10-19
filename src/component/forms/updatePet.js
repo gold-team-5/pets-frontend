@@ -15,7 +15,7 @@ export default function UpdatePetForm(props) {
   return (
     <Auth capability="update">
       <form
-        className="myForm"
+        className="myFormm"
         onSubmit={props.updatePet}
         style={{ marginBottom: "100px" }}
       >
@@ -65,14 +65,14 @@ export default function UpdatePetForm(props) {
             defaultValue={props.updatePetData.pet_desc}
           />
         </FormGroup>
-        <FormGroup labelFor="text-input">
+        {/* <FormGroup labelFor="text-input">
           <InputGroup
             name="pet_states"
             type="text"
             placeholder=" pet_states"
             defaultValue={props.updatePetData.pet_states}
           />
-        </FormGroup>
+        </FormGroup> */}
 
         <button type="submit" className='btnpets'>UPDATE </button>
       </form>

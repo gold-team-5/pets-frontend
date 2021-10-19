@@ -11,7 +11,7 @@ export default function UpdateforimProduct  (props) {
         return (
             <div>
               <Auth capability="update">
-      <form className="myForm" onSubmit={props.updateProduct}>
+      <form className="myFormm" onSubmit={props.updateProduct}>
         <h2>UPDATE PRODUCT DATA</h2>
         <FormGroup
           labelFor="text-input">
@@ -41,12 +41,12 @@ export default function UpdateforimProduct  (props) {
       <InputGroup name="product_img" type="text" placeholder="product_img" defaultValue={props.updateproductData.product_img}/>
   
       </FormGroup>
-      <FormGroup
+      {/* <FormGroup
       
       labelFor="text-input">
       <InputGroup  name="user_id" type="text" placeholder="user_id" defaultValue={props.updateproductData.user_id}/>
   
-      </FormGroup> 
+      </FormGroup>  */}
 
 
         <Button type="submit">UPDATE </Button>

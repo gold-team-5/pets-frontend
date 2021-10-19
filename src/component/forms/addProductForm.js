@@ -9,7 +9,7 @@ export default function AddProductForm(props) {
     const { handleChange, handleSubmit } = useForm(props.addproduct);
     return (
         <Auth capability="add">
-            <form className="myForm" onSubmit={handleSubmit}>
+            <form className="myFormm" onSubmit={handleSubmit}>
                 <h2>Add New Product</h2>
                 <FormGroup
                     labelFor="text-input">
@@ -38,14 +38,14 @@ export default function AddProductForm(props) {
                     <input onChange={handleChange} name="product_price" type="text" placeholder="product_price" />
 
                 </FormGroup>
-                <FormGroup
+                {/* <FormGroup
 
                     labelFor="text-input">
                     <input onChange={handleChange} name="user_id" type="text" placeholder="user_id" />  
                     
-                    {/* //??????? */}
+                    
 
-                </FormGroup>
+                </FormGroup> */}
 
 
                 <button type="submit" className='btnpets'  > Add </button>

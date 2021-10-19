@@ -14,13 +14,26 @@ export default function Pets(props) {
   return (
     <>
 
-<input  icon='search'
+<h3 className='petstittle'>PETS</h3>
+
+<form action="javascript:" class="search-bar" style={{minHeight:'200px'}}>
+	<input type="search" name="search" pattern=".*\S.*"
+  className='inputsss' required 
+   onChange={(e) => props.searchItems(e.target.value)} />
+	<button class="search-btn" type="submit">
+		<span>Search</span>
+	</button>
+</form>
+
+{/* <input className='inputsearch' icon='search'
                 placeholder='Search...'
                 onChange={(e) => props.searchItems(e.target.value)}
-            />
+            /> */}
 
 
-<div class="container">
+
+
+{/* <div class="containerrr">
  <div class="hider">
   <span class="character">P</span>
  </div>
@@ -34,9 +47,9 @@ export default function Pets(props) {
   <span class="character">S</span>
  </div>
  
-</div>
-      <div className="cotanerpets">
-        <div className="contanerpra">
+</div> */}
+
+<div className="contanerpra">
           <p className="pragraphpets">
             Animals are in need of forever homes as more and more people who
             adopted pets during the coronavirus <br></br>pandemic are bringing
@@ -45,6 +58,8 @@ export default function Pets(props) {
             trend emerging for our four-legged friends.
           </p>
         </div>
+      <div className="cotanerpets">
+     
         {/* return just search result  */}
         {props.searchInput.length > 1
           ? props?.filteredResults?.map((item, index) => {
@@ -96,15 +111,6 @@ export default function Pets(props) {
               }
             })
           : props?.petData?.map((item, index) => {
-// =======
-    
-  
-  
-//       {/* return just search result  */}
-//       {props.searchInput.length > 1
-//         ? props?.filteredResults?.map((item, index) => {
-//             {
-// >>>>>>> b7ae650a56b47604d83a6509fedc94b4f02486d6
               if (item.pet_states == true) {
                 return (
                   <div className="petCard">

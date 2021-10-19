@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 import { useHistory } from "react-router-dom";
 
 export const LoginContext = React.createContext();
-const API = "https://pets-mid-pro.herokuapp.com"; // .env
+const API = "https://gold-team-mid-project.herokuapp.com"; // .env
 
 export default function LoginProvider(props) {
   const [loggedIn, setLoggedIn] = useState(false);
