@@ -4,8 +4,9 @@ import { FormGroup, InputGroup } from '@blueprintjs/core';
 import { Button } from "react-bootstrap";
 // import "./form.css"
 import Auth from "../context/auth";
-export default function AddPetForm(props) {
-    const { handleChange, handleSubmit } = useForm(props.addProduct);
+
+export default function AddProductForm(props) {
+    const { handleChange, handleSubmit } = useForm(props.addproduct);
     return (
         <Auth capability="add">
             <form className="myForm" onSubmit={handleSubmit}>

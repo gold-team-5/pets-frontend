@@ -3,36 +3,78 @@ import { Card, Button } from "react-bootstrap";
 import AddProductForm from "../forms/addProductForm";
 
 export default function Product(props) {
- console.log('productData mmmmmmmmmmmmm'+ props.productData);
+  console.log("productData mmmmmmmmmmmmm" + props.productData);
+  return (
+    <>
+      <input
+        icon="search"
+        placeholder="Search..."
+        onChange={(e) => props.searchItems2(e.target.value)}
+      />
+      {console.log()}
 
-  return <>
+      <div className="productcard">
+        {console.log(props.filterprouduct, "ggggggggggggggggggggggg")}
+        {props.productsearch.length > 1
+          ? props?.filterprouduct?.map((item, index) => {
+              return (
+                <div className="petCard">
+                  <Card key={index} style={{ width: "18rem" }}>
+                    <Card.Img variant="top" src={item.product_img} />
+                    <Card.Body>
+                      <Card.Title>{item.product_name}</Card.Title>
 
+                      <Card.Text>{item.product_desc}</Card.Text>
+                      <Card.Text>{item.product_price}</Card.Text>
+                      <Button variant="primary">Adoption</Button>
+                      <Button
+                        variant="primary"
+                        onClick={() => props.deletProduct(item.id)}
+                      >
+                        delete
+                      </Button>
+                      <Button
+                        variant="primary"
+                        onClick={() => props.showupdateProductForm(index, item)}
+                      >
+                        update
+                      </Button>
+                    </Card.Body>
+                  </Card>
+                  <br />
+                </div>
+              );
+            })
+          : props?.productData?.map((item, index) => {
+              return (
+                <div className="petCard">
+                  <Card key={index} style={{ width: "18rem" }}>
+                    <Card.Img variant="top" src={item.product_img} />
+                    <Card.Body>
+                      <Card.Title>{item.product_name}</Card.Title>
 
-    {/* <div>
-      <form >
-        <label for="type">Choose Product type:</label>
-
-        <select onChange={props.search} name="product" id="product">
-        <option value="all">all</option>
-          <option value="cat">food</option>
-          <option value="dog">toys</option>
-          <option value="hamester">Accessories</option>
-          <option value="rabbit">rabbit</option>
-        </select>
-      </form>
-  
-
-    </div> */}
-
-    
-
-
-      {props?.productData?.map((item, index) => {
-
-        return (
-          <div className="productcard">
-
-
+                      <Card.Text>{item.product_desc}</Card.Text>
+                      <Card.Text>{item.product_price}</Card.Text>
+                      <Button variant="primary">Adoption</Button>
+                      <Button
+                        variant="primary"
+                        onClick={() => props.deletProduct(item.id)}
+                      >
+                        delete
+                      </Button>
+                      <Button
+                        variant="primary"
+                        onClick={() => props.showupdateProductForm(index, item)}
+                      >
+                        update
+                      </Button>
+                    </Card.Body>
+                  </Card>
+                  <br />
+                </div>
+              );
+            })}
+        {/* 
             <Card key={index} style={{ width: '18rem' }}>
               <Card.Img variant="top" src={item.product_img} />
               <Card.Body>
@@ -41,22 +83,16 @@ export default function Product(props) {
                   {item.product_price}
                 </Card.Text>
                 <Button variant="primary">Buy Now</Button>
-                {/* <Button variant="primary" onClick={() => props.deletPet(item.id)} >delete</Button>
-                <Button variant="primary" onClick={() => props.showupdatePetForm(index, item)}>update</Button> */}
+                <Button variant="primary" onClick={() => props.deletProduct(item.id)} >delete</Button>
+                <Button variant="primary" onClick={() => props.showupdateProductForm(index, item)}>update</Button>
               </Card.Body>
             </Card>
-            <br />
+            <br /> */}
+      </div>
 
-          </div>
-        )
-      })
-      // :
-    }
-    
-
-
-    {/* <div className='addpetform' style={{ margin: '10px' }}>
-      <AddPetForm addPet={props.addPet} />
-    </div> */}
-  </>;
+      <div className="addpetform" style={{ margin: "10px" }}>
+        <AddProductForm addproduct={props.addProduct} />
+      </div>
+    </>
+  );
 }

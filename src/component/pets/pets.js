@@ -14,6 +14,12 @@ export default function Pets(props) {
   return (
     <>
 
+<input  icon='search'
+                placeholder='Search...'
+                onChange={(e) => props.searchItems(e.target.value)}
+            />
+
+
 <div class="container">
  <div class="hider">
   <span class="character">P</span>
@@ -90,6 +96,15 @@ export default function Pets(props) {
               }
             })
           : props?.petData?.map((item, index) => {
+// =======
+    
+  
+  
+//       {/* return just search result  */}
+//       {props.searchInput.length > 1
+//         ? props?.filteredResults?.map((item, index) => {
+//             {
+// >>>>>>> b7ae650a56b47604d83a6509fedc94b4f02486d6
               if (item.pet_states == true) {
                 return (
                   <div className="petCard">
@@ -146,5 +161,5 @@ export default function Pets(props) {
   );
 
 
-  
+
 }
