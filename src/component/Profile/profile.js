@@ -12,6 +12,7 @@ export default function Profile(props) {
 
   const Context = useContext(LoginContext);
 
+  console.log(context.user);
 
   return (
     // {context.userinfo}

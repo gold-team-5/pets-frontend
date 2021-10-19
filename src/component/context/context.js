@@ -23,7 +23,7 @@ export default function LoginProvider(props) {
     setToken(tokenFromCookie);
   }, []);
 
-  const signUp = async (username, password, role, phone, address, gender) => {
+  const signUp = async (username, password, role, phone, address,user_email,user_img, gender) => {
     // {username: password} encoded
     //Basic base64(username:password)
     try {
@@ -34,6 +34,8 @@ export default function LoginProvider(props) {
         user_phone: phone,
         user_address: address,
         user_gender: gender,
+        user_email:user_email,
+        user_img:user_img
       };
 
       const response = await superagent.post(`${API}/signup`, user);
@@ -84,6 +86,7 @@ export default function LoginProvider(props) {
     if (token) {
       // the user is logged in
       const user = jwt.decode(token);
+      console.log(user);
       setLoginState(true, user);
 
       cookie.save("token", token);

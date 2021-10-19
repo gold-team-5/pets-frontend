@@ -9,7 +9,7 @@ import superagent from "superagent";
 export default function Pets(props) {
   const Context = useContext(LoginContext);
 
-  const API = 'http://localhost:3005'
+  const API = 'https://gold-team-mid-project.herokuapp.com'
   
   return (
     <>

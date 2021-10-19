@@ -80,7 +80,7 @@ function MyMessageArea(props) {
     const Context = useContext(LoginContext)
 
     useEffect(() => {
-        const newSocket = io(`http://localhost:3005`);
+        const newSocket = io(`https://gold-team-mid-project.herokuapp.com`);
         setSocket(newSocket);
         
         console.log(Context.user.user_name);
