@@ -12,6 +12,7 @@ import SignUp from "../context/signUp";
 import Form from "../forms/forms";
 import superagent from "superagent";
 import { When } from "react-if";
+import Swal from "sweetalert2";
 import { v4 as uuid } from "uuid";
 import Header from "../Header/header";
 import Home from "../home/home";
@@ -31,7 +32,7 @@ import MyMessageArea from "../socket/MyMessageArea";
 
 
 const ToDo = (props) => {
-  const API = "https://pets-mid-pro.herokuapp.com";
+  const API = "http://localhost:3005";
   const Context = useContext(LoginContext);
 
   const [messageArea, setmessageArea] = useState(false);
@@ -204,8 +205,23 @@ const ToDo = (props) => {
       setcount2(count2 + 1);
       console.log("items>>>>", items);
       console.log("delete", res);
+
+      Swal.fire({
+        icon: "success",
+        text: "Pet Successfully Deleted ",
+        showCancelButton: false,
+        confirmButtonText: 'Ok',
+
+      })
+
     } catch (error) {
-      alert("Invalid delete");
+      Swal.fire({
+        icon: "warning",
+        text: "Somthing went wrong",
+        showCancelButton: false,
+        confirmButtonText: 'Ok',
+
+      })
     }
   }
   ///////////////update pet /////////////////////
@@ -231,7 +247,7 @@ const ToDo = (props) => {
       pet_img: e.target.pet_img.value,
       pet_type: e.target.pet_type.value,
       pet_desc: e.target.pet_desc.value,
-      
+
     };
     let updateUrl = `${API}/pet/${index}`;
     let petDataRes = await superagent
@@ -297,31 +313,96 @@ const ToDo = (props) => {
     }
   }
 
+  async function acceptAdoption(id) {
+    // "/adoptionpet/:id",
+    const res = await superagent
+      .put(`${API}/adoptionpet/${id}`)
+      .set("Authorization", "Bearer " + Context.token);
 
-  async function updatePetState(index, item) {
-    // by admin
-    let obj = {
-      pet_q: Context.user.id, // user id who pick pet
-      pet_name: item.pet_name,
-      pet_states: !item.pet_states, // false
-      pet_age: item.pet_age,
-      pet_img: item.pet_img,
-      pet_type: item.pet_type,
-      pet_desc: item.pet_desc,
-      user_id: item.user_id, // admin id who add pet
-    };
-    console.log(obj, '>>>>>>>>>>>>>>>>>>>>>');
-    try {
-      const res = await superagent
-        .put(`${API}/adoptionpet/${item.id}`)
-        .send(obj)
-        .set("Authorization", "Bearer " + Context.token);
-
-      setcount(count2 + 1);
-    } catch (error) {
-      alert("Invalid update");
-    }
+    setcount(count2 + 1);
   }
+
+  async function declineAdoption(item) {
+
+    // put(
+    // "/pet/:id",
+
+    let obj = item
+    obj.user_id = null
+    obj.pet_states = true
+    obj.requestId = null
+
+    const id = obj.id
+
+    const res = await superagent
+      .put(`${API}/pet/${id}`)
+      .send(obj)
+      .set("Authorization", "Bearer " + Context.token);
+
+    setcount(count2 + 1);
+  }
+
+  async function alertForAdoption(id) {
+    //  "/adoptionpetUser/:id/:requestId",
+    //   state = false 
+    //   id = null
+    const userId = Context.user.id // from logIn
+    console.log(Context.user.id);
+    const petId = id
+
+    console.log(petId);
+
+    // SuperAgent
+
+    const res = await superagent
+      .put(`${API}/adoptionpetUser/${petId}/${userId}`)
+      .set("Authorization", "Bearer " + Context.token);
+
+    setcount(count2 + 1);
+    console.log(res);
+
+    //   capability="add" && state=false  &&  id=null {requestedId=12}
+
+
+    Swal.fire({
+      icon: "info",
+      text: "You should take the approvment from admin 🐾🐾",
+      showCancelButton: false,
+      confirmButtonText: 'Ok',
+
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        window.location.reload()
+      }
+    })
+
+  }
+
+  // async function updatePetState(index, item) {
+  //   // by admin
+  //   let obj = {
+  //     pet_q: Context.user.id, // user id who pick pet
+  //     pet_name: item.pet_name,
+  //     pet_states: !item.pet_states, // false
+  //     pet_age: item.pet_age,
+  //     pet_img: item.pet_img,
+  //     pet_type: item.pet_type,
+  //     pet_desc: item.pet_desc,
+  //     user_id: item.user_id, // admin id who add pet
+  //   };
+  //   console.log(obj, '>>>>>>>>>>>>>>>>>>>>>');
+  //   try {
+  //     const res = await superagent
+  //       .put(`${API}/adoptionpet/${item.id}`)
+  //       .send(obj)
+  //       .set("Authorization", "Bearer " + Context.token);
+
+  //     setcount(count2 + 1);
+  //   } catch (error) {
+  //     alert("Invalid update");
+  //   }
+  // }
 
   //..........................pet functionality.............................................
   //.....................................add product.....................
@@ -423,7 +504,8 @@ const ToDo = (props) => {
               showupdatePetForm={showupdatePetForm}
               addPet={addPet}
               search={searchItems}
-              updatePetState={updatePetState}
+              alertForAdoption={alertForAdoption}
+            // updatePetState={updatePetState}
             />
             {showUpdateForm && (
               <UpdatePetForm
@@ -462,6 +544,8 @@ const ToDo = (props) => {
           </Route>
           <Route exact path="/Profile">
             <Profile
+              acceptAdoption={acceptAdoption}
+              declineAdoption={declineAdoption}
               delAppointmentfromuser={delAppointmentfromuser}
               list={list}
               petData={petData}
