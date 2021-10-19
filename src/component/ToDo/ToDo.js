@@ -260,7 +260,7 @@ const ToDo = (props) => {
   }, [count2]);
   ////////////////////add pet//////////////////////
   async function addPet(item) {
-    // console.log(item, ',,,,,,,,,,,,,,,,,,,,,,,,')
+    console.log(item, ",,,,,,,,,,,,,,,,,,,,,,,,");
     let obj = {
       pet_name: item.pet_name,
       pet_age: item.pet_age,
@@ -269,11 +269,17 @@ const ToDo = (props) => {
       pet_desc: item.pet_desc,
       pet_states: item.pet_states,
     };
+
     try {
+      console.log(obj, ",,,,,,,,,,,,,,,,,,,,,,,,");
+
       const res = await superagent
         .post(`${API}/adapt`)
         .send(obj)
         .set("Authorization", "Bearer " + Context.token);
+
+      console.log(res, ",,,,,,,,,,,,,,,,,,,,,,,,");
+
       setcount2(count2 + 1);
     } catch (error) {
       alert("Invalid data");
