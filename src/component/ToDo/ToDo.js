@@ -26,9 +26,15 @@ import Profile from "../Profile/profile";
 import UpdatePetForm from "../forms/updatePet";
 import Footer from "../footer/footer";
 import UpdateforimProduct from "../forms/updateforimProduct";
+import Message from "../socket/message";
+import MyMessageArea from "../socket/MyMessageArea";
+
 const ToDo = (props) => {
   const API = "https://pets-mid-pro.herokuapp.com";
   const Context = useContext(LoginContext);
+
+  const [messageArea, setmessageArea] = useState(false);
+
   const [list, setList] = useState([]);
   const [count, setcount] = useState(0);
   const [incomplete, setIncomplete] = useState([]);
@@ -48,6 +54,8 @@ const ToDo = (props) => {
   const [showUpdateFormproduct, setshowUpdateFormproduct] = useState(false);
   const [productsearch, setproductsearch] = useState("");
   const [filterprouduct, setfilterprouduct] = useState([]);
+  // const [sum, setsum] = useState(0);
+
   //..................product status...........................................
 
   //............................productFunctionality........................................
@@ -224,7 +232,6 @@ const ToDo = (props) => {
       pet_img: e.target.pet_img.value,
       pet_type: e.target.pet_type.value,
       pet_desc: e.target.pet_desc.value,
-      pet_states: e.target.pet_states.value,
     };
     let updateUrl = `${API}/pet/${index}`;
     let petDataRes = await superagent
@@ -258,6 +265,15 @@ const ToDo = (props) => {
       alert("Invalid Render");
     }
   }, [count2]);
+  ////////////////////Socket Io ///////////////////
+  function myMessageFunc() {
+    setmessageArea(true);
+    console.log("set It");
+  }
+
+  function removeMessageFunc() {
+    setmessageArea(false);
+  }
   ////////////////////add pet//////////////////////
   async function addPet(item) {
     console.log(item, ",,,,,,,,,,,,,,,,,,,,,,,,");
@@ -321,6 +337,7 @@ const ToDo = (props) => {
       product_type: item.product_type,
       product_price: item.product_price,
       user_id: item.user_id, //??????????????????????
+      product_quantity: 1,
     };
 
     try {
@@ -333,7 +350,6 @@ const ToDo = (props) => {
       alert("Invalid data");
     }
   }
-  //.....................................add product.....................
   //............................................updateProduct.............................
   const updateProduct = async (e) => {
     console.log("ggggggggggggggggggggggggggggggggggggg", productData);
@@ -346,7 +362,7 @@ const ToDo = (props) => {
       product_type: e.target.product_type.value,
       product_price: e.target.product_price.value,
       product_img: e.target.product_img.value,
-      user_id: e.target.user_id.value,
+      // user_id: e.target.user_id.value,
     };
     console.log("lllllllllllllllllllllll", updateproductData);
     let updateUrl = `${API}/product/${Indexproduct}`;
@@ -390,6 +406,37 @@ const ToDo = (props) => {
     }
   }
   //............................................updateProduct.............................
+
+  // ////////////////////// buy prodect ///////////////////////////////
+
+  async function handelBuy(item) {
+    // item >> from prodect
+
+    console.log("sdgfgfasgfadgd");
+
+    let obj = {
+      product_userID: Context.user.id, // id >> user
+      id: item.id, // id >> prodect
+      product_name: item.product_name,
+      product_desc: item.product_desc,
+      product_img: item.product_img,
+      product_price: item.product_price,
+      product_type: item.product_type,
+      // user_id: item.user_id,
+    };
+
+    try {
+      const res = await superagent
+        .put(`${API}/product/${item.id}`)
+        .send(obj)
+        .set("Authorization", "Bearer " + Context.token);
+      setcount(count + 1);
+      console.log(res.text);
+    } catch (error) {
+      alert("Invalid update");
+    }
+  }
+
   return (
     <>
       <Router>
@@ -426,6 +473,7 @@ const ToDo = (props) => {
               productData={productData}
               addProduct={addProduct}
               showupdateProductForm={showupdateProductForm}
+              handelBuy={handelBuy}
             />
             {showUpdateFormproduct && (
               <UpdateforimProduct
@@ -460,12 +508,18 @@ const ToDo = (props) => {
             {Context.loggedIn ? <Redirect to="/" /> : <SignUp />}
           </Route>
           <Route exact path="/Cart">
-            <Cart />
+            <Cart productData={productData} />
           </Route>
         </Switch>
 
         {/* <Footer /> */}
       </Router>
+
+      {!messageArea && Context.loggedIn && (
+        <Message myMessageFunc={myMessageFunc} />
+      )}
+
+      {messageArea && <MyMessageArea removeMessageFunc={removeMessageFunc} />}
     </>
   );
 };

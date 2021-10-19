@@ -1,0 +1,22 @@
+
+.myMessage{
+    position: fixed;
+    bottom: 20%;
+    right: 5%;
+    opacity: 0.8;
+    width: 10%;
+    height: 10%;
+    border-radius: 100%;
+}
+
+.myMessage :hover{
+    cursor: pointer;
+    opacity: 0.5;
+
+}
+
+.myMessage img{
+    width: 100%;
+    border-radius: 100%;
+
+}

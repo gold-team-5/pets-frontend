@@ -18,10 +18,10 @@ export default function AddPetForm(props) {
                     labelFor="text-input">
                     <input onChange={handleChange} name="pet_age" type="text" placeholder="pet_age" />
                 </FormGroup>
-                <FormGroup
+                {/* <FormGroup
                     labelFor="number">
                     <input onChange={handleChange} name="pet_q" type="text" placeholder="pet_q" />
-                </FormGroup>
+                </FormGroup> */}
                 <FormGroup
                     labelFor="text-input">
                     <input onChange={handleChange} name="pet_img" type="text" placeholder="pet_img" />
@@ -34,12 +34,12 @@ export default function AddPetForm(props) {
                     labelFor="text-input">
                     <input onChange={handleChange} name="pet_desc" type="text" placeholder="pet_desc" />
                 </FormGroup>
-                <FormGroup
+                {/* <FormGroup
 
                     labelFor="text-input">
                     <input onChange={handleChange} name="pet_states" type="text" placeholder="pet_states" />
 
-                </FormGroup>
+                </FormGroup> */}
                 <Button type="submit"> Add </Button>
             </form>
         </Auth>

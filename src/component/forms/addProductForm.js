@@ -38,14 +38,14 @@ export default function AddProductForm(props) {
                     <input onChange={handleChange} name="product_price" type="text" placeholder="product_price" />
 
                 </FormGroup>
-                <FormGroup
+                {/* <FormGroup
 
                     labelFor="text-input">
                     <input onChange={handleChange} name="user_id" type="text" placeholder="user_id" />  
                     
-                    {/* //??????? */}
+                    
 
-                </FormGroup>
+                </FormGroup> */}
 
 
                 <Button type="submit"> Add </Button>
