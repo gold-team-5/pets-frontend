@@ -17,7 +17,7 @@ import Header from "../Header/header";
 import Home from "../home/home";
 import AboutUS from "../aboutUS/aboutUS";
 import Pets from "../pets/pets";
-import Products from "../products/products";
+import Product from "../products/products";
 import Services from "../services/services";
 import LoginProvider from "../context/context";
 import Login from "../context/login";
@@ -25,6 +25,8 @@ import Cart from "../cart/cart";
 import Profile from "../Profile/profile";
 import UpdatePetForm from "../forms/updatePet";
 import Footer from "../footer/footer";
+import UpdateforimProduct from "../forms/updateforimProduct";
+
 const ToDo = (props) => {
   const API = "http://localhost:3001";
   const Context = useContext(LoginContext);
@@ -43,9 +45,15 @@ const ToDo = (props) => {
 
 
   //.................product states...............................................
-const [productData,setproductD]=useState([]);
-const[updateproductData,setUpdateProductD]=useState();
+const [productData, setproductData]=useState([]);
+const[updateproductData,setUpdateProductData]=useState();
 const [count3, setcount3] = useState(0);
+const[Indexproduct,setIndexproduct]=useState();
+const[showUpdateFormproduct,setshowUpdateFormproduct]=useState(false);
+const [productsearch, setproductsearch] = useState("");
+const [filterprouduct, setfilterprouduct] = useState([]);
+
+
   //..................product status...........................................
 
 
@@ -53,21 +61,7 @@ const [count3, setcount3] = useState(0);
 
 //............................productFunctionality........................................
 
-useEffect(async () => {
-  console.log(' use effect product ????????????');
-  try {
-    console.log(Context.token, ">>>>>>>>>>>>>>>>>>..");
-    const res = await superagent
-      .get("`${API}/products`")
-      .set("Authorization", "Bearer " + Context.token);
-    console.log(res, "xxxxxxxxxxproduct");
-    setproductD(res.body);
-    console.log(res.body);
-    console.log("..............", list);
-  } catch (error) {
-    alert("Invalid Render");
-  }
-}, [count3]);
+
 
 //............................productFunctionality........................................
 
@@ -200,10 +194,28 @@ useEffect(async () => {
         return item.pet_type.includes(searchInput);
       });
       setFilteredResults(filteredData);
-      setcount(count2 + 1);
+      setcount2(count2 + 1);
     } else {
       setFilteredResults(petData);
-      setcount(count2 + 1);
+      setcount2(count2 + 1);
+    }
+  };
+  //..................................search product.................................
+
+
+  const searchItems2 = (searchValue) => {
+    setproductsearch(searchValue);
+    console.log(productsearch,'jjjjjjjjjjjjjjjjjjjjjjjj')
+    if (productsearch !== "") {
+      const filteredData2 = productData.filter((item) => {
+        return item.product_type.includes(productsearch);
+      });
+      console.log('llllllllllllllllllllllllll',filteredData2)
+      setfilterprouduct(filteredData2);
+      setcount3(count3 + 1);
+    } else {
+      setfilterprouduct(productData);
+      setcount3(count3 + 1);
     }
   };
 
@@ -262,6 +274,24 @@ useEffect(async () => {
     console.log(petDataRes.text);
     setShowUpdateForm(false);
   };
+
+  //..................................useeffect to product............................
+  useEffect(async () => {
+    console.log(' use effect product ????????????');
+    try {
+   
+      const ress = await superagent
+        .get(`${API}/products`)
+        .set("Authorization", "Bearer " + Context.token);
+      console.log(ress, "xxxxxxxxxxproduct");
+      setproductData(ress.body);
+      console.log(ress.body);
+     
+    } catch (error) {
+      alert("Invalid Render");
+    }
+  },[count3]);
+  ////////////////////////////////////
 
   useEffect(async () => {
     try {
@@ -323,7 +353,7 @@ async function addProduct(item) {
   try {
    
     const res = await superagent
-      .post(`${API}/products`) ///????????????????????
+      .post(`${API}/product`) ///????????????????????
 
       .send(obj)
       .set("Authorization", "Bearer " + Context.token);
@@ -336,9 +366,74 @@ async function addProduct(item) {
 
 //.....................................add product.....................
 
+//............................................updateProduct.............................
+const updateProduct = async (e) => {
+  console.log('ggggggggggggggggggggggggggggggggggggg',productData)
+  console.log('klllllllllllllllllll',Indexproduct)
+  
+  e.preventDefault();
+  let productFormData = {
+    product_name: e.target.product_name.value,
+    product_desc: e.target.product_desc.value,
+    product_type: e.target.product_type.value,
+    product_price: e.target.product_price.value,
+    product_img: e.target.product_img.value,
+    user_id: e.target.user_id.value,
+  };
+  console.log('lllllllllllllllllllllll',updateproductData)
+  let updateUrl = `${API}/product/${Indexproduct}`;
+  let productDataRes = await superagent
+    .put(updateUrl)
+    .send(productFormData)
+    .set("Authorization", "Bearer " + Context.token);
+  setcount3(count3 + 1);
+
+  setshowUpdateFormproduct(false);
+};
+
+
+
+
+const showupdateProductForm = async (index, item) => {
+  console.log('jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj,item',item)
+  setshowUpdateFormproduct(true);
+  console.log('ggggggggggggggggggnnnnnnn',showUpdateFormproduct)
+
+  setIndexproduct(item.id);
+ 
+  let obj = {
+    product_name:item.product_name,
+    product_desc:item.product_desc,
+    product_type:item.product_type,
+    product_price:item.product_price,
+    product_img:item.product_img,
+    user_id:item.user_id,
+  };
+  setUpdateProductData(obj);
+};
+//..............................delete product......................................................
+async function deletProduct(id) {
+  console.log(id);
+  try {
+    const res = await superagent
+      .delete(`${API}/products/${id}`)
+      .set("Authorization", "Bearer " + Context.token);
+    const items = list.filter((item) => item.id !== id);
+    setproductData(items);
+    setcount3(count3 + 1);
+    console.log("items>>>>", items);
+    console.log("delete", res);
+  } catch (error) {
+    alert("Invalid delete");
+  }
+}
+
+//............................................updateProduct.............................
   return (
+    <>
+    
     <Router>
-      <Header searchItems={searchItems} />
+      <Header  />
 
       <Switch>
         <Route exact path="/">
@@ -346,7 +441,7 @@ async function addProduct(item) {
         </Route>
         <Route exact path="/Pets">
           <Pets
-            searchItems={searchItems}
+            
             searchItems={searchItems}
             filteredResults={filteredResults}
             searchInput={searchInput}
@@ -365,9 +460,22 @@ async function addProduct(item) {
         </Route>
         <Route exact path="/Products">
 
-          <Products
+          <Product
+          filterprouduct={filterprouduct}
+          productsearch={productsearch}
+         searchItems2={searchItems2}
+          deletProduct={deletProduct}
           productData={productData}
+          addProduct={addProduct}
+          showupdateProductForm={showupdateProductForm}
+
           />
+          {showUpdateFormproduct && (
+          <UpdateforimProduct
+          updateProduct={updateProduct}
+          updateproductData={updateproductData}
+          />
+           )} 
         </Route>
         <Route exact path="/Services">
           <Services
@@ -389,56 +497,7 @@ async function addProduct(item) {
 
 
 
-        {/* <Route exact path="/login">
-  useEffect(async () => {
-    try {
-      console.log(Context.token, ">>>>>>>>>>>>>>>>>>..");
-      const res = await superagent
-        .get(`${API}/appointment`)
-        .set("Authorization", "Bearer " + Context.token);
-      console.log(res, "xxxxxxxxxxxxxxxxxxxxxxxx..");
-
-      setList(res.body);
-
-      console.log(res.body);
-      console.log("..............", list);
-    } catch (error) {
-      alert("Invalid Render");
-    }
-  }, [count]);
-
-  return (
-    <Router>
-      <Header />
-
-      <Switch>
-        <Route exact path="/">
-          <Home />
-        </Route>
-        <Route exact path="/Pets">
-          <Pets />
-        </Route>
-        <Route exact path="/Products">
-          <Products />
-        </Route>
-        <Route exact path="/Services">
-          <Services
-            list={list}
-            addAppointment={addAppointment}
-            delAppointment={delAppointment}
-            updateAppointment={updateAppointment}
-          />
-        </Route>
-        <Route exact path="/AboutUS">
-          <AboutUS />
-        </Route>
-        <Route exact path="/Profile">
-          <Profile />
-        </Route>
-
-        {/* <Route exact path="/login">
-          <Login />
-        </Route> */}
+   
         <Route exact path="/login">
           {Context.loggedIn ? <Redirect to="/" /> : <Login />}
         </Route>
@@ -449,11 +508,10 @@ async function addProduct(item) {
           <Cart />
         </Route>
       </Switch>
-      {/* <When condition={!Context.loggedIn}>
-        <Login />
-      </When> */}
-      <Footer />
+      
+      {/* <Footer /> */}
     </Router>
+    </>
   );
 };
 

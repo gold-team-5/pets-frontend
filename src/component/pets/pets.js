@@ -5,6 +5,13 @@ import AddPetForm from "../forms/addPetForm";
 export default function Pets(props) {
 
   return <>
+
+
+<input  icon='search'
+                placeholder='Search...'
+                onChange={(e) => props.searchItems(e.target.value)}
+            />
+  
  
 {/* return just search result  */}
     {props.searchInput.length > 1 ? (
