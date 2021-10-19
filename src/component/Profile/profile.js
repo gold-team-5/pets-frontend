@@ -87,14 +87,14 @@ export default function Profile(props) {
             }
           })}
         </div>
+        {/* //////// petData ///////////// */}
         <div className="petData">
           {props?.petData?.map((item) => {
-            if (item.pet_states == false &&
-              item.pet_q == context.user.id) {
+            if (item.pet_states == false && item.pet_q == context.user.id) {
               return (
                 <div className="adoptPet">
-                  <div id='petTitle'>your pets</div>
-                  
+                  <div id="petTitle">your pets</div>
+
                   <ListGroupItem>
                     ID: {item.id} &nbsp; PET AGE: {item.pet_age}
                   </ListGroupItem>
@@ -102,12 +102,17 @@ export default function Profile(props) {
                     Pet Name: {item.pet_name} &nbsp; Pet Type: {item.pet_type}
                   </ListGroupItem>
                   <ListGroupItem>
-                  <img src={item.pet_img} style={{width:'100px',height:'100px', borderRadius:'50%'}}></img>
+                    <img
+                      src={item.pet_img}
+                      style={{
+                        width: "100px",
+                        height: "100px",
+                        borderRadius: "50%",
+                      }}
+                    ></img>
                   </ListGroupItem>
-                  
-               
                 </div>
-              )
+              );
             }
           })}
         </div>

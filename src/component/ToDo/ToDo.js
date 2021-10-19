@@ -254,7 +254,6 @@ const ToDo = (props) => {
     try {
       const res = await superagent.get(`${API}/pet`);
       setPetData(res.body);
-
     } catch (error) {
       alert("Invalid Render");
     }
@@ -275,11 +274,37 @@ const ToDo = (props) => {
         .post(`${API}/adapt`)
         .send(obj)
         .set("Authorization", "Bearer " + Context.token);
-      setcount(count2 + 1);
+      setcount2(count2 + 1);
     } catch (error) {
       alert("Invalid data");
     }
   }
+
+  //..........................adoubtion.............................................
+
+  async function updatePetState(index, item) {
+    // by admin
+    let obj = {
+      pet_q: Context.user.id, // user id who pick pet
+      pet_name: item.pet_name,
+      pet_states: !item.pet_states, // false
+      pet_age: item.pet_age,
+      pet_img: item.pet_img,
+      pet_type: item.pet_type,
+      pet_desc: item.pet_desc,
+      user_id: item.user_id, // admin id who add pet
+    };
+    try {
+      const res = await superagent
+        .put(`${API}/adoptionpet/${item.id}`)
+        .send(obj)
+        .set("Authorization", "Bearer " + Context.token);
+      setcount(count2 + 1);
+    } catch (error) {
+      alert("Invalid update");
+    }
+  }
+
   //..........................pet functionality.............................................
   //.....................................add product.....................
   async function addProduct(item) {
@@ -302,14 +327,12 @@ const ToDo = (props) => {
     } catch (error) {
       alert("Invalid data");
     }
-
   }
   //.....................................add product.....................
   //............................................updateProduct.............................
   const updateProduct = async (e) => {
     console.log("ggggggggggggggggggggggggggggggggggggg", productData);
     console.log("klllllllllllllllllll", Indexproduct);
-
 
     e.preventDefault();
     let productFormData = {
@@ -380,6 +403,7 @@ const ToDo = (props) => {
               showupdatePetForm={showupdatePetForm}
               addPet={addPet}
               search={searchItems}
+              updatePetState={updatePetState}
             />
             {showUpdateForm && (
               <UpdatePetForm
@@ -420,6 +444,7 @@ const ToDo = (props) => {
             <Profile
               delAppointmentfromuser={delAppointmentfromuser}
               list={list}
+              petData={petData}
             />
           </Route>
 
