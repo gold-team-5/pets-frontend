@@ -10,13 +10,13 @@ const NewMessage = ({ socket }) => {
   const submitForm = (e) => {
     e.preventDefault();
     
-    console.log(Context.user.user_name);
+    console.log(Context.user);
 
     let messageObj = {
       value:value,
       useName:Context.user.user_name
     }
-    socket.emit('message', value);
+    socket.emit('message', messageObj);
     setValue('');
   };
 
