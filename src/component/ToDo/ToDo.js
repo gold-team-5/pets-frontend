@@ -26,9 +26,16 @@ import Profile from "../Profile/profile";
 import UpdatePetForm from "../forms/updatePet";
 import Footer from "../footer/footer";
 import UpdateforimProduct from "../forms/updateforimProduct";
+import Message from "../socket/message";
+import MyMessageArea from "../socket/MyMessageArea";
+
+
 const ToDo = (props) => {
   const API = "https://pets-mid-pro.herokuapp.com";
   const Context = useContext(LoginContext);
+
+  const [messageArea, setmessageArea] = useState(false);
+
   const [list, setList] = useState([]);
   const [count, setcount] = useState(0);
   const [incomplete, setIncomplete] = useState([]);
@@ -49,7 +56,7 @@ const ToDo = (props) => {
   const [productsearch, setproductsearch] = useState("");
   const [filterprouduct, setfilterprouduct] = useState([]);
   //..................product status...........................................
-  
+
   //............................productFunctionality........................................
   //add Appointment function
   async function addAppointment(item) {
@@ -224,7 +231,7 @@ const ToDo = (props) => {
       pet_img: e.target.pet_img.value,
       pet_type: e.target.pet_type.value,
       pet_desc: e.target.pet_desc.value,
-      pet_states: e.target.pet_states.value,
+      
     };
     let updateUrl = `${API}/pet/${index}`;
     let petDataRes = await superagent
@@ -259,6 +266,15 @@ const ToDo = (props) => {
       alert("Invalid Render");
     }
   }, [count2]);
+  ////////////////////Socket Io ///////////////////
+  function myMessageFunc() {
+    setmessageArea(true)
+    console.log('set It');
+  }
+
+  function removeMessageFunc() {
+    setmessageArea(false)
+  }
   ////////////////////add pet//////////////////////
   async function addPet(item) {
     // console.log(item, ',,,,,,,,,,,,,,,,,,,,,,,,')
@@ -294,7 +310,7 @@ const ToDo = (props) => {
       pet_desc: item.pet_desc,
       user_id: item.user_id, // admin id who add pet
     };
-    console.log(obj,'>>>>>>>>>>>>>>>>>>>>>');
+    console.log(obj, '>>>>>>>>>>>>>>>>>>>>>');
     try {
       const res = await superagent
         .put(`${API}/adoptionpet/${item.id}`)
@@ -465,6 +481,18 @@ const ToDo = (props) => {
 
         {/* <Footer /> */}
       </Router>
+
+      {
+        !messageArea &&
+        (Context.loggedIn &&
+          <Message myMessageFunc={myMessageFunc} />)
+      }
+
+      {
+        messageArea &&
+        <MyMessageArea removeMessageFunc={removeMessageFunc} />
+      }
+
     </>
   );
 };

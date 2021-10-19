@@ -41,12 +41,12 @@ export default function UpdateforimProduct  (props) {
       <InputGroup name="product_img" type="text" placeholder="product_img" defaultValue={props.updateproductData.product_img}/>
   
       </FormGroup>
-      <FormGroup
+      {/* <FormGroup
       
       labelFor="text-input">
       <InputGroup  name="user_id" type="text" placeholder="user_id" defaultValue={props.updateproductData.user_id}/>
   
-      </FormGroup> 
+      </FormGroup>  */}
 
 
         <Button type="submit">UPDATE </Button>
