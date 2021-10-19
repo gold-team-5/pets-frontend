@@ -1,24 +1,30 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Card, ListGroup, ListGroupItem, Button } from "react-bootstrap/";
 import "./profile.css";
 import { LoginContext } from "../context/context";
 // import Auth from "./component/context/auth";
 import Auth from "../context/auth";
+import superagent from "superagent";
 
 export default function Profile(props) {
   console.log("mmmmmmm", props.list);
   const context = useContext(LoginContext);
+
+  const Context = useContext(LoginContext);
+
+  console.log(context.user);
+
   return (
     // {context.userinfo}
     <>
-      <Card className="card cardProfile">
+      <Card className="cardProfile">
         {/* .......... user info ................. */}
         <Card.Img
           className="cardName "
           variant="top"
           src={context.user.user_img}
         />{" "}
-        <Card.Title className="title">{context.user.user_name}</Card.Title>
+        <Card.Title className="titlename">{context.user.user_name}</Card.Title>
         <Card.Body className="infoContener">
           <Card.Title className="info">
             Email: {context.user.user_email}
@@ -30,13 +36,10 @@ export default function Profile(props) {
             phone: {context.user.user_phone}
           </Card.Title>
         </Card.Body>
-        {/* <ListGroup className="list-group-flush">
-          <ListGroupItem>Cras justo odio</ListGroupItem>
-          <ListGroupItem>Dapibus ac facilisis in</ListGroupItem>
-          <ListGroupItem>Vestibulum at eros</ListGroupItem>
-        </ListGroup> */}
+        
         {/* .......... booking ................. */}
-        <div id="bookingListTilt">
+
+        <div className="bookingListTilt yourbookingdiv">
           <div id="bookingTitle">your booking</div>
           {props?.list?.map((item) => {
             if (
@@ -44,73 +47,71 @@ export default function Profile(props) {
               item.book_userid == context.user.id
             ) {
               return (
-                <div id="booking">
+                <div className='boxbooking'>
                   {/* <p>{item.id}</p>
                 {console.log(item.id, "hhhhhhhhhhhhhhhhhhhhhhhhh")} */}
 
-                  <ListGroupItem>
+                  <ListGroupItem >
                     ID: {item.id} &nbsp; Doctor: {item.book_doctor}
                   </ListGroupItem>
                   {/* <ListGroupItem>Doctor Name: {item.book_doctor}</ListGroupItem> */}
                   {/* <ListGroupItem>{item.user_id}</ListGroupItem> */}
-                  <ListGroupItem>
+                  <ListGroupItem  >
                     On Time: {item.book_time}{" "}
                     <Auth capability="show">
                       <td>
                         {" "}
-                        <Button
+                        <button
                           onClick={() => props.delAppointmentfromuser(item)}
                           type="button"
                           variant="danger"
                         >
                           ❌
-                        </Button>
+                        </button>
                       </td>
                     </Auth>
                   </ListGroupItem>
-                  {/* <ListGroupItem> {item.book_states.toString()}</ListGroupItem> */}
-
-                  {/* <Auth capability="show">
-                  <td>
-                    {" "}
-                    <Button
-                      onClick={() => props.delAppointmentfromuser(item)}
-                      type="button"
-                      variant="danger"
-                    >
-                      Delete
-                    </Button>
-                  </td>
-                </Auth> */}
+                 
                 </div>
               );
             }
           })}
-        </div>
-        <div className="petData">
-          {props?.petData?.map((item) => {
-            if (item.pet_states == false &&
-              item.pet_q == context.user.id) {
-              return (
-                <div className="adoptPet">
-                  <div id='petTitle'>your pets</div>
-                  
-                  <ListGroupItem>
-                    ID: {item.id} &nbsp; PET AGE: {item.pet_age}
-                  </ListGroupItem>
-                  <ListGroupItem>
-                    Pet Name: {item.pet_name} &nbsp; Pet Type: {item.pet_type}
-                  </ListGroupItem>
-                  <ListGroupItem>
-                  <img src={item.pet_img} style={{width:'100px',height:'100px', borderRadius:'50%'}}></img>
-                  </ListGroupItem>
-                  
-               
-                </div>
-              )
-            }
-          })}
-        </div>
+     
+        <Auth capability="add">
+          {/* //   capability="add" && state=false  &&  id=null {requestedId=12} */}
+
+          <div className="petData">
+            <div id='petTitle'> Pets need Approvement </div>
+            {props.petData?.map((item) => {
+              if (item.pet_states == false && item.user_id == null) {
+                return (
+                  <div className="adoptPet">
+
+
+                    <ListGroupItem>
+                      ID: {item.id} &nbsp; PET AGE: {item.pet_age}
+                    </ListGroupItem>
+                    <ListGroupItem>
+                      Pet Name: {item.pet_name} &nbsp; Pet Type: {item.pet_type}
+                    </ListGroupItem>
+                    <ListGroupItem>
+                      <img src={item.pet_img} style={{ width: '100px', height: '100px', borderRadius: '50%' }}></img>
+                    </ListGroupItem>
+
+                    <Button onClick={() => props.acceptAdoption(item.id)}> Accept </Button>
+
+                    <Button variant="danger" onClick={() => props.declineAdoption(item)}> Decline </Button>
+
+                  </div>
+                )
+              }
+            })}
+          </div>
+        </Auth>
+
+
+</div>
+        
       </Card>
     </>
   );
