@@ -56,6 +56,12 @@ export default function Login(props) {
                         />
                         <br /><br/>
                         <label for="password">password:</label>&nbsp;&nbsp;
+ 
+ 
+ 
+ 
+ 
+ 
                         <input
                             type="password"
                             name="password"
