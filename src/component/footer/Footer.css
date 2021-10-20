@@ -3,7 +3,7 @@
   width: 100%;
   height: max-content;
   padding: 14px;
-  z-index: -5;
+  /* z-index: -5; */
 
   background-color: rgb(26, 26, 26);
   color: white;

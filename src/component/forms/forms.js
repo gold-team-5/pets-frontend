@@ -2,7 +2,8 @@ import React from "react";
 import useForm from "../../Hooks/form";
 import { FormGroup, InputGroup } from "@blueprintjs/core";
 import { Button } from "react-bootstrap";
-// import "./form.css";
+import'../../rest.css'
+ import "./form.css";
 import Auth from "../context/auth";
 
 export default function Form(props) {
@@ -10,18 +11,21 @@ export default function Form(props) {
 
   return (
     <Auth capability="add">
+      <div className="maindivapp">
       <form
-        className="myFormm"
-        onSubmit={handleSubmit}
+        className="myFormmapp"
         style={{ marginBottom: "100px" }}
+        onSubmit={handleSubmit}
       >
-        <h2>Add New Appointment</h2>
+        <h3 id="apph3">Add New Appointment</h3>
+        <div className="inputapp">
         <FormGroup labelFor="text-input">
-          <InputGroup
+          <input
+          className="Appointmentinput"
             onChange={handleChange}
             name="book_doctor"
             type="text"
-            placeholder="book_doctor"
+            placeholder="Doctor Name"
           />
         </FormGroup>
 
@@ -30,6 +34,7 @@ export default function Form(props) {
           labelFor="text-input"
         >
           <input
+           className="Appointmentinput"
             onChange={handleChange}
             name="book_states"
             type="text"
@@ -39,6 +44,7 @@ export default function Form(props) {
 
         <FormGroup labelFor="text-input">
           <input
+           className="Appointmentinput"
             onChange={handleChange}
             name="user_id"
             type="number"
@@ -54,17 +60,21 @@ export default function Form(props) {
       </FormGroup> */}
         <FormGroup labelFor="text-input">
           <input
+          
+           className="Appointmentinput"
             onChange={handleChange}
             name="book_time"
             type="datetime-local"
             placeholder=" book_time"
           />
         </FormGroup>
+        </div>
 
         <button type="submit"
-        className='btnpets' 
+        className=' btr' 
         >Add</button>
       </form>
+      </div>
     </Auth>
   );
 }

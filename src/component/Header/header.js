@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 // import { Navbar, Nav, Container } from "react-bootstrap";
 import Login from "../context/login";
 import { When } from 'react-if';
-import  { useContext } from 'react';
+import  { useContext,useEffect } from 'react';
 
 import "@blueprintjs/core/lib/css/blueprint.css";
 import "./header.css";
@@ -21,15 +21,25 @@ import logo from "../../img/Screenshot__137_-removebg-preview.png";
 import { LoginContext } from "../context/context";
 import LoginButton from "../loginButton";
 import LogoutButton from "../logoutButton";
+import { AiOutlineShoppingCart } from "react-icons/ai";
 
 export default function Headers(props) {
- 
+ const[countproduct,setcountproduct]=useState(0)
   const context = useContext(LoginContext);
 
 
-  const handelCart = () => {};
+  const handelCart = () => {
+    window.location.reload()
+  };
+let  num=0;
+let array=[]
 
+
+const reducer = (previousValue, currentValue) => previousValue + currentValue;
   return (
+
+
+    
     <div id="header">
       <div id="up" style={{ height: "70px" }}>
         <nav class="bp3-navbar .modifier ">
@@ -41,7 +51,7 @@ export default function Headers(props) {
 
             <div>
              
-               <a href="/login">
+              
                  {(!context.loggedIn) ? <LoginButton /> : <LogoutButton />}
                {/* <Button
                 icon="log-in"
@@ -50,7 +60,7 @@ export default function Headers(props) {
               >
                    log-In{" "}
               </Button> */}
-              </a>
+         
 
 
               
@@ -58,14 +68,30 @@ export default function Headers(props) {
 
               <span class="">&nbsp; </span>
 
-              <a href="Cart">
-                <Button
+              <a href="Cart" className="cartshap">
+                <span
                   onClick={handelCart}
-                  icon="shopping-cart"
-                  class="bp3-button bp3-minimal bp3-icon-notifications"
+                 
+                
                 >
-                  (0)
-                </Button>
+                  {props.productData.map((item)=>{
+                    if(item.product_userID=context.user.id)
+                    {
+                      array.push(item.product_quantity)
+                      num=array.reduce(reducer)
+                     
+                      console.log('.....llllllllllll',num)
+                    }
+                  
+                  })
+                  
+                  
+                  // console.log('>>>>>>>>>>>>.',props.productData)
+                }
+              
+
+                  <AiOutlineShoppingCart/>({num})
+                </span>
               </a>
             </div>
           </div>

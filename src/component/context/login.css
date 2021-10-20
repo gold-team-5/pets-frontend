@@ -7,17 +7,16 @@
     --white: #ffffff;
   }
 
-.logInForm{
-   margin-left: 20%;
+  .logInForm {
+    margin-left: 20%;
     margin-right: 20%;
     margin-top: 4%;
-    border: 5px solid var( --Dbrown);
     padding: 35px;
-    opacity: .85;
-    border-radius: 2%
-   
-    
+    border: 1px solid var(--green);
+    box-shadow: 0 0 47px #4c3433;
+    border-radius: 40px;
 }
+   
 .loginform{
     margin: 4% 0 2% 0;
     display: flex;
@@ -44,19 +43,25 @@
    
     
 }
-
-#firstButton{
-    background-color: var(--Lbrown);
-    margin: 1%;
-    border-color: var(--Dbrown);
+#firstButton {
+    color: #fff;
+    background-color: var(--green);
+    border-color: var(--green);
+    position: relative;
+    top: 13px;
+    left: 52px;
+    padding-left: 18px;
+    padding-right: 18px;
 }
-#secondButton{
-    background-color: var(--Lgray);
-    margin: 1%;
-    border-color: var(--Lbrown);
-   color: var(--Lbrown);
-   font-weight: bold;
-
+#secondButton {
+    color: #fff;
+    background-color: var(--green);
+    border-color: var(--green);
+    position: relative;
+    left: 62px;
+    top: 13px;
+    padding-left: 12px;
+    padding-right: 12px;
 }
 .loginform input{
     background-color: var(--Lgray);

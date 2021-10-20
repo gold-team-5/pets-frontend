@@ -17,7 +17,7 @@ export default function Product(props) {
         placeholder="Search..."
         onChange={(e) => props.searchItems2(e.target.value)}
       /> */}
-      <h3 className='producttittle'>Product</h3>
+      <h3 id="h2product" className='producttittle'>Product</h3>
 
       <form action="javascript:" class="search-bar" style={{ minHeight: '200px' }}>
         <input type="search" name="search" pattern=".*\S.*"

@@ -6,6 +6,17 @@
 
   --white: #ffffff;
 }
+.maindivcart{    /* height: 327px; */
+width: 58%;
+display: flex;
+flex-direction: row;
+flex-wrap: nowrap;
+justify-content: center;
+align-content: center;
+align-items: center;
+/* margin-top: 8%; */
+/* margin: 68px; */}
+
 
 #contener {
   background-color: var(--Lgray);
@@ -24,13 +35,49 @@
   margin: 5% 5% 5% 5%;
   border-radius: 5px;
   box-shadow: 0 2px 12px 5px var(--Dbrown);
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  flex-direction: row;
 }
 
 #right {
-  margin: 4% 0 2% 0;
-  width: 40%;
-  /* border: 1px solid black; */
-  min-height: 250px;
+  width: 34%;
+  margin: 0% 0px 0px 24px;
+  
+    /* width: 40%; */
+
+  /* min-height: 250px; */
+ 
+}
+
+.myFormmCart{
+  width: 101%;
+    display: flex;
+    border: 1px solid var(--Lgray);
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    /* float: left; */
+    justify-content: space-around;
+    text-align: center;
+    /* position: relative; */
+    /* left: 194px; */
+    top: 94px;
+    border: 1px solid var(--green);
+    box-shadow: 0 0 30px var(--Dbrown);
+    border-radius: 26px;
+    /* font-family: cursive; */
+    /* margin-left: 31px; */
+    position: relative;
+    height: 300px;
+    flex-direction: column;
+    flex-wrap: nowrap;
+
+
+}
+
+.formtoinfo{
+  width:20%;
 }
 
 /* ////////////////////////////// */
@@ -52,6 +99,11 @@
 .FormGroup {
 }
 .InputGroup {
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+ 
+  
 }
 #GoBtn {
 }
@@ -90,18 +142,22 @@
   width: 33%;
   z-index: 1;
   position: absolute;
-  top: -0.2%;
+  top: 0.3%;
   left: 5%;
 }
 
 /* ///////////////////////// list /////////////////////////////////// */
 
 #left {
+  overflow:scroll;
+  position: relative;
   width: 47%;
   /* border: 1px solid red; */
   min-height: 300px;
   margin: 4% 0 2% 0;
   overflow-y: auto;
+  top: 40px;
+
 }
 
 #imgLIst {
@@ -127,6 +183,7 @@
 #paragrafs {
 }
 #buttons {
+  display: flex;
 }
 
 .plus {
@@ -154,3 +211,20 @@
 ::-webkit-scrollbar {
   width: 10px;
 } */
+.imgandp{
+  max-width: 563px;
+}
+
+.btncart{
+  padding:30px;
+  background: unset;
+  background-color: none;
+  background-color: Transparent;
+}
+.cartshap{
+  text-decoration: none;
+  color: #65ac36;
+  font-weight: bold;
+  
+}
+

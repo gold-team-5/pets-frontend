@@ -3,6 +3,7 @@ import { When } from "react-if";
 import { LoginContext } from "./context";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import "./signUp.css"
 
 import "./login.css"
 import Swal from 'sweetalert2';
@@ -42,7 +43,7 @@ export default function Login(props) {
         <div className="logInForm">
 
             <When condition={!context.loggedIn}>
-                <h2>SignIn</h2>
+                <h2 id="h2">SignIn</h2>
                 <br />
                 <form className='loginform' onSubmit={handleSubmit}>
                     <div className='loginInput'>
