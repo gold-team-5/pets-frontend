@@ -4,12 +4,12 @@
     position: fixed;
     bottom: 5%;
     right: 2%;
-    opacity: 0.7;
+    opacity: 0.85;
     width: 30%;
     height: 50%;
     border: 1px solid black;
     background-color: black;
-    z-index: 1;
+    z-index: 3;
 
     overflow-y:scroll;
  }
@@ -41,7 +41,7 @@
     margin: 5%;
     height: 80%;
     width: 85%;
-    background-color: rgb(114, 114, 114);
+    /* background-color: rgb(114, 114, 114); */
 }
 
 .textArea{

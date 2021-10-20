@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Redirect } from "react-router";
 import List from "../list/list";
 import Headers from "../Header/header";
-import "./ToDo.css";
+// import "./ToDo.css";
 import { LoginContext } from "../context/context";
 import Auth from "../context/auth";
 import Appointment from "../Appointment/Appointment";
@@ -25,13 +25,16 @@ import Login from "../context/login";
 import Cart from "../cart/cart";
 import Profile from "../Profile/profile";
 import UpdatePetForm from "../forms/updatePet";
-import Footer from "../footer/footer";
+import Footer from "../footer/Footer";
 import UpdateforimProduct from "../forms/updateforimProduct";
 import Message from "../socket/message";
 import MyMessageArea from "../socket/MyMessageArea";
+import { Reset } from 'styled-reset'
 
 const ToDo = (props) => {
   const API = "https://gold-team-mid-project.herokuapp.com";
+  // const API = "http://localhost:3005";
+
   const Context = useContext(LoginContext);
 
   const [messageArea, setmessageArea] = useState(false);
@@ -229,7 +232,8 @@ const ToDo = (props) => {
   const showupdatePetForm = async (index, item) => {
     setShowUpdateForm(true);
     setIndex(item.id);
-    console.log(showUpdateForm, index);
+
+    console.log(item, index);
     let obj = {
       pet_name: item.pet_name,
       pet_age: item.pet_age,
@@ -443,7 +447,7 @@ const ToDo = (props) => {
       product_type: e.target.product_type.value,
       product_price: e.target.product_price.value,
       product_img: e.target.product_img.value,
-         };
+    };
     console.log("lllllllllllllllllllllll", updateproductData);
     let updateUrl = `${API}/product/${Indexproduct}`;
     let productDataRes = await superagent
@@ -452,6 +456,13 @@ const ToDo = (props) => {
       .set("Authorization", "Bearer " + Context.token);
     setcount3(count3 + 1);
     setshowUpdateFormproduct(false);
+    Swal.fire({
+      icon: "success",
+      text: "Succefully updated 😃",
+      showCancelButton: false,
+      confirmButtonText: 'Ok',
+
+    })
   };
   const showupdateProductForm = async (index, item) => {
     console.log("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj,item", item);
@@ -480,8 +491,22 @@ const ToDo = (props) => {
       setcount3(count3 + 1);
       console.log("items>>>>", items);
       console.log("delete", res);
+
+      Swal.fire({
+        icon: "success",
+        text: "Succefully deleted 😢😢",
+        showCancelButton: false,
+        confirmButtonText: 'Ok',
+
+      })
     } catch (error) {
-      alert("Invalid delete");
+      Swal.fire({
+        icon: "warning",
+        text: "Something went wrong 💔",
+        showCancelButton: false,
+        confirmButtonText: 'Ok',
+
+      })
     }
   }
   //............................................updateProduct.............................
@@ -511,8 +536,24 @@ const ToDo = (props) => {
         .set("Authorization", "Bearer " + Context.token);
       setcount(count + 1);
       console.log(res.text);
+
+      Swal.fire({
+        icon: "success",
+        text: "Succefully Added 👍👌",
+        showCancelButton: false,
+        confirmButtonText: 'Ok',
+
+      })
     } catch (error) {
-      alert("Invalid update");
+      // alert("Invalid update");
+
+      Swal.fire({
+        icon: "warning",
+        text: "You don't have an account😥. Pealse sign in to buy 😉",
+        showCancelButton: false,
+        confirmButtonText: 'Ok',
+
+      })
     }
   }
 
@@ -525,18 +566,21 @@ const ToDo = (props) => {
             <Home />
           </Route>
           <Route exact path="/Pets">
-            <Pets
-              searchItems={searchItems}
-              filteredResults={filteredResults}
-              searchInput={searchInput}
-              petData={petData}
-              deletPet={deletPet}
-              showupdatePetForm={showupdatePetForm}
-              addPet={addPet}
-              search={searchItems}
-              alertForAdoption={alertForAdoption}
-            // updatePetState={updatePetState}
-            />
+            <React.Fragment>
+              <Reset />
+              <Pets
+                searchItems={searchItems}
+                filteredResults={filteredResults}
+                searchInput={searchInput}
+                petData={petData}
+                deletPet={deletPet}
+                showupdatePetForm={showupdatePetForm}
+                addPet={addPet}
+                search={searchItems}
+                alertForAdoption={alertForAdoption}
+              // updatePetState={updatePetState}
+              />
+            </React.Fragment>
             {showUpdateForm && (
               <UpdatePetForm
                 updatePet={updatePet}
@@ -593,7 +637,7 @@ const ToDo = (props) => {
           </Route>
         </Switch>
 
-        <Footer />
+
       </Router>
 
       {!messageArea && Context.loggedIn && (
@@ -601,6 +645,9 @@ const ToDo = (props) => {
       )}
 
       {messageArea && <MyMessageArea removeMessageFunc={removeMessageFunc} />}
+
+      <Footer />
+
     </>
   );
 };
