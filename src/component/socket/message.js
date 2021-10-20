@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import reset from 'react-style-reset';
+// import "../reset.css"
+
 import './message.css'
 import myImage from '../../img/myQuestion.png'
 

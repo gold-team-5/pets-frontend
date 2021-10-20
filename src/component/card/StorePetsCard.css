@@ -1,0 +1,149 @@
+:root {
+  --green: #6BB937;
+  --Lgray: #F0EFEF;
+  --Dbrown: #4C3433;
+  --Lbrown: #936142;
+  --white: #FFFFFF;
+  --main-color:#166831;
+  --main-text-color:black;
+  --main-color-sub1:#F0EFEF;
+  --main-text-color-sub1:black;
+  --transition1:0.5;
+}
+
+.ourAdoptees {
+  display: flex;
+  justify-content: space-between;
+
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+.ourAdoptees h2 {
+  margin-bottom: 1rem;
+  border-bottom: rgba(0, 0, 0, 0.3) dotted thin;
+}
+.ourAdoptees > .card {
+  position: relative;
+
+  background-color: rgba(255, 255, 255, 0);
+
+  width: 18rem;
+  border-radius: 28px;
+  border: unset;
+}
+
+.ourAdoptees .card-body > p, .ourAdoptees .card-body > div:first-of-type  {
+  position: relative;
+  top: 0.7rem;
+  left: 1rem;
+
+  padding-left: 1.3rem;
+  padding-right: 1.3rem;
+  transition: var(--transition1);
+}
+.ourAdoptees .card:hover .card-body > p,.ourAdoptees .card:hover .card-body > div:first-of-type {
+  top: -0.5rem;
+  left: 0rem;
+}
+.ourAdoptees .titleAndAge {
+  display: flex;
+  justify-content: space-between;
+
+  font-size: 1.2rem;
+}
+.ourAdoptees .titleAndAge > :last-child {
+  white-space: nowrap;
+}
+.ourAdoptees .cardBodyAndShadow {
+  box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.301);
+
+
+  position: absolute;
+  right: 0;
+  bottom: 10%;
+
+  z-index: -50;
+
+  width: 91%;
+  height: 80%;
+  border-radius: 28px;
+  border: unset;
+
+  transition: var(--transition1);
+  
+}
+.ourAdoptees .card > img {
+  box-shadow: 0.5rem 2rem 0 0 var(--main-color);
+  transition: var(--transition1);
+
+}
+
+
+.card:hover > img {
+  box-shadow: 0 0 0 0.3rem var(--main-color);
+}
+.ourAdoptees .card:hover .cardBodyAndShadow {
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+}
+.ourAdoptees .ButtonContainer {
+  width: 100%;
+
+  /* overflow: hidden; */
+}
+.ourAdoptees .ButtonContainer button {
+  width: 90%;
+
+  background-color: transparent;
+  color: var(--main-text-color);
+  border: var(--main-color) 3px solid;
+  border-radius: 20px;
+  padding: 0.3rem;
+
+  opacity: 0;
+
+  font-weight: 500;
+
+  position: relative;
+  bottom: 80%;
+  left: 10%;
+  transition: var(--transition1);
+}
+.ourAdoptees .ButtonContainer:hover button {
+
+  background-color: var(--main-color-sub1);
+  color: var(--main-text-color-sub1);
+}
+.ourAdoptees .card:hover button {
+  width: 100%;
+
+  left:0;
+  opacity: 100%;
+  bottom: 0%;
+
+}
+.checkAllAdoptablesContainer {
+  margin-bottom: 5rem;
+
+  position: relative;
+  bottom: 4rem;
+}
+.checkAllAdoptables {
+  background-color: var(--main-color);
+  color: var(--main-text-color-sub1);
+  border: var(--main-color) 3px solid;
+  border-radius: 100px;
+  padding: 0.5rem 2rem;
+
+  font-weight: 500;
+  font-size: 22px;
+
+  transition: var(--transition1);
+
+  margin-bottom: 4rem;
+}
+.checkAllAdoptables:hover {
+  background-color: transparent;
+  color: var(--main-text-color);
+}

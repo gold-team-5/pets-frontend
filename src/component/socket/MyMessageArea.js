@@ -68,7 +68,8 @@ import io from "socket.io-client";
 import Messages from "./Messages";
 import MessageInput from "./MessageInput";
 import { LoginContext } from "../context/context";
-
+import reset from 'react-style-reset';
+import "../reset.css"
 import "./MyMessageArea.css";
 
 function MyMessageArea(props) {

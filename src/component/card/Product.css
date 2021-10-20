@@ -1,0 +1,91 @@
+.storeProductsContainer {
+  display: flex;
+  justify-content: space-between;
+
+  gap: 1rem;
+  flex-wrap: wrap;
+
+  margin-top: 3rem;
+}
+
+
+.btn {
+
+  box-shadow: none !important;
+}
+
+.priceAndNameExample {
+  position: relative;
+  display: flex !important;
+  justify-content: space-between;
+  border: none !important;
+  outline: none !important;
+
+  
+}
+.priceAndNameExample p {
+  position: relative;
+  top: 0.4rem;
+}
+.btnDangerExample {
+  padding: 0.2rem !important;
+  border-radius: 0 !important;
+
+  width: 100%;
+
+  background-color: rgb(235, 23, 68) !important;
+
+  
+}
+.namePriceAndRemove {
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;; 
+
+  overflow: hidden;
+
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 5px 2px rgba(0, 0, 0, 0.315);
+  
+}
+
+.offcanvas-header .btn-close {
+  opacity: 0;
+}
+.offcanvas-header .btn-close:hover {
+  opacity: 0 !important;
+}
+.modal-content {
+  border-radius: 25px !important;
+  overflow: hidden;
+}
+.paymentModal .modal-header {
+  background-color: var(--main-color);
+
+  color: var(--main-text-color-sub1);
+  text-align: center;
+  display: block;
+}
+.form-control {
+border: var(--main-color-sub1) 2px solid !important;
+
+}
+
+.form-control:focus, .form-control:active{
+  box-shadow: none !important;
+  border: var(--main-color) 2px solid !important;
+}
+.storeCheckoutButton {
+  width: 100%;
+
+  border: var(--main-color) 3px solid!important;
+  border-radius: 20px !important;
+  background-color: var(--main-color) !important;
+  
+  font-size: 1.2rem !important;
+}
+.storeCheckoutButton:hover {
+  background-color: var(--main-color-sub1) !important;
+  border: var(--main-color) 3px solid !important;
+
+  /* color: var(--main-text-color) !important; */
+}

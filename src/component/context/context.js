@@ -8,6 +8,7 @@ import { useHistory } from "react-router-dom";
 
 export const LoginContext = React.createContext();
 const API = "https://gold-team-mid-project.herokuapp.com"; // .env
+// const API = "http://localhost:3005";
 
 export default function LoginProvider(props) {
   const [loggedIn, setLoggedIn] = useState(false);
