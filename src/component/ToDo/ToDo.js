@@ -593,7 +593,7 @@ const ToDo = (props) => {
           </Route>
         </Switch>
 
-        <Footer />
+        {/* <Footer /> */}
       </Router>
 
       {!messageArea && Context.loggedIn && (

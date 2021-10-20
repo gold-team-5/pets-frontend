@@ -127,6 +127,7 @@ h2 {
 #paragrafs {
 }
 #buttons {
+  display: flex;
 }
 
 .plus {
