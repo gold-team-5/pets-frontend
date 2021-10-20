@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 // import { Navbar, Nav, Container } from "react-bootstrap";
 import Login from "../context/login";
 import { When } from 'react-if';
-import  { useContext } from 'react';
+import  { useContext,useEffect } from 'react';
 
 import "@blueprintjs/core/lib/css/blueprint.css";
 import "./header.css";
@@ -23,13 +23,22 @@ import LoginButton from "../loginButton";
 import LogoutButton from "../logoutButton";
 
 export default function Headers(props) {
- 
+ const[countproduct,setcountproduct]=useState(0)
   const context = useContext(LoginContext);
 
 
-  const handelCart = () => {};
+  const handelCart = () => {
+    window.location.reload()
+  };
+let  num=0;
+let array=[]
 
+
+const reducer = (previousValue, currentValue) => previousValue + currentValue;
   return (
+
+
+    
     <div id="header">
       <div id="up" style={{ height: "70px" }}>
         <nav class="bp3-navbar .modifier ">
@@ -64,7 +73,23 @@ export default function Headers(props) {
                   icon="shopping-cart"
                   class="bp3-button bp3-minimal bp3-icon-notifications"
                 >
-                  (0)
+                  {props.productData.map((item)=>{
+                    if(item.product_userID=context.user.id)
+                    {
+                      array.push(item.product_quantity)
+                      num=array.reduce(reducer)
+                     
+                      console.log('.....llllllllllll',num)
+                    }
+                  
+                  })
+                  
+                  
+                  // console.log('>>>>>>>>>>>>.',props.productData)
+                }
+              
+
+                  ({num})
                 </Button>
               </a>
             </div>

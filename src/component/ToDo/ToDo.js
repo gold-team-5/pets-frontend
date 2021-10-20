@@ -524,12 +524,15 @@ const ToDo = (props) => {
     } catch (error) {
       alert("Invalid update");
     }
+    window.location.reload()
   }
 
   return (
     <>
       <Router>
-        <Header />
+        <Header
+        productData={productData}
+        />
         <Switch>
           <Route exact path="/">
             <Home />
@@ -605,11 +608,12 @@ const ToDo = (props) => {
             {Context.loggedIn ? <Redirect to="/" /> : <SignUp />}
           </Route>
           <Route exact path="/Cart">
-            <Cart productData={productData} />
+         { Context.loggedIn ?  <Cart productData={productData} />: <Login />}
+            {/* <Cart productData={productData} /> */}
           </Route>
         </Switch>
 
-        <Footer />
+        {/* <Footer /> */}
       </Router>
 
       {!messageArea && Context.loggedIn && (

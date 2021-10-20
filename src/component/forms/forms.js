@@ -2,7 +2,7 @@ import React from "react";
 import useForm from "../../Hooks/form";
 import { FormGroup, InputGroup } from "@blueprintjs/core";
 import { Button } from "react-bootstrap";
-// import "./form.css";
+ import "./form.css";
 import Auth from "../context/auth";
 
 export default function Form(props) {
@@ -18,10 +18,11 @@ export default function Form(props) {
         <h2>Add New Appointment</h2>
         <FormGroup labelFor="text-input">
           <InputGroup
+          className="Appointmentinput"
             onChange={handleChange}
             name="book_doctor"
             type="text"
-            placeholder="book_doctor"
+            placeholder="Doctor Name"
           />
         </FormGroup>
 
@@ -30,6 +31,7 @@ export default function Form(props) {
           labelFor="text-input"
         >
           <input
+           className="Appointmentinput"
             onChange={handleChange}
             name="book_states"
             type="text"
@@ -39,6 +41,7 @@ export default function Form(props) {
 
         <FormGroup labelFor="text-input">
           <input
+           className="Appointmentinput"
             onChange={handleChange}
             name="user_id"
             type="number"
@@ -54,6 +57,8 @@ export default function Form(props) {
       </FormGroup> */}
         <FormGroup labelFor="text-input">
           <input
+          
+           className="Appointmentinput"
             onChange={handleChange}
             name="book_time"
             type="datetime-local"

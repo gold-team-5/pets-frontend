@@ -72,6 +72,7 @@ export default function Pets(props) {
     } catch (error) {
       alert("Invalid update");
     }
+    window.location.reload()
   }
 
   async function handelDecrese(index, item) {
@@ -115,6 +116,7 @@ export default function Pets(props) {
     } catch (error) {
       alert("Invalid update");
     }
+    window.location.reload()
   }
   //.......................................delete from cart.................................
    async function deleteProduct(id,item){
@@ -142,6 +144,7 @@ export default function Pets(props) {
     } catch (error) {
       alert("Invalid update");
     }
+    window.location.reload()
    }
 
   return (
@@ -158,17 +161,11 @@ export default function Pets(props) {
           {/* <span>your prodectes</span> */}
 
           {/* ///////////////////////////////// */}
-          {useEffect(async () => {
-            try {
-              console.log("gfdsghdshetdgvsdghbtshgsdf");
-            } catch (error) {
-              alert("Invalid Render");
-            }
-          }, [count])}
+        
           {/* ///////////////////////////////// */}
 
           {props?.productData?.map((ele, i) => {
-            if (ele.product_userID == Context.user.id) {
+            if ( ele.product_userID!=null && ele.product_userID == Context.user.id ) {
               sumatiom =
                 sumatiom + Number(ele.product_price) * ele.product_quantity;
 
