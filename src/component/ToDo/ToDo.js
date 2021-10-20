@@ -31,7 +31,7 @@ import MyMessageArea from "../socket/MyMessageArea";
 
 
 const ToDo = (props) => {
-  const API = "https://pets-mid-pro.herokuapp.com";
+  const API = "https://gold-team-mid-project.herokuapp.com";
   const Context = useContext(LoginContext);
 
   const [messageArea, setmessageArea] = useState(false);
