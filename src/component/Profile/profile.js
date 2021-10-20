@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Card, ListGroup, ListGroupItem, Button } from "react-bootstrap/";
+import '../../reset.css';
 import "./profile.css";
 import { LoginContext } from "../context/context";
 // import Auth from "./component/context/auth";
@@ -10,16 +11,20 @@ export default function Profile(props) {
   const context = useContext(LoginContext);
   return (
     // {context.userinfo}
-    <>
+    < div className='all'>
       <Card className="cardProfile">
         {/* .......... user info ................. */}
+        <div className='imgandname'>
         <Card.Img
-          className="cardName "
+          className="cardimg "
           variant="top"
           src={context.user.user_img}
         />{" "}
         <Card.Title className="titlename">{context.user.user_name}</Card.Title>
-        <Card.Body className="infoContener">
+
+        </div>
+        <div  className="infoContener">
+        <Card.Body >
           <Card.Title className="info">
             Email: {context.user.user_email}
           </Card.Title>
@@ -30,15 +35,16 @@ export default function Profile(props) {
             phone: {context.user.user_phone}
           </Card.Title>
         </Card.Body>
+        </div>
         {/* <ListGroup className="list-group-flush">
           <ListGroupItem>Cras justo odio</ListGroupItem>
           <ListGroupItem>Dapibus ac facilisis in</ListGroupItem>
           <ListGroupItem>Vestibulum at eros</ListGroupItem>
         </ListGroup> */}
-        {/* .......... booking ................. */}
-
-<div className='yourbookingdiv'>
-        <div className="bookingListTilt">
+        
+<div className='bookandanimale'>
+{/* .......... booking ................. */}
+        <div className="bookingListTilt yourbookingdiv">
           <div id="bookingTitle">your booking</div>
           {props?.list?.map((item) => {
             if (
@@ -90,7 +96,10 @@ export default function Profile(props) {
           })}
         </div>
 
-</div>
+
+
+
+
         <div className="petData">
           {props?.petData?.map((item) => {
             if (item.pet_states == false &&
@@ -115,7 +124,8 @@ export default function Profile(props) {
             }
           })}
         </div>
+        </div>
       </Card>
-    </>
+    </div>
   );
 }

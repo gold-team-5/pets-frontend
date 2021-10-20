@@ -1,48 +1,126 @@
+.all {
+  width: 100%;
+  min-height: 800px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  /* align-items: flex-start; */
+  /* justify-content: center; */
+}
 
-
-/* .cardProfile {
+ .cardProfile {
   border-style: solid;
   border-width: 3px;
   border-color: var(--green);
-  width: 56rem;
-  height: 54rem;
-  background-color: #351f1e;
-  color: #f0efef;
+  width: 84%;
+  min-height: 37rem;
+  /* background-color:var(--Dbrown); */
+  color:var(--Lgray);
+  /* margin-top: 5%;
+  margin-left: 20%; */
   margin-top: 5%;
-  margin-left: 20%;
   
 }
 
-.cardName {
-  width: 21%;
-  height: 21%;
+.imgandname {
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.cardimg {
+  width: 197px;
+    height: 190px;
   border-style: solid;
   border-width: 3px;
-  border-color: var(--green) var(--green) var(--green) #4c3433;
+  border-color: var(--green) var(--green) var(--green) var(--Dbrown);
   border-radius: 120px;
-  position: relative;
+  /* position: relative;
   top: 4%;
-  left: 39%;
+  left: 39%; */
 }
-.title {
+
+.titlename {
+
+  
+  /* position: relative;
+  top: 6%;
+  left: 43%; */
+  text-shadow: -1px 1px var(--Dbrown);
+  color: var(--green);
+
+}
+/* .title {
   position: relative;
   bottom: -6%;
   left: 37%;
   font-size: 25px;
   margin: 0px 0px 2.5% 5%;
-}
+} */
+
+
 
 .infoContener {
-  margin: 0 0 0 0;
+  
+  
+   
+    width: 70%;
+    height: 20%;
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    align-items: flex-start;
+    position: relative;
+    left: 96px;
+    top: -30px;
+
 }
 .info {
-  position: relative;
+  /* position: relative;
   top: 16%;
   left: 36%;
   bottom: 4%;
-  font-size: 18px;
+  font-size: 18px; */
+  text-shadow: -1px 1px var(--Dbrown);
+  color: var(--green);
 }
-.card-body {
+/* /// tow side */
+.bookandanimale {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: flex-start;
+}
+
+.bookingListTilt {
+  /* width: 751px; */
+  width: 40%;
+}
+#bookingTitle {
+  width: 100%;
+  text-align: center;
+  /* margin: 0 0 1.5% 2%; */
+  font-size: 22px;
+  font-weight: bolder;
+  text-shadow: var(--Dbrown);
+  color: var(--green);
+  /* border: 0.5px solid var(--Lbrown); */
+  border-radius: 5px;
+  /* margin: 0%; */
+}
+
+.petData{
+background-color:white;
+width: 40%;
+}
+
+/* .card-body {
   flex: 1 1 auto;
   margin: 2% 50% 1% 0%;
 }
@@ -89,13 +167,13 @@
   color: var(--Lbrown);
   border: 0.5px solid var(--Lbrown);
   border-radius: 5px;
-} */
+}  */
+
+/* /////////////////////////////////////////////////////////////////////////////////////// */
 
 
 
-
-
-.cardProfile {
+/* .cardProfile {
   border-style: solid;
   border-width: 3px;
   border-color: var(--green);
@@ -132,7 +210,7 @@
 }
 
 .titlename {
-  /* background-color: var(--green); */
+
   width: 25%;
   position: relative;
   top: 6%;
@@ -172,3 +250,7 @@
 .boxbooking{
   background-color: var(--green);
 }
+
+#bookingListTilt {
+  margin: 0 0 5% 0;
+} */
