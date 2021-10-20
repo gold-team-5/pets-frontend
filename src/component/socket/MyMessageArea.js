@@ -30,7 +30,6 @@
 //                 // listItem.classList.add('list-group-item')
 //                 // messageList.appendChild(listItem)
 
-
 //         })
 
 //     }
@@ -64,15 +63,13 @@
 
 // export default MyMessageArea
 
+import React, { useEffect, useState, useContext } from "react";
+import io from "socket.io-client";
+import Messages from "./Messages";
+import MessageInput from "./MessageInput";
+import { LoginContext } from "../context/context";
 
-
-import React, { useEffect, useState, useContext } from 'react';
-import io from 'socket.io-client';
-import Messages from './Messages';
-import MessageInput from './MessageInput';
-import { LoginContext } from '../context/context'
-
-import './MyMessageArea.css';
+import "./MyMessageArea.css";
 
 function MyMessageArea(props) {
     const [socket, setSocket] = useState(null);

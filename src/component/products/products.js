@@ -18,15 +18,15 @@ export default function Product(props) {
         {props.productsearch.length > 1
           ? props?.filterprouduct?.map((item, index) => {
               return (
-                <div className="petCard">
-                  <Card key={index} style={{ width: "18rem" }}>
+                <div className="petCard" key={index}>
+                  <Card style={{ width: "18rem" }}>
                     <Card.Img variant="top" src={item.product_img} />
                     <Card.Body>
                       <Card.Title>{item.product_name}</Card.Title>
 
                       <Card.Text>{item.product_desc}</Card.Text>
                       <Card.Text>{item.product_price}</Card.Text>
-                      <Button variant="primary">Adoption</Button>
+                      <Button variant="primary">Buy Now</Button>
                       <Button
                         variant="primary"
                         onClick={() => props.deletProduct(item.id)}
@@ -47,15 +47,20 @@ export default function Product(props) {
             })
           : props?.productData?.map((item, index) => {
               return (
-                <div className="petCard">
-                  <Card key={index} style={{ width: "18rem" }}>
+                <div className="petCard" key={index}>
+                  <Card style={{ width: "18rem" }}>
                     <Card.Img variant="top" src={item.product_img} />
                     <Card.Body>
                       <Card.Title>{item.product_name}</Card.Title>
 
                       <Card.Text>{item.product_desc}</Card.Text>
                       <Card.Text>{item.product_price}</Card.Text>
-                      <Button variant="primary">Adoption</Button>
+                      <Button
+                        variant="primary"
+                        onClick={() => props.handelBuy(item)}
+                      >
+                        Buy Now
+                      </Button>
                       <Button
                         variant="primary"
                         onClick={() => props.deletProduct(item.id)}

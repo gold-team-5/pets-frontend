@@ -144,7 +144,7 @@ export default function Profile(props) {
                   </ListGroupItem>
 
                 </div>
-              )
+              );
             }
           })}
         </div>
