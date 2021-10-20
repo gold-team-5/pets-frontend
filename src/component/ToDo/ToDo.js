@@ -422,7 +422,6 @@ const ToDo = (props) => {
       user_id: item.user_id, //??????????????????????
       product_quantity: 1,
     };
-
     try {
       const res = await superagent
         .post(`${API}/product`) ///????????????????????
@@ -437,7 +436,6 @@ const ToDo = (props) => {
   const updateProduct = async (e) => {
     console.log("ggggggggggggggggggggggggggggggggggggg", productData);
     console.log("klllllllllllllllllll", Indexproduct);
-
     e.preventDefault();
     let productFormData = {
       product_name: e.target.product_name.value,
@@ -460,7 +458,6 @@ const ToDo = (props) => {
     setshowUpdateFormproduct(true);
     console.log("ggggggggggggggggggnnnnnnn", showUpdateFormproduct);
     setIndexproduct(item.id);
-
     let obj = {
       product_name: item.product_name,
       product_desc: item.product_desc,
@@ -585,7 +582,6 @@ const ToDo = (props) => {
               petData={petData}
             />
           </Route>
-
           <Route exact path="/login">
             {Context.loggedIn ? <Redirect to="/" /> : <Login />}
           </Route>

@@ -2,7 +2,7 @@ import React from "react";
 import useForm from "../../Hooks/form";
 import { FormGroup, InputGroup } from "@blueprintjs/core";
 import { Button } from "react-bootstrap";
-import "./form.css";
+// import "./form.css";
 import Auth from "../context/auth";
 
 export default function Form(props) {
@@ -11,7 +11,7 @@ export default function Form(props) {
   return (
     <Auth capability="add">
       <form
-        className="myForm"
+        className="myFormm"
         onSubmit={handleSubmit}
         style={{ marginBottom: "100px" }}
       >
@@ -61,7 +61,9 @@ export default function Form(props) {
           />
         </FormGroup>
 
-        <Button type="submit">Add </Button>
+        <button type="submit"
+        className='btnpets' 
+        >Add</button>
       </form>
     </Auth>
   );

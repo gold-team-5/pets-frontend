@@ -11,7 +11,7 @@ export default function UpdateforimProduct  (props) {
         return (
             <div>
               <Auth capability="update">
-      <form className="myForm" onSubmit={props.updateProduct}>
+      <form className="myFormm" onSubmit={props.updateProduct}>
         <h2>UPDATE PRODUCT DATA</h2>
         <FormGroup
           labelFor="text-input">

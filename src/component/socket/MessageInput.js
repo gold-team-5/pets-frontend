@@ -21,7 +21,7 @@ const NewMessage = ({ socket }) => {
   };
 
   return (
-    <form onSubmit={submitForm}>
+    <form className='messgeform' onSubmit={submitForm}>
       <input
         id="inputText"
         autoFocus

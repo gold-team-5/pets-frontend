@@ -1,16 +1,6 @@
-.card {
-  /* border-style: solid;
-  border-width: 3px;
-  border-color: var(--green);
-  width: 56rem;
-  height: 54rem;
-  background-color: #351f1e;
-  color: #f0efef;
-  margin-top: 5%;
-  margin-left: 20%; */
-}
 
-.cardProfile {
+
+/* .cardProfile {
   border-style: solid;
   border-width: 3px;
   border-color: var(--green);
@@ -39,9 +29,7 @@
   bottom: -6%;
   left: 37%;
   font-size: 25px;
-  /* width: 100%; */
   margin: 0px 0px 2.5% 5%;
-  /* text-align: center; */
 }
 
 .infoContener {
@@ -56,7 +44,6 @@
 }
 .card-body {
   flex: 1 1 auto;
-  /* padding: 0.5rem 0.5rem; */
   margin: 2% 50% 1% 0%;
 }
 
@@ -80,7 +67,7 @@
   color: var(--Lbrown);
   border: 0.5px solid var(--Lbrown);
   border-radius: 5px;
-  /* position: inherit; */
+ 
 }
 
 #booking {
@@ -102,4 +89,86 @@
   color: var(--Lbrown);
   border: 0.5px solid var(--Lbrown);
   border-radius: 5px;
+} */
+
+
+
+
+
+.cardProfile {
+  border-style: solid;
+  border-width: 3px;
+  border-color: var(--green);
+  width: 54rem;
+  height: 22rem;
+
+  color:var(--Dbrown);
+  position: relative;
+  left: 8%;
+  top:50%;
+  border: 1px solid var(--green);
+  box-shadow: 7px 0px 29px 2px #4c3433;
+  margin-top: 7%;
+}
+
+.infoContener {
+  
+  position: relative;
+  left: 13%;
+  justify-content: center;
+  width: 71%;
+}
+.cardName {
+  width: 21%;
+  height: 38%;
+  border-style: solid;
+  border-width: 3px;
+  border-color: var(--green) var(--green) var(--green) #4c3433;
+  border-radius: 43px;
+  position: relative;
+  top: 4%;
+  left: 39%;
+  display: block;
+}
+
+.titlename {
+  /* background-color: var(--green); */
+  width: 25%;
+  position: relative;
+  top: 6%;
+  left: 43%;
+    text-shadow: 2px 1px var(--Dbrown);
+  color: var(--green);
+
+}
+
+.info {
+  position: relative;
+  top: -5%;
+  left: 2%;
+  bottom: 4%;
+  font-size: 21px;
+  justify-content: center;
+  text-align: center;
+}
+.bookingListTilt{
+  
+}
+
+
+.yourbookingdiv {
+
+  position: relative;
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: flex-start;
+  border-radius: -11%;
+  text-shadow: var(--Dbrown);
+  color: var(--green);
+}
+.boxbooking{
+  background-color: var(--green);
 }

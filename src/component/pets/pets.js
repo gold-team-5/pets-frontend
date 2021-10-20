@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 import Auth from "../context/auth";
 import { LoginContext } from "../context/context";
 import superagent from "superagent";
-
+import "./pets.css";
 export default function Pets(props) {
   const Context = useContext(LoginContext);
 
@@ -13,11 +13,26 @@ export default function Pets(props) {
   
   return (
     <>
+<h3 className='petstittle'>PETS</h3>
 
-      <input icon='search'
-        placeholder='Search...'
-        onChange={(e) => props.searchItems(e.target.value)}
-      />
+<form action="javascript:" class="search-bar" style={{minHeight:'200px'}}>
+	<input type="search" name="search" pattern=".*\S.*"
+  className='inputsss' required 
+   onChange={(e) => props.searchItems(e.target.value)} />
+	<button class="search-btn" type="submit">
+		<span>Search</span>
+	</button>
+</form>
+<div className="contanerpra">
+          <p className="pragraphpets">
+            Animals are in need of forever homes as more and more people who
+            adopted pets during the coronavirus <br></br>pandemic are bringing
+            them back to shelters when they head back to the office As COVID-19
+            restrictions are lifted across the country, there's a disturbing
+            trend emerging for our four-legged friends.
+          </p>
+        </div>
+      <div className="cotanerpets">
 
       {/* return just search result  */}
       {props.searchInput.length > 1
@@ -34,29 +49,24 @@ export default function Pets(props) {
                       <Card.Text>{item.pet_desc}</Card.Text>
 
 
-                      <Button variant="primary" onClick={() => props.alertForAdoption(item.id)}>
+                      <button className="btnpets" onClick={() => props.alertForAdoption(item.id)}>
                         Ask For Adoption
-                      </Button>
+                      </button>
 
                       <Auth capability="add">
-                        <Button
-                          variant="primary"
+                        <button className="btnpets"
+                          // variant="primary"
                           onClick={() => props.deletPet(item.id)}
                         >
                           delete
-                        </Button>
-                        <Button
-                          variant="primary"
+                        </button>
+                        <button className="btnpets"
+                          // variant="primary"
                           onClick={() => props.showupdatePetForm(index, item)}
                         >
                           update
-                        </Button>
-                        {/* <Button
-                          variant="primary"
-                          onClick={() => props.updatePetState(index, item)}
-                        >
-                          APPROVE ADOPTION
-                        </Button> */}
+                        </button>
+                      
                       </Auth>
 
                     </Card.Body>
@@ -78,30 +88,25 @@ export default function Pets(props) {
                     <Card.Text>{item.pet_age}</Card.Text>
                     <Card.Text>{item.pet_desc}</Card.Text>
 
-                    <Button variant="primary" onClick={() => props.alertForAdoption(item.id)}>
+                    <button className="btnpets"  onClick={() => props.alertForAdoption(item.id)}>
                       Ask For Adoption
-                    </Button>
+                    </button>
 
                     <Auth capability="add">
 
-                      <Button
-                        variant="primary"
+                      <button className="btnpets"
+                        // variant="primary"
                         onClick={() => props.deletPet(item.id)}
                       >
                         delete
-                      </Button>
-                      <Button
-                        variant="primary"
+                      </button>
+                      <button className="btnpets"
+                        // variant="primary"
                         onClick={() => props.showupdatePetForm(index, item)}
                       >
                         update
-                      </Button>
-                      {/* <Button
-                        variant="primary"
-                        onClick={() => props.updatePetState(index, item)}
-                      >
-                        APPROVE ADOPTION
-                      </Button> */}
+                      </button >
+                      
                     </Auth>
                   </Card.Body>
                 </Card>
@@ -110,10 +115,14 @@ export default function Pets(props) {
             );
           }
         })}
+        </div>
 
       <div className="addpetform" style={{ margin: "10px" }}>
         <AddPetForm addPet={props.addPet} />
       </div>
     </>
   );
+
+
+
 }

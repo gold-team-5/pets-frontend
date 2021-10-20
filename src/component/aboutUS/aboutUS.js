@@ -38,7 +38,7 @@ export default function AboutUS(props) {
     <div class='cardcontaner'>
     <div class='card1'>
 
-    <div class='card'>
+    <div class='cardss'>
   <div class='img-cont'>
     <span class='drop-down-window'></span>
     
@@ -47,7 +47,7 @@ export default function AboutUS(props) {
   <div class='content-cont'>
 
     <span class='card-header'>MOHAMMED</span>
-    <span class='card-body'>Electrical power Engineer</span>
+    <span class='card-body'>Electrical_power_Engineer</span>
   </div>
 </div>
 
@@ -55,7 +55,7 @@ export default function AboutUS(props) {
 
     <div class='card2'>
 
-<div class='card'>
+<div class='cardss'>
 <div class='img-cont'>
 <span class='drop-down-window'></span>
 
@@ -64,7 +64,7 @@ export default function AboutUS(props) {
 <div class='content-cont'>
 
 <span class='card-header'>ALAA</span>
-<span class='card-body'>Surveying  Engineering</span>
+<span class='card-body'>Surveying_Engineering</span>
 </div>
 </div>
 
@@ -72,7 +72,7 @@ export default function AboutUS(props) {
 
 <div class='card3'>
 
-<div class='card'>
+<div class='cardss'>
 <div class='img-cont'>
 <span class='drop-down-window'></span>
 
@@ -81,7 +81,7 @@ export default function AboutUS(props) {
 <div class='content-cont'>
 
 <span class='card-header'>SIHAM</span>
-<span class='card-body'>Biomedical Engineer</span>
+<span class='card-body'>Biomedical_Engineer</span>
 </div>
 </div>
 
@@ -89,7 +89,7 @@ export default function AboutUS(props) {
 
 <div class='card4'>
 
-<div class='card'>
+<div class='cardss'>
 <div class='img-cont'>
 <span class='drop-down-window'></span>
 
@@ -98,7 +98,7 @@ export default function AboutUS(props) {
 <div class='content-cont'>
 
 <span class='card-header'>Emman</span>
-<span class='card-body'>Computer information system </span>
+<span class='card-body'>CIS </span>
 </div>
 </div>
 
@@ -106,7 +106,7 @@ export default function AboutUS(props) {
 
 <div class='card5'>
 
-<div class='card'>
+<div class='cardss'>
 <div class='img-cont'>
 <span class='drop-down-window'></span>
 

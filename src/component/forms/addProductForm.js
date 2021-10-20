@@ -9,7 +9,7 @@ export default function AddProductForm(props) {
     const { handleChange, handleSubmit } = useForm(props.addproduct);
     return (
         <Auth capability="add">
-            <form className="myForm" onSubmit={handleSubmit}>
+            <form className="myFormm" onSubmit={handleSubmit}>
                 <h2>Add New Product</h2>
                 <FormGroup
                     labelFor="text-input">
@@ -48,7 +48,7 @@ export default function AddProductForm(props) {
                 </FormGroup> */}
 
 
-                <Button type="submit"> Add </Button>
+                <button type="submit" className='btnpets'  > Add </button>
             </form>
         </Auth>
     )
