@@ -239,7 +239,13 @@ const ToDo = (props) => {
       pet_states: item.pet_states,
     };
     setUpdatePetData(obj);
-  };
+  };//..................................handelclose to pet model......................
+  function handelclose(){
+    setShowUpdateForm(false);
+   }
+  //..................................handel close to product model...................
+  
+ 
   const updatePet = async (e) => {
     e.preventDefault();
     let petFormData = {
@@ -468,6 +474,10 @@ const ToDo = (props) => {
     };
     setUpdateProductData(obj);
   };
+
+  function handelcloseproduct(){
+    setshowUpdateFormproduct(false);
+   }
   //..............................delete product......................................................
   async function deletProduct(id) {
     console.log(id);
@@ -541,6 +551,9 @@ const ToDo = (props) => {
               <UpdatePetForm
                 updatePet={updatePet}
                 updatePetData={updatePetData}
+                handelclose={handelclose}
+                showUpdateForm={showUpdateForm}
+               
               />
             )}
           </Route>
@@ -559,6 +572,9 @@ const ToDo = (props) => {
               <UpdateforimProduct
                 updateProduct={updateProduct}
                 updateproductData={updateproductData}
+                handelcloseproduct={handelcloseproduct}
+                showUpdateFormproduct={showUpdateFormproduct}
+              
               />
             )}
           </Route>

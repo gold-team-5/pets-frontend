@@ -3,6 +3,7 @@ import { Card, Button } from "react-bootstrap";
 import AddProductForm from "../forms/addProductForm";
 // import '../pets/pets.css';
 import './Products.css';
+import Auth from "../context/auth";
 export default function Product(props) {
   console.log("productData mmmmmmmmmmmmm" + props.productData);
   return (
@@ -42,6 +43,7 @@ export default function Product(props) {
                       //  variant="primary"
                        >
                          Buy Now</button>
+                         < Auth capability="add">
                       <button
                         // variant="primary"
                         className="btnpets"
@@ -49,12 +51,15 @@ export default function Product(props) {
                       >
                         delete
                       </button>
+                      </Auth>
+                      < Auth capability="add">
                       <button className="btnpets"
                         // variant="primary"
                         onClick={() => props.showupdateProductForm(index, item)}
                       >
                         update
                       </button>
+                      </Auth>
                     </Card.Body>
                   </Card>
                   <br />
@@ -77,18 +82,22 @@ export default function Product(props) {
                       >
                         Buy Now
                       </button>
+                      < Auth capability="add">
                       <button  className="btnpets"
                         // variant="primary"
                         onClick={() => props.deletProduct(item.id)}
                       >
                         delete
                       </button>
+                      </Auth>
+                       < Auth capability="add">
                       <button className="btnpets"
                         // variant="primary"
                         onClick={() => props.showupdateProductForm(index, item)}
                       >
                         update
                       </button>
+                      </Auth>
                     </Card.Body>
                   </Card>
                   <br />
