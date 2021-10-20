@@ -12,6 +12,7 @@ import SignUp from "../context/signUp";
 import Form from "../forms/forms";
 import superagent from "superagent";
 import { When } from "react-if";
+import Swal from "sweetalert2";
 import { v4 as uuid } from "uuid";
 import Header from "../Header/header";
 import Home from "../home/home";
@@ -28,7 +29,6 @@ import Footer from "../footer/footer";
 import UpdateforimProduct from "../forms/updateforimProduct";
 import Message from "../socket/message";
 import MyMessageArea from "../socket/MyMessageArea";
-
 
 const ToDo = (props) => {
   const API = "https://gold-team-mid-project.herokuapp.com";
@@ -55,6 +55,8 @@ const ToDo = (props) => {
   const [showUpdateFormproduct, setshowUpdateFormproduct] = useState(false);
   const [productsearch, setproductsearch] = useState("");
   const [filterprouduct, setfilterprouduct] = useState([]);
+  // const [sum, setsum] = useState(0);
+
   //..................product status...........................................
 
   //............................productFunctionality........................................
@@ -204,8 +206,23 @@ const ToDo = (props) => {
       setcount2(count2 + 1);
       console.log("items>>>>", items);
       console.log("delete", res);
+
+      Swal.fire({
+        icon: "success",
+        text: "Pet Successfully Deleted ",
+        showCancelButton: false,
+        confirmButtonText: 'Ok',
+
+      })
+
     } catch (error) {
-      alert("Invalid delete");
+      Swal.fire({
+        icon: "warning",
+        text: "Somthing went wrong",
+        showCancelButton: false,
+        confirmButtonText: 'Ok',
+
+      })
     }
   }
   ///////////////update pet /////////////////////
@@ -231,7 +248,6 @@ const ToDo = (props) => {
       pet_img: e.target.pet_img.value,
       pet_type: e.target.pet_type.value,
       pet_desc: e.target.pet_desc.value,
-      
     };
     let updateUrl = `${API}/pet/${index}`;
     let petDataRes = await superagent
@@ -267,16 +283,16 @@ const ToDo = (props) => {
   }, [count2]);
   ////////////////////Socket Io ///////////////////
   function myMessageFunc() {
-    setmessageArea(true)
-    console.log('set It');
+    setmessageArea(true);
+    console.log("set It");
   }
 
   function removeMessageFunc() {
-    setmessageArea(false)
+    setmessageArea(false);
   }
   ////////////////////add pet//////////////////////
   async function addPet(item) {
-    // console.log(item, ',,,,,,,,,,,,,,,,,,,,,,,,')
+    console.log(item, ",,,,,,,,,,,,,,,,,,,,,,,,");
     let obj = {
       pet_name: item.pet_name,
       pet_age: item.pet_age,
@@ -285,39 +301,114 @@ const ToDo = (props) => {
       pet_desc: item.pet_desc,
       pet_states: item.pet_states,
     };
+
     try {
+      console.log(obj, ",,,,,,,,,,,,,,,,,,,,,,,,");
+
       const res = await superagent
         .post(`${API}/adapt`)
         .send(obj)
         .set("Authorization", "Bearer " + Context.token);
+
+      console.log(res, ",,,,,,,,,,,,,,,,,,,,,,,,");
+
       setcount2(count2 + 1);
     } catch (error) {
       alert("Invalid data");
     }
   }
-  async function updatePetState(index, item) {
-    // by admin
-    let obj = {
-      pet_q: Context.user.id, // user id who pick pet
-      pet_name: item.pet_name,
-      pet_states: !item.pet_states, // false
-      pet_age: item.pet_age,
-      pet_img: item.pet_img,
-      pet_type: item.pet_type,
-      pet_desc: item.pet_desc,
-      user_id: item.user_id, // admin id who add pet
-    };
-    console.log(obj, '>>>>>>>>>>>>>>>>>>>>>');
-    try {
-      const res = await superagent
-        .put(`${API}/adoptionpet/${item.id}`)
-        .send(obj)
-        .set("Authorization", "Bearer " + Context.token);
-      setcount(count2 + 1);
-    } catch (error) {
-      alert("Invalid update");
-    }
+
+  async function acceptAdoption(id) {
+    // "/adoptionpet/:id",
+    const res = await superagent
+      .put(`${API}/adoptionpet/${id}`)
+      .set("Authorization", "Bearer " + Context.token);
+
+    setcount(count2 + 1);
   }
+
+  async function declineAdoption(item) {
+
+    // put(
+    // "/pet/:id",
+
+    let obj = item
+    obj.user_id = null
+    obj.pet_states = true
+    obj.requestId = null
+
+    const id = obj.id
+
+    const res = await superagent
+      .put(`${API}/pet/${id}`)
+      .send(obj)
+      .set("Authorization", "Bearer " + Context.token);
+
+    setcount(count2 + 1);
+  }
+
+  async function alertForAdoption(id) {
+    //  "/adoptionpetUser/:id/:requestId",
+    //   state = false 
+    //   id = null
+    const userId = Context.user.id // from logIn
+    console.log(Context.user.id);
+    const petId = id
+
+    console.log(petId);
+
+    // SuperAgent
+
+    const res = await superagent
+      .put(`${API}/adoptionpetUser/${petId}/${userId}`)
+      .set("Authorization", "Bearer " + Context.token);
+
+    setcount(count2 + 1);
+    console.log(res);
+
+    //   capability="add" && state=false  &&  id=null {requestedId=12}
+
+
+    Swal.fire({
+      icon: "info",
+      text: "Your request is pending🐾🐾",
+      showCancelButton: false,
+      confirmButtonText: 'Ok',
+
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        window.location.reload()
+      }
+    })
+
+  }
+
+  // async function updatePetState(index, item) {
+  //   // by admin
+  //   let obj = {
+  //     pet_q: Context.user.id, // user id who pick pet
+  //     pet_name: item.pet_name,
+  //     pet_states: !item.pet_states, // false
+  //     pet_age: item.pet_age,
+  //     pet_img: item.pet_img,
+  //     pet_type: item.pet_type,
+  //     pet_desc: item.pet_desc,
+  //     user_id: item.user_id, // admin id who add pet
+  //   };
+  //   console.log(obj, '>>>>>>>>>>>>>>>>>>>>>');
+  //   try {
+  //     const res = await superagent
+  //       .put(`${API}/adoptionpet/${item.id}`)
+  //       .send(obj)
+  //       .set("Authorization", "Bearer " + Context.token);
+
+  //     setcount(count2 + 1);
+  //   } catch (error) {
+  //     alert("Invalid update");
+  //   }
+  // }
+
   //..........................pet functionality.............................................
   //.....................................add product.....................
   async function addProduct(item) {
@@ -329,6 +420,7 @@ const ToDo = (props) => {
       product_type: item.product_type,
       product_price: item.product_price,
       user_id: item.user_id, //??????????????????????
+      product_quantity: 1,
     };
     try {
       const res = await superagent
@@ -340,7 +432,6 @@ const ToDo = (props) => {
       alert("Invalid data");
     }
   }
-  //.....................................add product.....................
   //............................................updateProduct.............................
   const updateProduct = async (e) => {
     console.log("ggggggggggggggggggggggggggggggggggggg", productData);
@@ -352,8 +443,7 @@ const ToDo = (props) => {
       product_type: e.target.product_type.value,
       product_price: e.target.product_price.value,
       product_img: e.target.product_img.value,
-      user_id: e.target.user_id.value,
-    };
+         };
     console.log("lllllllllllllllllllllll", updateproductData);
     let updateUrl = `${API}/product/${Indexproduct}`;
     let productDataRes = await superagent
@@ -395,6 +485,37 @@ const ToDo = (props) => {
     }
   }
   //............................................updateProduct.............................
+
+  // ////////////////////// buy prodect ///////////////////////////////
+
+  async function handelBuy(item) {
+    // item >> from prodect
+
+    console.log("sdgfgfasgfadgd");
+
+    let obj = {
+      product_userID: Context.user.id, // id >> user
+      id: item.id, // id >> prodect
+      product_name: item.product_name,
+      product_desc: item.product_desc,
+      product_img: item.product_img,
+      product_price: item.product_price,
+      product_type: item.product_type,
+      // user_id: item.user_id,
+    };
+
+    try {
+      const res = await superagent
+        .put(`${API}/product/${item.id}`)
+        .send(obj)
+        .set("Authorization", "Bearer " + Context.token);
+      setcount(count + 1);
+      console.log(res.text);
+    } catch (error) {
+      alert("Invalid update");
+    }
+  }
+
   return (
     <>
       <Router>
@@ -413,7 +534,8 @@ const ToDo = (props) => {
               showupdatePetForm={showupdatePetForm}
               addPet={addPet}
               search={searchItems}
-              updatePetState={updatePetState}
+              alertForAdoption={alertForAdoption}
+            // updatePetState={updatePetState}
             />
             {showUpdateForm && (
               <UpdatePetForm
@@ -431,6 +553,7 @@ const ToDo = (props) => {
               productData={productData}
               addProduct={addProduct}
               showupdateProductForm={showupdateProductForm}
+              handelBuy={handelBuy}
             />
             {showUpdateFormproduct && (
               <UpdateforimProduct
@@ -452,6 +575,8 @@ const ToDo = (props) => {
           </Route>
           <Route exact path="/Profile">
             <Profile
+              acceptAdoption={acceptAdoption}
+              declineAdoption={declineAdoption}
               delAppointmentfromuser={delAppointmentfromuser}
               list={list}
               petData={petData}
@@ -464,23 +589,18 @@ const ToDo = (props) => {
             {Context.loggedIn ? <Redirect to="/" /> : <SignUp />}
           </Route>
           <Route exact path="/Cart">
-            <Cart />
+            <Cart productData={productData} />
           </Route>
         </Switch>
-        {/* <Footer /> */}
+
+        <Footer />
       </Router>
 
-      {
-        !messageArea &&
-        (Context.loggedIn &&
-          <Message myMessageFunc={myMessageFunc} />)
-      }
+      {!messageArea && Context.loggedIn && (
+        <Message myMessageFunc={myMessageFunc} />
+      )}
 
-      {
-        messageArea &&
-        <MyMessageArea removeMessageFunc={removeMessageFunc} />
-      }
-
+      {messageArea && <MyMessageArea removeMessageFunc={removeMessageFunc} />}
     </>
   );
 };

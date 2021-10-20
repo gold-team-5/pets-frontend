@@ -1,17 +1,26 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Card, ListGroup, ListGroupItem, Button } from "react-bootstrap/";
 import '../../reset.css';
 import "./profile.css";
+import img from '../../img/profile.png';
 import { LoginContext } from "../context/context";
 // import Auth from "./component/context/auth";
 import Auth from "../context/auth";
+import superagent from "superagent";
 
 export default function Profile(props) {
   console.log("mmmmmmm", props.list);
   const context = useContext(LoginContext);
+
+  const Context = useContext(LoginContext);
+
+  console.log(context.user);
+
   return (
+    
     // {context.userinfo}
     < div className='all'>
+      <img id="profileIMG" src={img} alt="img2" />
       <Card className="cardProfile">
         {/* .......... user info ................. */}
         <div className='imgandname'>
@@ -26,15 +35,18 @@ export default function Profile(props) {
         <div  className="infoContener">
         <Card.Body >
           <Card.Title className="info">
-            Email: {context.user.user_email}
+            📧 :{context.user.user_email}
           </Card.Title>
           <Card.Title className="info">
-            Address: {context.user.user_address}
+            🏠 : {context.user.user_address}
           </Card.Title>
           <Card.Title className="info">
-            phone: {context.user.user_phone}
+           📞 : {context.user.user_phone}
           </Card.Title>
         </Card.Body>
+
+
+        
         </div>
         {/* <ListGroup className="list-group-flush">
           <ListGroupItem>Cras justo odio</ListGroupItem>
@@ -57,7 +69,8 @@ export default function Profile(props) {
                 {console.log(item.id, "hhhhhhhhhhhhhhhhhhhhhhhhh")} */}
 
                   <ListGroupItem >
-                    ID: {item.id} &nbsp; Doctor: {item.book_doctor}
+                    {/* ID: {item.id}  */}
+                    &nbsp; Doctor: {item.book_doctor}
                   </ListGroupItem>
                   {/* <ListGroupItem>Doctor Name: {item.book_doctor}</ListGroupItem> */}
                   {/* <ListGroupItem>{item.user_id}</ListGroupItem> */}
@@ -67,38 +80,55 @@ export default function Profile(props) {
                       <td>
                         {" "}
                         <button
+                        className="btnboking"
                           onClick={() => props.delAppointmentfromuser(item)}
                           type="button"
                           variant="danger"
                         >
-                          ❌
+                         ❌
                         </button>
                       </td>
                     </Auth>
                   </ListGroupItem>
-                  {/* <ListGroupItem> {item.book_states.toString()}</ListGroupItem> */}
-
-                  {/* <Auth capability="show">
-                  <td>
-                    {" "}
-                    <Button
-                      onClick={() => props.delAppointmentfromuser(item)}
-                      type="button"
-                      variant="danger"
-                    >
-                      Delete
-                    </Button>
-                  </td>
-                </Auth> */}
+                 
                 </div>
+                
               );
             }
           })}
-        </div>
+     </div>
+        <Auth capability="add">
+          {/* //   capability="add" && state=false  &&  id=null {requestedId=12} */}
 
+          <div className="petData">
+            <div id='petTitle'> Pets need Approvement </div>
+            {props.petData?.map((item) => {
+              if (item.pet_states == false && item.user_id == null) {
+                return (
+                  <div className="adoptPet">
+ <ListGroupItem>
+                      <img src={item.pet_img} style={{ width: '100px', height: '100px', borderRadius: '50%' }}></img>
+                    </ListGroupItem>
 
+                    <ListGroupItem>
+                      {/* ID: {item.id}  */}
+                      &nbsp; PET AGE: {item.pet_age}
+                    </ListGroupItem>
+                    <ListGroupItem>
+                      Pet Name: {item.pet_name} &nbsp; Pet Type: {item.pet_type}
+                    </ListGroupItem>
+                   
 
+                    <button className="btnpetsData" onClick={() => props.acceptAdoption(item.id)}> Accept </button>
 
+                    <button variant="danger" className="btnpetsData" onClick={() => props.declineAdoption(item)}> Decline </button>
+
+                  </div>
+                )
+              }
+            })}
+          </div>
+        </Auth>
 
         <div className="petData">
           {props?.petData?.map((item) => {
@@ -109,7 +139,8 @@ export default function Profile(props) {
                   <div id='petTitle'>your pets</div>
                   
                   <ListGroupItem>
-                    ID: {item.id} &nbsp; PET AGE: {item.pet_age}
+                    {/* ID: {item.id}  */}
+                    &nbsp; PET AGE: {item.pet_age}
                   </ListGroupItem>
                   <ListGroupItem>
                     Pet Name: {item.pet_name} &nbsp; Pet Type: {item.pet_type}
@@ -124,6 +155,7 @@ export default function Profile(props) {
             }
           })}
         </div>
+        
         </div>
       </Card>
     </div>

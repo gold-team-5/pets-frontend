@@ -26,16 +26,11 @@
   box-shadow: 0 2px 12px 5px var(--Dbrown);
 }
 
-#left {
-  width: 47%;
-  /* border: 1px solid red; */
-  min-height: 400px;
-}
-
 #right {
-  width: 47%;
+  margin: 4% 0 2% 0;
+  width: 40%;
   /* border: 1px solid black; */
-  min-height: 400px;
+  min-height: 250px;
 }
 
 /* ////////////////////////////// */
@@ -53,6 +48,13 @@
   min-height: 100vh;
   background: black;
 } */
+
+.FormGroup {
+}
+.InputGroup {
+}
+#GoBtn {
+}
 
 h2 {
   padding: 1.5% 0 -0.5% 0;
@@ -91,3 +93,64 @@ h2 {
   top: -0.2%;
   left: 5%;
 }
+
+/* ///////////////////////// list /////////////////////////////////// */
+
+#left {
+  width: 47%;
+  /* border: 1px solid red; */
+  min-height: 300px;
+  margin: 4% 0 2% 0;
+  overflow-y: auto;
+}
+
+#imgLIst {
+  width: 75px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.prodectContener {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+
+  height: 90px;
+
+  margin: 0px 5px 0 0;
+  background-color: var(--Lgray);
+  /* border: gray 1px solid; */
+  border-radius: 10px;
+}
+#paragrafs {
+}
+#buttons {
+}
+
+.plus {
+  /* background-color: var(--Lbrown); */
+}
+.mainac {
+  /* background-color: var(--Lbrown); */
+}
+.buttonss {
+  border: 1px solid hotpink;
+  border-radius: 20%;
+  border: 0;
+  /* background-color: gray; */
+}
+
+#total {
+  color: var(--Dbrown) s;
+  font-weight: bold;
+  display: inline-block;
+  padding: 1%;
+  background-color: #65ac36;
+  border-radius: 8px;
+}
+/* 
+::-webkit-scrollbar {
+  width: 10px;
+} */

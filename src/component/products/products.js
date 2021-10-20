@@ -30,20 +30,21 @@ export default function Product(props) {
         {props.productsearch.length > 1
           ? props?.filterprouduct?.map((item, index) => {
               return (
-                <div className="petCard">
-                  <Card key={index} style={{ width: "18rem" }}>
+                <div className="petCard" key={index}>
+                  <Card style={{ width: "18rem" }}>
                     <Card.Img variant="top" src={item.product_img} />
                     <Card.Body>
                       <Card.Title>{item.product_name}</Card.Title>
 
                       <Card.Text>{item.product_desc}</Card.Text>
                       <Card.Text>{item.product_price}</Card.Text>
-                      <button className="btnpets"
+                      <button
                       //  variant="primary"
-                      >Adoption</button>
-
-                      <button className="btnpets"
+                       >
+                         Buy Now</button>
+                      <button
                         // variant="primary"
+                        className="btnpets"
                         onClick={() => props.deletProduct(item.id)}
                       >
                         delete
@@ -62,8 +63,8 @@ export default function Product(props) {
             })
           : props?.productData?.map((item, index) => {
               return (
-                <div className="petCard">
-                  <Card key={index} style={{ width: "18rem" }}>
+                <div className="petCard" key={index}>
+                  <Card style={{ width: "18rem" }}>
                     <Card.Img variant="top" src={item.product_img} />
                     <Card.Body>
                       <Card.Title>{item.product_name}</Card.Title>
@@ -71,9 +72,12 @@ export default function Product(props) {
                       <Card.Text>{item.product_desc}</Card.Text>
                       <Card.Text>{item.product_price}</Card.Text>
                       <button  className="btnpets"
-                      // variant="primary"
-                      >Adoption</button>
-                      <button className="btnpets"
+                        // variant="primary"
+                        onClick={() => props.handelBuy(item)}
+                      >
+                        Buy Now
+                      </button>
+                      <button  className="btnpets"
                         // variant="primary"
                         onClick={() => props.deletProduct(item.id)}
                       >

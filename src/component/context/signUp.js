@@ -18,7 +18,11 @@ export default function SignUp(props) {
         let address=event.target.address.value
         let gender=event.target.gender.value
         let role = 'user'
-        context.signUp(username, password, role,phone,address,gender);
+        let user_email=event.target.email.value
+        let user_img=event.target.image.value
+
+        
+        context.signUp(username, password, role,phone,address,user_email,user_img,gender);
 
 
     };
@@ -50,6 +54,14 @@ export default function SignUp(props) {
                     <Form.Group className="mb-3" controlId="formBasicPassword">
                         <Form.Label>address</Form.Label>
                         <Form.Control required name="address" type="text" placeholder="address" />
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="formBasicPassword">
+                        <Form.Label>Image</Form.Label>
+                        <Form.Control required name="image" type="text" placeholder="url link" />
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="formBasicPassword">
+                        <Form.Label>Email</Form.Label>
+                        <Form.Control required name="email" type="email" placeholder="something@example.com" />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicPassword">
                         <Form.Label>gender</Form.Label>

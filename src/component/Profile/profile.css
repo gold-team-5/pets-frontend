@@ -9,49 +9,54 @@
   /* justify-content: center; */
 }
 
- .cardProfile {
+.cardProfile {
   border-style: solid;
   border-width: 3px;
   border-color: var(--green);
   width: 84%;
-  min-height: 37rem;
-  /* background-color:var(--Dbrown); */
-  color:var(--Lgray);
-  /* margin-top: 5%;
-  margin-left: 20%; */
-  margin-top: 5%;
-  
+  min-height:100px;
+  /* background-color: var(--Dbrown); */
+  color: var(--Lgray);
+  margin-top: 13.5%;
 }
 
-.imgandname {
+/* .imgandname {
   height: 300px;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
   align-items: center;
   justify-content: space-evenly;
+} */
+
+.imgandname {
+  height: 300px;
+  /* display: flex; */
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-evenly;
+  display: block;
+  width: 40%;
 }
 .cardimg {
   width: 197px;
-    height: 190px;
+  height: 190px;
   border-style: solid;
   border-width: 3px;
   border-color: var(--green) var(--green) var(--green) var(--Dbrown);
   border-radius: 120px;
-  /* position: relative;
-  top: 4%;
-  left: 39%; */
+  position: relative;
+  left: 67px;
+  top: 22px;
 }
 
 .titlename {
-
-  
-  /* position: relative;
-  top: 6%;
-  left: 43%; */
   text-shadow: -1px 1px var(--Dbrown);
   color: var(--green);
-
+  position: relative;
+  top: 32px;
+  left: 125px;
 }
 /* .title {
   position: relative;
@@ -64,22 +69,21 @@
 
 
 .infoContener {
-  
-  
-   
-    width: 70%;
-    height: 20%;
-    justify-content: center;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-content: center;
-    align-items: flex-start;
-    position: relative;
-    left: 96px;
-    top: -30px;
-
+  width: 49%;
+  height: 20%;
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: flex-start;
+  position: relative;
+  left: -11px;
+  top: -16px;
+  max-width: 320px;
 }
+
+
 .info {
   /* position: relative;
   top: 16%;
@@ -93,26 +97,31 @@
 .bookandanimale {
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   justify-content: space-evenly;
   align-items: flex-start;
+  width: 74%;
+  position: relative;
+  left: 305px;
+  top: -362px;
 }
 
 .bookingListTilt {
   /* width: 751px; */
   width: 40%;
+  
+  
 }
+
 #bookingTitle {
   width: 100%;
   text-align: center;
-  /* margin: 0 0 1.5% 2%; */
   font-size: 22px;
   font-weight: bolder;
-  text-shadow: var(--Dbrown);
-  color: var(--green);
-  /* border: 0.5px solid var(--Lbrown); */
   border-radius: 5px;
-  /* margin: 0%; */
+  text-shadow: -1px 1px var(--Dbrown);
+  color: var(--green);
+  margin-bottom: 13px;
 }
 
 .petData{
@@ -120,6 +129,67 @@ background-color:white;
 width: 40%;
 }
 
+#petTitle {
+  width: 100%;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bolder;
+  text-shadow: -1px 1px var(--Dbrown);
+  color: var(--green);
+  border-radius: 5px;
+  margin-bottom: 13px;
+}
+
+.boxbooking{
+  border-radius: 19px;
+  margin-bottom: 3px;
+  box-shadow: 0 0 30px #4c3433;
+  
+}
+.adoptPet{
+  border-radius: 19px;
+  margin-bottom: 3px;
+  box-shadow: 0 0 30px #4c3433;
+}
+
+.btnpetsData {
+  color: #fff;
+  background-color: var(--green);
+  border-color: var(--green);
+  margin-top: 5%;
+  margin-left: 10%;
+  position: relative;
+  left: 36px;
+  margin-bottom: 4px;
+  top: -5px;
+}
+
+.btnboking {
+  color: #fff;
+  background-color: transparent;
+  margin-top: 5%;
+  margin-left: 4%;
+  position: relative;
+  left: 260px;
+  top: -87px;
+  padding-left: 8px;
+  padding-right: 8px;
+  justify-content: center;
+}
+
+/* .btnpets:hover {
+color: #fff;
+background-color: var(--green);;
+border-color: var(--green);
+} */
+
+#profileIMG {
+  width: 33%;
+  z-index: 1;
+  position: absolute;
+  top: -0.2%;
+  left: 59%;
+}
 /* .card-body {
   flex: 1 1 auto;
   margin: 2% 50% 1% 0%;
