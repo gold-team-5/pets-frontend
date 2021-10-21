@@ -148,6 +148,7 @@ export default function Pets(props) {
    }
 
   return (
+
     <div id="contener">
       <div id="iner-contener">
         <h2 contenteditable="true">shopping cart </h2>
@@ -166,8 +167,7 @@ export default function Pets(props) {
 
           {props?.productData?.map((ele, i) => {
             if ( ele.product_userID!=null && ele.product_userID == Context.user.id ) {
-              sumatiom =
-                sumatiom + Number(ele.product_price) * ele.product_quantity;
+              sumatiom = sumatiom + Number(ele.product_price) * ele.product_quantity;
 
               console.log(sumatiom);
               return (
@@ -185,28 +185,28 @@ export default function Pets(props) {
                       {" "}
                       <p>Price: {ele.product_price} </p>
                     </div>
-                    <div id="buttons ">
-                      <button
-                        className="mainac buttonss"
+                    <div className="btncart" >
+                      <span
+                        className="buttonscart"
                         onClick={() => handelDecrese(ele.id, ele)}
                       >
                         ➖
-                      </button>
+                      </span>
                       &nbsp;
                       <span>{ele.product_quantity}</span>
                       &nbsp;
-                      <button
-                        className="plus buttonss"
+                      <span
+                         className="buttonscart"
                         onClick={() => handelAdd(ele.id, ele)}
                       >
                         ➕
-                      </button>
-                      <button
-                        className="close buttonss"
+                      </span>
+                      <span
+                         className="buttonscart"
                         onClick={() => deleteProduct(ele.id,ele)}
                       >
-                        ✖
-                      </button>
+                        ❌
+                      </span>
                     </div>
                   </div>
                   <hr />
@@ -218,11 +218,13 @@ export default function Pets(props) {
           <div id="total">Total: {sumatiom}</div>
         </div>
 
-        <div id="right">
+        <div id="right " >
           {/* form   */}
 
-          <span> Your Info</span>
-          <Form onSubmit={alertForBuy}>
+         
+          <Form className="myFormmCart"  id="formtoinfo"onSubmit={alertForBuy}>
+          <h3 id="apph3">Your Information</h3>
+          <br></br>
             <FormGroup
               className="FormGroup"
               // helperText="Helper text with details..."

@@ -3,6 +3,7 @@ import { When } from "react-if";
 import { LoginContext } from "./context";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import "./signUp.css"
 
 import "./login.css"
 import Swal from 'sweetalert2';

@@ -1,7 +1,7 @@
 import React from "react";
 import ToDo from "./component/ToDo/ToDo";
 import SettingProvider from "./context";
-
+import './App.css'
 import Auth from "./component/context/auth";
 import LoginProvider from "./component/context/context";
 import Login from "./component/context/login";
@@ -14,7 +14,7 @@ import "./component/Header/header.css";
 export default class App extends React.Component {
   render() {
     return (
-      <div>
+      <div className="bodycolor">
         <LoginProvider>
           <SettingProvider>
             {/* user - editor - admin */}

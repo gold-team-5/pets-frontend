@@ -1,5 +1,5 @@
 .myFormmapp{
-    width: 53%;
+    width:70%;
     border: 1px solid var(--Lgray);
     text-align: center;
     padding-top: 20px;
@@ -13,6 +13,7 @@
     box-shadow: 0 0 30px var(--Dbrown) ;
     border-radius: 26px;
     /* font-family: cursive; */
+    
 }
 .maindiv{
    

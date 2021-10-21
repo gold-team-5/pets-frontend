@@ -21,6 +21,7 @@ import logo from "../../img/Screenshot__137_-removebg-preview.png";
 import { LoginContext } from "../context/context";
 import LoginButton from "../loginButton";
 import LogoutButton from "../logoutButton";
+import { AiOutlineShoppingCart } from "react-icons/ai";
 
 export default function Headers(props) {
  const[countproduct,setcountproduct]=useState(0)
@@ -67,11 +68,11 @@ const reducer = (previousValue, currentValue) => previousValue + currentValue;
 
               <span class="">&nbsp; </span>
 
-              <a href="Cart">
-                <Button
+              <a href="Cart" className="cartshap">
+                <span
                   onClick={handelCart}
-                  icon="shopping-cart"
-                  class="bp3-button bp3-minimal bp3-icon-notifications"
+                 
+                
                 >
                   {props.productData.map((item)=>{
                     if(item.product_userID=context.user.id)
@@ -89,8 +90,8 @@ const reducer = (previousValue, currentValue) => previousValue + currentValue;
                 }
               
 
-                  ({num})
-                </Button>
+                  <AiOutlineShoppingCart/>({num})
+                </span>
               </a>
             </div>
           </div>

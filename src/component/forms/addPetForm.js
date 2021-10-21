@@ -2,15 +2,18 @@ import React from "react";
 import useForm from '../../Hooks/form';
 import { FormGroup, InputGroup } from '@blueprintjs/core';
 import { Button } from "react-bootstrap";
-// import "./form.css"
+import "./form.css"
+import '../Appointment/Appointment.css'
 // import '../pets/pets.css'
 import Auth from "../context/auth";
 export default function AddPetForm(props) {
     const { handleChange, handleSubmit } = useForm(props.addPet);
     return (
+        <div className="maindiv">
         <Auth capability="add">
-            <form className="myFormm" onSubmit={handleSubmit} style={{marginBottom:"100px"}}>
+            <form className="myFormmapp" onSubmit={handleSubmit} style={{marginBottom:"100px"}}>
                 <h2>Add New Pet</h2>
+                <div className="inputapp">
                 <FormGroup
                     labelFor="text-input">
                     <input onChange={handleChange} name="pet_name" type="text" placeholder="pet_name" />
@@ -35,6 +38,7 @@ export default function AddPetForm(props) {
                     labelFor="text-input">
                     <input onChange={handleChange} name="pet_desc" type="text" placeholder="pet_desc" />
                 </FormGroup>
+                </div>
                 {/* <FormGroup
 
                     labelFor="text-input">
@@ -42,12 +46,14 @@ export default function AddPetForm(props) {
 
 
                 </FormGroup> */}
-                <button type="submit" className='btnpets' > Add  . </button>
+                <button type="submit" className='btnpets' > Add   </button>
 
                 
                 {/* <Button type="submit"> Add </Button> */}
 
             </form>
+            
         </Auth>
+        </div>
     )
 }

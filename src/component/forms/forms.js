@@ -11,11 +11,11 @@ export default function Form(props) {
 
   return (
     <Auth capability="add">
-      <div className="maindiv">
+      <div className="maindivcart">
       <form
         className="myFormmapp"
-        onSubmit={handleSubmit}
         style={{ marginBottom: "100px" }}
+        onSubmit={handleSubmit}
       >
         <h3 id="apph3">Add New Appointment</h3>
         <div className="inputapp">
