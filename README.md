@@ -56,3 +56,5 @@ Usability:react
 
 
 [Backend heroku](https://gold-team-mid-project.herokuapp.com)
+
+[deploy](https://y033w.csb.app/)
