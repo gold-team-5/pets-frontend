@@ -10,6 +10,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Appointment from "./component/Appointment/Appointment";
 
 import "./component/Header/header.css";
+// import Footer from "./component/footer/footer";
 
 export default class App extends React.Component {
   render() {
@@ -22,6 +23,8 @@ export default class App extends React.Component {
             <ToDo />
           </SettingProvider>
         </LoginProvider>
+
+        
       </div>
     );
   }

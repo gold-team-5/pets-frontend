@@ -151,7 +151,7 @@ export default function Pets(props) {
 
     <div id="contener">
       <div id="iner-contener">
-        <h2 contenteditable="true">shopping cart </h2>
+        <h2 id="h2" contenteditable="true">shopping cart </h2>
         <img id="petsIMG" src={img2} alt="img2" />
       </div>
 

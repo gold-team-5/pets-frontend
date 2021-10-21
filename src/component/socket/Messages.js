@@ -1,4 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
+import reset from 'react-style-reset';
+// import "../reset.css"
+
 import './Messages.css';
 
 function Messages({ socket }) {
