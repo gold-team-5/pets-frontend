@@ -1,6 +1,6 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
-
+import Auth from "../context/auth";
 import "./StorePetsCard.css";
 
 class Product extends React.Component {
@@ -13,7 +13,7 @@ class Product extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="">
         <div>
           <div className="ourAdopteesContainer">
             <div className="ourAdoptees">
@@ -34,7 +34,7 @@ class Product extends React.Component {
                       <button onClick={() => this.props.alertForAdoption(this.props.index)} > adopt </button>
 
                     </div>
-
+                    <Auth capability="add">
                     <div className="mt-auto ButtonContainer">
                       <button onClick={() => this.props.deletPet(this.props.index)} > delete </button>
 
@@ -44,7 +44,7 @@ class Product extends React.Component {
                       <button onClick={() => this.props.showupdatePetForm(this.props.index, this.props.item)}> update </button>
 
                     </div>
-
+</Auth>
                   </Card.Body>
                 </Card>
               }
@@ -72,7 +72,7 @@ class Product extends React.Component {
                       <button onClick={() => this.props.handelBuy(this.props.item)} > Buy </button>
 
                     </div>
-
+<Auth capability="add">
                     <div className="mt-auto ButtonContainer">
                       <button onClick={() => this.props.deletProduct(this.props.item.id)} > Delete </button>
 
@@ -82,7 +82,7 @@ class Product extends React.Component {
                       <button onClick={() => this.props.showupdateProductForm(this.props.item.id, this.props.item)}> update </button>
 
                     </div>
-
+</Auth>
                   </Card.Body>
                 </Card>
               }

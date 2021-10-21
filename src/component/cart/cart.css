@@ -42,7 +42,9 @@ align-items: center;
 
 #right {
   width: 34%;
-  margin: 5% 0px 0px 24px;  /* width: 40%; */
+  margin: 0% 0px 0px 24px;
+  
+    /* width: 40%; */
 
   /* min-height: 250px; */
  
@@ -50,12 +52,13 @@ align-items: center;
 
 .myFormmCart{
   width: 101%;
+    display: flex;
     border: 1px solid var(--Lgray);
     text-align: center;
     padding-top: 20px;
     padding-bottom: 20px;
     /* float: left; */
-    /* justify-content: center; */
+    justify-content: space-around;
     text-align: center;
     /* position: relative; */
     /* left: 194px; */
@@ -66,8 +69,13 @@ align-items: center;
     /* font-family: cursive; */
     /* margin-left: 31px; */
     position: relative;
+    height: 300px;
+    flex-direction: column;
+    flex-wrap: nowrap;
+
 
 }
+
 .formtoinfo{
   width:20%;
 }
@@ -91,6 +99,11 @@ align-items: center;
 .FormGroup {
 }
 .InputGroup {
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+ 
+  
 }
 #GoBtn {
 }

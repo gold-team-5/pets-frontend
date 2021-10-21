@@ -48,8 +48,8 @@
     background-color: var(--green);
     border-color: var(--green);
     position: relative;
-    top: -10px;
-    left: 64px;
+    top: 13px;
+    left: 52px;
     padding-left: 18px;
     padding-right: 18px;
 }

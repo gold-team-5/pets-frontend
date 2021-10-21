@@ -32,7 +32,7 @@ export default function SignUp(props) {
         <div className="SignUpForm">
             
                 <Form className='signupform' onSubmit={handleSubmit}>
-                    <h2> Sign Up </h2>
+                    <h2 id="h2"> Sign Up </h2>
                     <br/>
                     <div className='signupInput'>
                     <Form.Group className="mb-3" controlId="formBasicEmail">

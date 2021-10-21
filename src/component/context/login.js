@@ -43,7 +43,7 @@ export default function Login(props) {
         <div className="logInForm">
 
             <When condition={!context.loggedIn}>
-                <h2>SignIn</h2>
+                <h2 id="h2">SignIn</h2>
                 <br />
                 <form className='loginform' onSubmit={handleSubmit}>
                     <div className='loginInput'>
@@ -72,9 +72,9 @@ export default function Login(props) {
                     </div>
 
                     <div className='loginButton'>
-                        <button id="firstButton"  type="submit" >Login</button>
+                        <Button id="firstButton"  type="submit" >Login</Button>
                       
-                        <button id='secondButton' type="submit" href='/signup'>Sign up</button>
+                        <Button id='secondButton' type="submit" href='/signup'>Sign up</Button>
                     </div>
                     {/* <Link to="/signup" className="btn btn-primary" style={{textDecoration:'none'}}>Sign up</Link> */}
                 </form>

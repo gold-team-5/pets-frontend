@@ -11,7 +11,7 @@ export default function Form(props) {
 
   return (
     <Auth capability="add">
-      <div className="maindivcart">
+      <div className="maindivapp">
       <form
         className="myFormmapp"
         style={{ marginBottom: "100px" }}

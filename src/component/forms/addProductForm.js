@@ -2,7 +2,7 @@ import React from "react";
 import useForm from '../../Hooks/form';
 import { FormGroup, InputGroup } from '@blueprintjs/core';
 import { Button,Modal } from "react-bootstrap";
-// import "./form.css"
+ import "./formproduct.css"
 import Auth from "../context/auth";
 
 export default function AddProductForm(props) {
@@ -37,42 +37,47 @@ export default function AddProductForm(props) {
 
 
 
+      <div className="maindivproduct">
 
-
-            <form className="myFormm" onSubmit={handleSubmit}>
-                <h2>Add New Product</h2>
+            <form className="myFormmappproduct" onSubmit={handleSubmit}>
+                <h2 id="apph3">Add New Product</h2>
+                <div className="inputappproduct">
                 <FormGroup
+                className="productinput"
                     labelFor="text-input">
                     <input onChange={handleChange} name="product_name" type="text" placeholder="product_name" />
                 </FormGroup>
 
                 <FormGroup
+                 className="productinput"
                     labelFor="text-input">
                     <input onChange={handleChange} name="product_img" type="text" placeholder="product_img" />
                 </FormGroup>
 
                 <FormGroup
+                 className="productinput"
                     labelFor="text-input">
                     <input onChange={handleChange} name="product_desc" type="text" placeholder="product_desc" />
                 </FormGroup>
 
                 <FormGroup
-
+ className="productinput"
                     labelFor="text-input">
                     <input onChange={handleChange} name="product_type" type="text" placeholder="product_type" />
 
                 </FormGroup>
                 <FormGroup
-
+ className="productinput"
                     labelFor="text-input">
                     <input onChange={handleChange} name="product_price" type="text" placeholder="product_price" />
 
                 </FormGroup>
-               
+               </div>
 
 
-                <button type="submit" className='btnpets'  > Add </button>
+                <button type="submit" className='brtprodduct'  > Add </button>
             </form>
+            </div>
         </Auth>
     )
 }

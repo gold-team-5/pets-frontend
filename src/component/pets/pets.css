@@ -8,3 +8,20 @@
     align-items: center;
 }
 
+#h22{
+  padding: 1.5% 0 -0.5% 0;
+  position: relative;
+  font-size: 190%;
+  letter-spacing: 20px;
+  color: var(--Dbrowns);
+  text-transform: uppercase;
+  width: 100%;
+  text-align: center;
+  -webkit-box-reflect: below -24px linear-gradient(transparent, #ffffff57);
+  line-height: 75%;
+  outline: none;
+  animation: animate 5s linear infinite alternate-reverse;
+  padding: 0 0 1% 0;
+  margin-top: 4%;
+  
+}

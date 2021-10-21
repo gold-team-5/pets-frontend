@@ -95,7 +95,8 @@ export default function Pets(props) {
     /////////////////// req /////////////////////
 
     let obj = {
-      product_userID: Context.user.id, // id >> user
+      product_userID: 
+      Context.user.id, // id >> user
       id: item.id, // id >> prodect
       product_name: item.product_name,
       product_desc: item.product_desc,
@@ -201,10 +202,19 @@ export default function Pets(props) {
                       >
                         ➕
                       </span>
+                      &nbsp;
+                      &nbsp;
+
+
+
+
                       <span
                          className="buttonscart"
                         onClick={() => deleteProduct(ele.id,ele)}
                       >
+                      
+
+
                         ❌
                       </span>
                     </div>
@@ -218,7 +228,7 @@ export default function Pets(props) {
           <div id="total">Total: {sumatiom}</div>
         </div>
 
-        <div id="right " >
+        <div id="right" >
           {/* form   */}
 
          
@@ -226,6 +236,7 @@ export default function Pets(props) {
           <h3 id="apph3">Your Information</h3>
           <br></br>
             <FormGroup
+            
               className="FormGroup"
               // helperText="Helper text with details..."
               // label="Label A"

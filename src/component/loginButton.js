@@ -7,6 +7,6 @@ import { LoginContext } from "./context/context";
 
 export default function LoginButton(props){
     return (
-         <Button  variant="" className=" btn login-btn" >Sign-in <CgLogIn/></Button>
+         <Button  variant="" className=" btn login-btn" href="/login" >Sign-in <CgLogIn/></Button>
     )
 }

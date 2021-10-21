@@ -51,7 +51,7 @@ const reducer = (previousValue, currentValue) => previousValue + currentValue;
 
             <div>
              
-               <a href="/login">
+              
                  {(!context.loggedIn) ? <LoginButton /> : <LogoutButton />}
                {/* <Button
                 icon="log-in"
@@ -60,7 +60,7 @@ const reducer = (previousValue, currentValue) => previousValue + currentValue;
               >
                    log-In{" "}
               </Button> */}
-              </a>
+         
 
 
               

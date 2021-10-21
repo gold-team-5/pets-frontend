@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Card, Button } from "react-bootstrap";
 import AddPetForm from "../forms/addPetForm";
-
+import Auth from "../context/auth";
 import "../reset.css"
 import "./pets.css"
 
@@ -11,7 +11,7 @@ export default function Pets(props) {
 
   return (
     <>
-      <h3 className='petstittle'>PETS</h3>
+      <h3 id="h22" >PETS</h3>
 
 
       <form action="javascript:" class="search-bar" style={{ minHeight: '200px' }}>
@@ -64,7 +64,10 @@ export default function Pets(props) {
       <div className="addpetform" style={{ margin: "10px" }}>
         <AddPetForm addPet={props.addPet} />
       </div>
+    
     </>
+
+
   );
 
 
