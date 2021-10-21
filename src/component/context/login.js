@@ -72,9 +72,9 @@ export default function Login(props) {
                     </div>
 
                     <div className='loginButton'>
-                        <Button id="firstButton"  type="submit" >Login</Button>
+                        <button id="firstButton"  type="submit" >Login</button>
                       
-                        <Button id='secondButton' type="submit" href='/signup'>Sign up</Button>
+                        <button id='secondButton' type="submit" href='/signup'>Sign up</button>
                     </div>
                     {/* <Link to="/signup" className="btn btn-primary" style={{textDecoration:'none'}}>Sign up</Link> */}
                 </form>

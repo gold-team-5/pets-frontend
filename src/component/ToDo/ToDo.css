@@ -1,3 +1,12 @@
+:root {
+  --green: #6BB937;
+  --Lgray: #F0EFEF;
+  --Dbrown: #4C3433;
+  --Lbrown: #936142;
+  --white: #FFFFFF;
+}
+
+
 .ToDoList {
   margin-left: 10%;
   margin-right: 10%;
