@@ -1,56 +1,65 @@
 import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import { FaFacebookF, FaGithub, FaLinkedinIn, FaTwitter } from "react-icons/fa";
-import "../reset.css"
 import "./Footer.css";
-// import Logo from "../Images/logo_white_vetrical.png";
-
-export class Footer extends React.Component {
-  render() {
-    return (
-      <footer>
-        <div className="footerDIV">
-          <div className="footerLogo">
-            {/* <img src={Logo}></img> */}
-          </div>
-          <div className="technologies">
-            <h2 className="footerH2">Technologies used</h2>
-            <p className="footerP">React</p>
-            <p className="footerP">Bootstrap</p>
-            <p className="footerP">Express - axios</p>
-            <p className="footerP">Mongoose - MongoDB</p>
-            <p className="footerP">Coffee</p>
-          </div>
-          <div className="contactLinks">
-            <h2 className="footerH2">Contact</h2>
-            <p className="footerP">Email</p>
-            <p className="footerP">Buy us a coffee</p>
-            <p className="footerP">Donate for animal rights</p>
-          </div>
-          <div className="followLinks">
-            <p className="footerP">
-              <FaGithub />
-            </p>
-            <p className="footerP">
-              <FaFacebookF />
-            </p>
-            <p className="footerP">
-              <FaLinkedinIn />
-            </p>
-            <p className="footerP">
-              <FaTwitter />
-            </p>
-          </div>
-        </div>
-
-        <div className="copyrightDivContainer">
-          <div className="copyrightDiv">
-            Copyright &copy; 2021 Poyal Pets - All Rights Reserved
-          </div>
-        </div>
-      </footer>
-    );
-  }
+import { MdSupervisorAccount, MdFavorite } from "react-icons/md";
+import {
+  AiFillFacebook,
+  AiFillGithub,
+  AiFillLinkedin,
+  AiFillPhone,
+  AiFillTwitterCircle,
+  AiOutlineMessage,
+} from "react-icons/ai";
+export default function Footer(props) {
+  return (
+    <footer class="footer-distributed">
+      <div class="footer-right">
+        <a href="#">
+          <i class="fa fa-facebook">
+            <AiFillLinkedin />
+          </i>
+        </a>
+        <a href="#">
+          <i class="fa fa-twitter">
+            <AiFillGithub />
+          </i>
+        </a>
+        <a href="#">
+          <i class="fa fa-linkedin">
+            {" "}
+            <AiFillFacebook />
+          </i>
+        </a>
+        <a href="#">
+          <i class="fa fa-github">
+            {" "}
+            <AiFillTwitterCircle />
+          </i>
+        </a>
+        <a href="#">
+          <i class="fa fa-github">
+            {" "}
+            <AiOutlineMessage />
+          </i>
+        </a>
+        <a href="#">
+          <i class="fa fa-github">
+            {" "}
+            <AiFillPhone />
+          </i>
+        </a>
+      </div>
+      <div class="footer-left">
+        <p class="footer-links">
+          <a class="link-1" href="/">
+            Home
+          </a>
+          <a href="/Pets"> Pets</a>
+          <a href="/Products"> Products</a>
+          <a href="/Services"> Services</a>
+          <a href="/AboutUS"> About-Us</a>
+        </p>
+      </div>
+      <p id="copyRight">PETS HOUSE &copy; 2021</p>
+    </footer>
+  );
 }
-
-export default Footer;

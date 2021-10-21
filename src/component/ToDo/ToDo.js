@@ -666,7 +666,7 @@ const ToDo = (props) => {
 
       {messageArea && <MyMessageArea removeMessageFunc={removeMessageFunc} />}
 
-      {/* <Footer /> */}
+      <Footer />
 
     </>
   );
