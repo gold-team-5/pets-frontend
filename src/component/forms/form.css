@@ -1,15 +1,60 @@
-.myFormm{
-    position: relative;
-    margin: 0;
-    font-family: inherit;
-    font-size: inherit;
-    line-height: inherit;
-    border-radius: 5px;
+.myFormmapp{
+    width: 53%;
+    border: 1px solid var(--Lgray);
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    /* float: left; */
+    /* justify-content: center; */
+    text-align: center;
+    /* position: relative; */
+    /* left: 194px; */
     border: 1px solid var(--green);
-    box-shadow: 0 0 9px #4c3433;
-    width: 25%;}
+    box-shadow: 0 0 30px var(--Dbrown) ;
+    border-radius: 26px;
+    /* font-family: cursive; */
+}
+.maindiv{
+   
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+
+
+}
+
 
     .Appointmentinput{
 width: 50%;
      
+margin-top: 5%;
+    }
+    .btr{
+       
+            color: #fff;
+            background-color: var(--green);
+            border-color: var(--green);
+            margin-top: 2%;
+            padding: 14px 0;
+            width:29%}
+        
+        
+    
+    .inputapp{
+
+      
+       
+        margin-top: 5%;
+        /* height: 600px; */
+        overflow-y: auto;
+        margin-bottom: 5%;
+    
+    }
+    #apph3{
+        font-weight: bold;
+        color: var(--green);
     }

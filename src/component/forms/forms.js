@@ -2,6 +2,7 @@ import React from "react";
 import useForm from "../../Hooks/form";
 import { FormGroup, InputGroup } from "@blueprintjs/core";
 import { Button } from "react-bootstrap";
+import'../../rest.css'
  import "./form.css";
 import Auth from "../context/auth";
 
@@ -10,14 +11,16 @@ export default function Form(props) {
 
   return (
     <Auth capability="add">
+      <div className="maindiv">
       <form
-        className="myFormm"
+        className="myFormmapp"
         onSubmit={handleSubmit}
         style={{ marginBottom: "100px" }}
       >
-        <h2>Add New Appointment</h2>
+        <h3 id="apph3">Add New Appointment</h3>
+        <div className="inputapp">
         <FormGroup labelFor="text-input">
-          <InputGroup
+          <input
           className="Appointmentinput"
             onChange={handleChange}
             name="book_doctor"
@@ -65,11 +68,13 @@ export default function Form(props) {
             placeholder=" book_time"
           />
         </FormGroup>
+        </div>
 
         <button type="submit"
-        className='btnpets' 
+        className=' btr' 
         >Add</button>
       </form>
+      </div>
     </Auth>
   );
 }
